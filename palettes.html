@@ -3,753 +3,680 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DreamGully — 3 Palette Directions</title>
+<title>DreamGully — Palette D (final direction)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* ===========================================
+     PALETTE D — FUSION
+     • Palette: C (lavender + sky + peach + ink + cloud)
+     • Glass treatment: A (cobalt + amber, with pink)
+     • Proportions: B (bigger, bolder, more confident)
+  =========================================== */
+
+  /* Fonts — swap --font-display when you pick from Adobe */
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Colors — C's palette */
+  --lavender:     #A78BFA;
+  --lavender-dim: rgba(167, 139, 250, 0.4);
+  --sky:          #38BDF8;
+  --sky-dim:      rgba(56, 189, 248, 0.4);
+  --peach:        #FB923C;
+  --peach-dim:    rgba(251, 146, 60, 0.4);
+  --ink:          #1E1B4B;
+  --ink-soft:     #4338CA;
+  --ink-mute:     #6B7280;
+  --cloud:        #F8FAFC;
+  --bone:         #EDE9FE;
+
+  /* A's glass treatment (cobalt + amber + pink) */
+  --cobalt:       #2A4DDC;
+  --cobalt-dim:   rgba(42, 77, 220, 0.15);
+  --amber:        #F59E0B;
+  --amber-dim:    rgba(245, 158, 11, 0.3);
+  --pink:         #EC4899;
+  --pink-dim:     rgba(236, 72, 153, 0.3);
+
+  /* Gradients */
+  --grad-lav-sky: linear-gradient(135deg, var(--lavender) 0%, var(--sky) 100%);
+  --grad-cobalt:  linear-gradient(135deg, var(--cobalt) 0%, #1E3A8A 100%);
+
+  /* Glass surfaces */
+  --glass-white:  rgba(255, 255, 255, 0.55);
+  --glass-cobalt: rgba(42, 77, 220, 0.12);
+  --glass-lavender: rgba(167, 139, 250, 0.15);
+
+  /* Spacing — B's generous proportions */
+  --space-xs:  12px;
+  --space-sm:  20px;
+  --space-md:  32px;
+  --space-lg:  64px;
+  --space-xl:  100px;
+  --space-2xl: 140px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--font-body);
-  background: #F5F1E8;
-  color: #0F172A;
+  background: var(--bone);
+  color: var(--ink);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
+/* ========================================
+   PAGE CHROME
+======================================== */
 .page-header {
   padding: 80px 32px 40px;
   text-align: center;
-  border-bottom: 1px solid #1f1f1f;
 }
 .page-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(40px, 6vw, 64px);
   font-weight: 400;
+  font-style: italic;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
-  font-style: italic;
 }
 .page-header p {
-  color: #94a3b8;
+  color: var(--ink-soft);
   font-size: 17px;
   max-width: 600px;
   margin: 0 auto;
 }
-
-.palette-section {
-  padding: 60px 32px;
-  border-bottom: 1px solid #1f1f1f;
+.page-header .meta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
 }
-.palette-section .label {
-  display: inline-block;
+.page-header .meta span {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: #1a1a1a;
-  color: #0F172A;
-  padding: 6px 14px;
+  background: white;
+  color: var(--ink-soft);
+  padding: 6px 12px;
   border-radius: 999px;
-  margin-bottom: 12px;
-}
-.palette-section h2 {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 400;
-  margin-bottom: 8px;
-}
-.palette-section .subtitle {
-  color: #94a3b8;
-  font-size: 15px;
-  margin-bottom: 32px;
-  max-width: 640px;
+  border: 1px solid var(--lavender-dim);
 }
 
+/* ========================================
+   HERO PREVIEW — B's bigger proportions
+======================================== */
 .preview {
-  max-width: 1280px;
-  margin: 0 auto;
-  border-radius: 24px;
+  max-width: 1320px;
+  margin: 48px auto 0;
+  border-radius: 32px;
   overflow: hidden;
   position: relative;
-  min-height: 700px;
-  display: grid;
-  grid-template-columns: 1fr;
+  background: linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
+  border: 1px solid var(--lavender-dim);
+  box-shadow: 0 30px 80px rgba(167, 139, 250, 0.2);
 }
-
-/* =============================================
-   PALETTE A — WARM-TECH
-   cobalt + amber + mint + cream + ink
-============================================= */
-.palette-A {
-  --c1: #2A4DDC;   /* cobalt primary */
-  --c2: #F59E0B;   /* amber accent */
-  --c3: #34D399;   /* mint accent */
-  --c4: #FBF6E9;   /* cream surface */
-  --c5: #0F172A;   /* ink deep */
-  --c6: #1E293B;   /* ink soft */
-  --c7: #F1F5F9;   /* bone */
-}
-.palette-A .preview {
-  background: var(--c4);
-  color: var(--c5);
-  position: relative;
-}
-.palette-A .preview::before {
-  content: '';
-  position: absolute;
-  top: -100px; right: -100px;
-  width: 500px; height: 500px;
-  background: var(--c2);
-  border-radius: 50%;
-  z-index: 1;
-  filter: blur(40px);
-  opacity: 0.35;
-}
-.palette-A .preview::after {
-  content: '';
-  position: absolute;
-  bottom: -100px; left: 20%;
-  width: 400px; height: 400px;
-  background: var(--c1);
-  border-radius: 50%;
-  z-index: 1;
-  filter: blur(60px);
-  opacity: 0.25;
-}
-
-.A-hero {
-  position: relative;
-  z-index: 2;
-  padding: 80px 64px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 64px;
-  align-items: center;
-  min-height: 500px;
-}
-.A-wordmark {
-  font-family: var(--font-display);
-  font-size: clamp(56px, 8vw, 120px);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-}
-.A-wordmark .a { color: var(--c5); font-style: italic; font-weight: 600; }
-.A-wordmark .b { color: var(--c1); }
-.A-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  background: var(--c2);
-  color: var(--c5);
-  padding: 6px 14px;
-  display: inline-block;
-  margin-bottom: 24px;
-  font-weight: 500;
-}
-.A-sub {
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--c6);
-  max-width: 520px;
-  margin-bottom: 32px;
-}
-.A-btn {
-  display: inline-block;
-  background: var(--c5);
-  color: var(--c4);
-  padding: 16px 32px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid var(--c5);
-  box-shadow: 6px 6px 0 var(--c2);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.A-btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--c2); }
-.A-shape {
-  position: absolute;
-  top: 100px; right: 100px;
-  width: 180px; height: 180px;
-  background: var(--c3);
-  transform: rotate(45deg);
-  z-index: 2;
-}
-.A-card {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgba(15, 23, 42, 0.15);
-  padding: 28px;
-  border-radius: 16px;
-  position: relative;
-  z-index: 2;
-  margin-top: 24px;
-}
-.A-card-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c1);
-  margin-bottom: 8px;
-}
-.A-card-title {
-  font-family: var(--font-display);
-  font-size: 28px;
-  line-height: 1.1;
-  color: var(--c5);
-  font-weight: 500;
-}
-
-.A-bottom {
-  position: relative;
-  z-index: 2;
-  padding: 0 64px 64px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.A-tile {
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid var(--c5);
-  padding: 20px;
-  border-radius: 12px;
-}
-.A-tile-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--c1);
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-.A-tile-name {
-  font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--c5);
-  font-weight: 500;
-}
-
-.A-swatches {
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-.A-swatch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: #94a3b8;
-}
-.A-swatch .dot {
-  width: 18px; height: 18px;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* =============================================
-   PALETTE B — COOL-POP
-   indigo + coral + lime + charcoal + bone
-============================================= */
-.palette-B {
-  --c1: #4F46E5;   /* indigo primary */
-  --c2: #FB7185;   /* coral */
-  --c3: #A3E635;   /* lime */
-  --c4: #1E1B4B;   /* charcoal deep */
-  --c5: #FAF7F0;   /* bone surface */
-  --c6: #312E81;   /* indigo deep */
-  --c7: #4C1D95;   /* violet */
-}
-.palette-B .preview {
-  background: var(--c5);
-  color: var(--c4);
-  position: relative;
-}
-.palette-B .preview::before {
-  content: '';
-  position: absolute;
-  top: -50px; right: -50px;
-  width: 380px; height: 380px;
-  background: var(--c3);
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0.6;
-}
-.palette-B .preview::after {
-  content: '';
-  position: absolute;
-  bottom: 40px; left: 8%;
-  width: 220px; height: 220px;
-  background: var(--c2);
-  z-index: 1;
-  transform: rotate(20deg);
-  border-radius: 24px;
-}
-
-.B-hero {
-  position: relative;
-  z-index: 2;
-  padding: 80px 64px;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 64px;
-  align-items: center;
-  min-height: 500px;
-}
-.B-wordmark {
-  font-family: var(--font-display);
-  font-size: clamp(56px, 8vw, 120px);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-}
-.B-wordmark .a { color: var(--c4); font-weight: 600; }
-.B-wordmark .b { color: var(--c1); font-style: italic; }
-.B-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c4);
-  margin-bottom: 24px;
-  font-weight: 500;
-  display: block;
-}
-.B-eyebrow span { color: var(--c1); }
-.B-sub {
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--c6);
-  max-width: 540px;
-  margin-bottom: 32px;
-}
-.B-btn {
-  display: inline-block;
-  background: var(--c1);
-  color: white;
-  padding: 16px 32px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid var(--c4);
-  border-radius: 100px;
-  transition: transform 0.2s;
-}
-.B-btn:hover { transform: translateY(-3px); }
-
-.B-side {
-  position: relative;
-  z-index: 2;
-}
-.B-card {
-  background: var(--c4);
-  color: var(--c5);
-  padding: 32px;
-  border-radius: 24px;
-  border: 2px solid var(--c4);
-  box-shadow: 12px 12px 0 var(--c3);
-  position: relative;
-}
-.B-card-tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c3);
-  margin-bottom: 12px;
-}
-.B-card-big {
-  font-family: var(--font-display);
-  font-size: 56px;
-  line-height: 0.95;
-  font-weight: 500;
-  color: var(--c5);
-  margin-bottom: 12px;
-}
-.B-card-sub {
-  color: rgba(250, 247, 240, 0.7);
-  font-size: 14px;
-}
-
-.B-bottom {
-  position: relative;
-  z-index: 2;
-  padding: 0 64px 64px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.B-tile {
-  background: var(--c1);
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-  border: 2px solid var(--c4);
-}
-.B-tile:nth-child(2) { background: var(--c2); }
-.B-tile:nth-child(3) { background: var(--c4); color: var(--c3); }
-.B-tile-name {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.B-swatches {
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-.B-swatch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: #94a3b8;
-}
-.B-swatch .dot {
-  width: 18px; height: 18px;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* =============================================
-   PALETTE C — DREAMY-TECH
-   lavender + sky + peach + ink + cloud
-============================================= */
-.palette-C {
-  --c1: #A78BFA;   /* lavender primary */
-  --c2: #38BDF8;   /* sky */
-  --c3: #FB923C;   /* peach */
-  --c4: #1E1B4B;   /* ink */
-  --c5: #F8FAFC;   /* cloud surface */
-  --c6: #4338CA;   /* indigo text */
-  --c7: #FDE68A;   /* buttercream */
-}
-.palette-C .preview {
-  background: linear-gradient(135deg, #F8FAFC 0%, #EDE9FE 100%);
-  color: var(--c4);
-  position: relative;
-  overflow: hidden;
-}
-.palette-C .preview::before {
+.preview::before {
   content: '';
   position: absolute;
   top: 0; right: 0;
-  width: 60%; height: 60%;
-  background: radial-gradient(circle at top right, rgba(167,139,250,0.4), transparent 60%);
+  width: 70%; height: 70%;
+  background: radial-gradient(circle at top right, var(--lavender-dim), transparent 60%);
+  pointer-events: none;
 }
-.palette-C .preview::after {
+.preview::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0;
   width: 50%; height: 50%;
-  background: radial-gradient(circle at bottom left, rgba(56,189,248,0.3), transparent 60%);
+  background: radial-gradient(circle at bottom left, var(--sky-dim), transparent 60%);
+  pointer-events: none;
 }
 
-.C-hero {
+/* The Memphis shape — pink diamond, bigger, behind card */
+.preview .shape-diamond {
+  position: absolute;
+  top: 120px; right: 80px;
+  width: 220px; height: 220px;
+  background: var(--pink);
+  transform: rotate(45deg);
+  z-index: 1;
+  border-radius: 32px;
+  opacity: 0.85;
+}
+
+.preview .shape-circle {
+  position: absolute;
+  bottom: 80px; left: 60px;
+  width: 140px; height: 140px;
+  background: var(--peach);
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.hero {
   position: relative;
   z-index: 2;
-  padding: 80px 64px;
+  padding: 96px 80px;
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 64px;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
   align-items: center;
-  min-height: 500px;
+  min-height: 620px;
 }
-.C-wordmark {
-  font-family: var(--font-display);
-  font-size: clamp(56px, 8vw, 120px);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-  font-style: italic;
-}
-.C-wordmark .a { color: var(--c4); }
-.C-wordmark .b {
-  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  font-weight: 600;
-}
-.C-eyebrow {
+
+.eyebrow {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--c6);
-  margin-bottom: 24px;
-  font-weight: 500;
-  display: block;
-}
-.C-eyebrow .dot {
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--c1);
-  border-radius: 50%;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-.C-sub {
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--c6);
-  max-width: 540px;
+  background: var(--amber);
+  color: var(--ink);
+  padding: 8px 16px;
+  font-weight: 600;
   margin-bottom: 32px;
 }
-.C-btn {
+
+/* B's bigger wordmark — text version, easy to swap for logo */
+.wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 10vw, 160px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+}
+.wordmark .a {
+  color: var(--ink);
+  font-style: italic;
+  font-weight: 600;
+}
+.wordmark .b {
+  background: var(--grad-lav-sky);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.sub {
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.btn-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
   display: inline-block;
-  background: var(--c4);
-  color: var(--c5);
-  padding: 16px 32px;
+  background: var(--cobalt);
+  color: white;
+  padding: 18px 36px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 100px;
-  border: 1px solid var(--c4);
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s, background 0.2s;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--pink);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.C-btn:hover { background: var(--c1); border-color: var(--c1); transform: translateY(-2px); }
-
-.C-side { position: relative; z-index: 2; }
-.C-card {
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(24px) saturate(200%);
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
-  border: 1px solid rgba(167,139,250,0.4);
-  padding: 32px;
-  border-radius: 24px;
-  box-shadow: 0 12px 48px rgba(167,139,250,0.25);
-  position: relative;
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--pink);
 }
-.C-card-tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c1);
-  margin-bottom: 12px;
-}
-.C-card-big {
-  font-family: var(--font-display);
-  font-size: 48px;
-  line-height: 0.95;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--c4);
-  margin-bottom: 12px;
-}
-.C-card-big .accent { color: var(--c3); font-weight: 600; font-style: normal; }
-.C-card-sub {
-  color: var(--c6);
+.btn-ghost {
+  display: inline-block;
+  color: var(--ink);
+  padding: 18px 28px;
   font-size: 14px;
-  line-height: 1.6;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid var(--ink);
 }
 
-.C-bottom {
+/* The glass side card — A's glass + B's bold size */
+.side-card {
+  position: relative;
+  background: var(--glass-cobalt);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1.5px solid var(--cobalt-dim);
+  padding: 40px;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(42, 77, 220, 0.15);
+}
+.side-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent 50%);
+  pointer-events: none;
+}
+.side-card .tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+  margin-bottom: 16px;
+  font-weight: 600;
   position: relative;
   z-index: 2;
-  padding: 0 64px 64px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
 }
-.C-tile {
-  background: rgba(255,255,255,0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(167,139,250,0.3);
-  padding: 20px;
-  border-radius: 16px;
+.side-card .big {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 0.95;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
 }
-.C-tile-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--c3);
-  margin-bottom: 4px;
+.side-card .big .accent {
+  background: var(--grad-lav-sky);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
   font-weight: 600;
 }
-.C-tile-name {
-  font-family: var(--font-display);
-  font-size: 20px;
+.side-card .small {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+.side-card .small a {
+  color: var(--cobalt);
+  border-bottom: 1.5px solid var(--cobalt);
+  text-decoration: none;
   font-weight: 500;
-  color: var(--c4);
 }
 
-.C-swatches {
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-  flex-wrap: wrap;
+/* ========================================
+   TRUST BAR — glass tiles with amber shadows
+======================================== */
+.trust {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-.C-swatch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.tile {
+  background: var(--glass-white);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--ink);
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 6px 6px 0 var(--amber);
+  position: relative;
+}
+.tile:nth-child(2) { box-shadow: 6px 6px 0 var(--pink); }
+.tile:nth-child(3) { box-shadow: 6px 6px 0 var(--sky); }
+.tile .num {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #94a3b8;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-bottom: 8px;
+  font-weight: 600;
 }
-.C-swatch .dot {
-  width: 18px; height: 18px;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.2);
+.tile .name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.tile .meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.05em;
 }
 
+/* ========================================
+   COMPONENT SAMPLES
+======================================== */
+.components {
+  max-width: 1320px;
+  margin: 64px auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.component-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid var(--lavender-dim);
+  position: relative;
+  overflow: hidden;
+}
+.component-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, var(--lavender-dim), transparent 70%);
+  pointer-events: none;
+}
+.component-card h3 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+.component-card .body {
+  position: relative;
+  z-index: 2;
+}
+
+/* Nav sample */
+.nav-sample {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-white);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--ink);
+  border-radius: 100px;
+  padding: 12px 16px 12px 24px;
+  box-shadow: 4px 4px 0 var(--amber);
+}
+.nav-sample .brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.nav-sample .links {
+  display: flex;
+  gap: 8px;
+}
+.nav-sample .links a {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+.nav-sample .links a.cta {
+  background: var(--cobalt);
+  color: white;
+}
+
+/* Button row sample */
+.btn-samples {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-amber {
+  background: var(--amber);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.btn-lavender {
+  background: var(--lavender);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+.btn-sky {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+}
+
+/* Swatches */
+.swatches {
+  max-width: 1320px;
+  margin: 0 auto 64px;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.swatch-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid var(--lavender-dim);
+}
+.swatch-card .chip {
+  width: 100%;
+  aspect-ratio: 1.6;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.swatch-card .name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.swatch-card .hex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+
+.cta-footer {
+  text-align: center;
+  padding: 60px 32px 80px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.cta-footer strong {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 64px 32px; gap: 40px; }
+  .trust { grid-template-columns: 1fr; padding: 0 32px 64px; }
+  .components { grid-template-columns: 1fr; }
+  .swatches { grid-template-columns: repeat(2, 1fr); }
+  .preview .shape-diamond, .preview .shape-circle { display: none; }
+}
 </style>
 </head>
 <body>
 
 <header class="page-header">
-  <h1>DreamGully — 3 palette directions</h1>
-  <p>All three fuse glass morphism with Memphis code. Different color stories. Same skeleton. Pick the one that feels like home — the data, copy, and case studies stay the same.</p>
+  <h1>Palette D — the fusion</h1>
+  <p>C's palette + A's glass + B's proportions. This is the direction. Wordmark is a text wordmark (swap to your Adobe font + logo later).</p>
+  <div class="meta">
+    <span>Palette: Lavender · Sky · Peach</span>
+    <span>Glass: Cobalt · Amber · Pink</span>
+    <span>Proportions: B (bold)</span>
+  </div>
 </header>
 
-<!-- ============ PALETTE A ============ -->
-<section class="palette-section">
-  <div class="label">A · Warm-tech</div>
-  <h2>Cobalt + amber + mint</h2>
-  <p class="subtitle">Closest to PIPER & CO but warmer, less retro. Hot amber button, cool mint accent shape, cream surface, ink text. Cobalt does the heavy lifting. Reads as "creative studio with a sunset."</p>
-  
-  <div class="preview palette-A">
-    <div class="A-shape"></div>
-    <div class="A-hero">
-      <div>
-        <span class="A-eyebrow">Brand — Design — Content — Social — Web</span>
-        <h1 class="A-wordmark">
-          <span class="a">Dream</span> <span class="b">Gully</span>
-        </h1>
-        <p class="A-sub">A creative studio for the AI age. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
-        <a href="#" class="A-btn">See The Series →</a>
+<!-- ============ HERO PREVIEW ============ -->
+<div class="preview">
+  <div class="shape-diamond"></div>
+  <div class="shape-circle"></div>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Brand — Design — Content — Social — Web</span>
+      <!-- This is the wordmark. Swap the entire <h1> with <img src="logo.svg"> later. -->
+      <h1 class="wordmark">
+        <span class="a">Dream</span> <span class="b">Gully</span>
+      </h1>
+      <p class="sub">A creative studio for the AI age. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
+      <div class="btn-row">
+        <a href="#" class="btn-primary">See The Series →</a>
+        <a href="#" class="btn-ghost">View Selected Work</a>
       </div>
-      <div>
-        <div class="A-card">
-          <div class="A-card-label">The Series</div>
-          <div class="A-card-title">We turn one brand into a full season.</div>
+    </div>
+    <div class="side-card">
+      <div class="tag">The Series</div>
+      <div class="big">One brand, a <span class="accent">full season</span>.</div>
+      <p class="small">Custom multi-episode reel series, written and produced for clients. <a href="#">Learn more →</a></p>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="tile">
+      <div class="num">01 · KALMENE</div>
+      <div class="name">Skincare</div>
+      <div class="meta">DUBAI · BRAND IDENTITY</div>
+    </div>
+    <div class="tile">
+      <div class="num">02 · PIPER &amp; CO</div>
+      <div class="name">Cafe</div>
+      <div class="meta">MELBOURNE · BRAND + COLLATERAL</div>
+    </div>
+    <div class="tile">
+      <div class="num">03 · TESSERA</div>
+      <div class="name">SaaS</div>
+      <div class="meta">DUBAI · BRAND + PRODUCT</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ COMPONENT SAMPLES ============ -->
+<div class="components">
+
+  <div class="component-card">
+    <h3>// Navigation</h3>
+    <div class="body">
+      <div class="nav-sample">
+        <span class="brand">DreamGully</span>
+        <div class="links">
+          <a href="#">Work</a>
+          <a href="#">Series</a>
+          <a href="#">Process</a>
+          <a href="#" class="cta">Start a brief →</a>
         </div>
       </div>
     </div>
-    <div class="A-bottom">
-      <div class="A-tile"><div class="A-tile-num">01 · KALMENE</div><div class="A-tile-name">Skincare · Dubai</div></div>
-      <div class="A-tile"><div class="A-tile-num">02 · PIPER & CO</div><div class="A-tile-name">Cafe · Melbourne</div></div>
-      <div class="A-tile"><div class="A-tile-num">03 · TESSERA</div><div class="A-tile-name">SaaS · Dubai</div></div>
-    </div>
   </div>
-  
-  <div class="A-swatches">
-    <div class="A-swatch"><span class="dot" style="background:#2A4DDC"></span> Cobalt #2A4DDC</div>
-    <div class="A-swatch"><span class="dot" style="background:#F59E0B"></span> Amber #F59E0B</div>
-    <div class="A-swatch"><span class="dot" style="background:#34D399"></span> Mint #34D399</div>
-    <div class="A-swatch"><span class="dot" style="background:#FBF6E9"></span> Cream #FBF6E9</div>
-    <div class="A-swatch"><span class="dot" style="background:#0F172A"></span> Ink #0F172A</div>
-  </div>
-</section>
 
-<!-- ============ PALETTE B ============ -->
-<section class="palette-section">
-  <div class="label">B · Cool-pop</div>
-  <h2>Indigo + coral + lime</h2>
-  <p class="subtitle">The most 2026 of the three. Indigo, coral, lime — three colors that look like a 2026 SaaS landing page, but used Memphis-style. Charcoal ground for the text, bone for the surface. Reads as "creative studio that ships product."</p>
-  
-  <div class="preview palette-B">
-    <div class="B-hero">
-      <div>
-        <span class="B-eyebrow"><span>●</span> Brand — Design — Content — Social — Web</span>
-        <h1 class="B-wordmark">
-          <span class="a">Dream</span> <span class="b">Gully</span>
-        </h1>
-        <p class="B-sub">A creative studio for the AI age. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
-        <a href="#" class="B-btn">See The Series →</a>
-      </div>
-      <div class="B-side">
-        <div class="B-card">
-          <div class="B-card-tag">The Series</div>
-          <div class="B-card-big">One brand, a full season.</div>
-          <div class="B-card-sub">Custom multi-episode reel series, written and produced for clients.</div>
-        </div>
+  <div class="component-card">
+    <h3>// Buttons</h3>
+    <div class="body">
+      <div class="btn-samples">
+        <button class="btn-amber">Primary</button>
+        <button class="btn-lavender">Secondary</button>
+        <button class="btn-sky">Tertiary</button>
       </div>
     </div>
-    <div class="B-bottom">
-      <div class="B-tile"><div class="B-tile-name">01 · KALMENE</div></div>
-      <div class="B-tile"><div class="B-tile-name">02 · PIPER & CO</div></div>
-      <div class="B-tile"><div class="B-tile-name">03 · TESSERA</div></div>
-    </div>
   </div>
-  
-  <div class="B-swatches">
-    <div class="B-swatch"><span class="dot" style="background:#4F46E5"></span> Indigo #4F46E5</div>
-    <div class="B-swatch"><span class="dot" style="background:#FB7185"></span> Coral #FB7185</div>
-    <div class="B-swatch"><span class="dot" style="background:#A3E635"></span> Lime #A3E635</div>
-    <div class="B-swatch"><span class="dot" style="background:#FAF7F0"></span> Bone #FAF7F0</div>
-    <div class="B-swatch"><span class="dot" style="background:#1E1B4B"></span> Charcoal #1E1B4B</div>
-  </div>
-</section>
 
-<!-- ============ PALETTE C ============ -->
-<section class="palette-section">
-  <div class="label">C · Dreamy-tech</div>
-  <h2>Lavender + sky + peach</h2>
-  <p class="subtitle">The one that earns the brand name. Soft pastel base with painterly radial gradients, glass surfaces, italic Fraunces display. The least Memphis of the three — more "creative studio for the AI age" in the literal sense. Reads as "AI-native but warm."</p>
-  
-  <div class="preview palette-C">
-    <div class="C-hero">
-      <div>
-        <span class="C-eyebrow"><span class="dot"></span>Brand — Design — Content — Social — Web</span>
-        <h1 class="C-wordmark">
-          <span class="a">Dream</span> <span class="b">Gully</span>
-        </h1>
-        <p class="C-sub">A creative studio for the AI age. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
-        <a href="#" class="C-btn">See The Series →</a>
-      </div>
-      <div class="C-side">
-        <div class="C-card">
-          <div class="C-card-tag">The Series</div>
-          <div class="C-card-big">One brand, a <span class="accent">full season</span>.</div>
-          <div class="C-card-sub">Custom multi-episode reel series, written and produced for clients.</div>
-        </div>
-      </div>
-    </div>
-    <div class="C-bottom">
-      <div class="C-tile"><div class="C-tile-num">01 · KALMENE</div><div class="C-tile-name">Skincare · Dubai</div></div>
-      <div class="C-tile"><div class="C-tile-num">02 · PIPER & CO</div><div class="C-tile-name">Cafe · Melbourne</div></div>
-      <div class="C-tile"><div class="C-tile-num">03 · TESSERA</div><div class="C-tile-name">SaaS · Dubai</div></div>
-    </div>
-  </div>
-  
-  <div class="C-swatches">
-    <div class="C-swatch"><span class="dot" style="background:#A78BFA"></span> Lavender #A78BFA</div>
-    <div class="C-swatch"><span class="dot" style="background:#38BDF8"></span> Sky #38BDF8</div>
-    <div class="C-swatch"><span class="dot" style="background:#FB923C"></span> Peach #FB923C</div>
-    <div class="C-swatch"><span class="dot" style="background:#1E1B4B"></span> Ink #1E1B4B</div>
-    <div class="C-swatch"><span class="dot" style="background:#F8FAFC"></span> Cloud #F8FAFC</div>
-  </div>
-</section>
+</div>
 
-<div style="padding: 60px 32px; text-align: center; color: #94a3b8; font-size: 14px;">
-  Pick A, B, or C — then I'll build the whole site in that direction. Same data, same copy, same case studies, different skin.
+<!-- ============ SWATCHES ============ -->
+<div class="swatches">
+  <div class="swatch-card">
+    <div class="chip" style="background: #A78BFA"></div>
+    <div class="name">Lavender</div>
+    <div class="hex">#A78BFA</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #38BDF8"></div>
+    <div class="name">Sky</div>
+    <div class="hex">#38BDF8</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #FB923C"></div>
+    <div class="name">Peach</div>
+    <div class="hex">#FB923C</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #1E1B4B"></div>
+    <div class="name">Ink</div>
+    <div class="hex">#1E1B4B</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #F8FAFC; border: 1px solid #eee"></div>
+    <div class="name">Cloud</div>
+    <div class="hex">#F8FAFC</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #2A4DDC"></div>
+    <div class="name">Cobalt</div>
+    <div class="hex">#2A4DDC</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #F59E0B"></div>
+    <div class="name">Amber</div>
+    <div class="hex">#F59E0B</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #EC4899"></div>
+    <div class="name">Pink</div>
+    <div class="hex">#EC4899</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: #EDE9FE"></div>
+    <div class="name">Bone</div>
+    <div class="hex">#EDE9FE</div>
+  </div>
+  <div class="swatch-card">
+    <div class="chip" style="background: linear-gradient(135deg, #A78BFA 0%, #38BDF8 100%)"></div>
+    <div class="name">Lav→Sky</div>
+    <div class="hex">gradient</div>
+  </div>
+</div>
+
+<div class="cta-footer">
+  <strong>Approve to build the full site in this direction.</strong><br>
+  Reply <strong>"Build it"</strong> or give me tweaks (less pink, more peach, smaller card, different wordmark treatment, etc.)
 </div>
 
 </body>

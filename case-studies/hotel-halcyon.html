@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "hotel-halcyon",
+  "brandName": "HOTEL HALCYON",
+  "vertical": "Boutique Hotel",
+  "geography": "Dubai, UAE",
+  "tier": "heavy",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity", "web-design", "social-content", "interior-graphics", "signage"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/hotel-halcyon/hero.jpg",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": true,
+  "socialHandleAvailable": true,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOTEL HALCYON — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Full brand + web + social + interior for a surrealist boutique hotel in Dubai. A place that's not quite real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F2E8DD;
+  --bg-1: #E8DDD0;
+  --bg-2: #DCCEC0;
+  --rose: #D8A8A0;
+  --sage: #A8B89A;
+  --sky: #B8CAD8;
+  --gold: #C8A878;
+  --ink: #3A2E26;
+  --ink-soft: #5A4A40;
+  --ink-mute: #8A7A6E;
+  --paper: #FAF4E8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 300;
+}
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.0;
+  color: var(--ink);
+  font-style: italic;
+}
+h1 { font-size: clamp(56px, 10vw, 150px); }
+h2 { font-size: clamp(40px, 6vw, 80px); }
+h3 { font-size: clamp(28px, 4vw, 48px); font-weight: 400; }
+h4 { font-size: 20px; font-style: normal; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; }
+p { color: var(--ink-soft); font-size: 16px; line-height: 1.8; max-width: 620px; font-weight: 300; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: rgba(250,244,232,0.9); backdrop-filter: blur(12px); padding: 20px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: var(--ink); text-decoration: none; letter-spacing: 0.05em; }
+.cs-nav__back { color: var(--ink-soft); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+.cs-hero { padding: 120px 0 96px; position: relative; overflow: hidden; }
+.cs-hero::before { content: ""; position: absolute; top: 60px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle at 30% 30%, var(--rose), transparent 50%), radial-gradient(circle at 70% 70%, var(--sky), transparent 50%), radial-gradient(circle at 50% 50%, var(--sage), transparent 70%); opacity: 0.4; border-radius: 50%; z-index: 0; filter: blur(40px); }
+.cs-hero__inner { position: relative; z-index: 1; }
+.cs-hero__eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 32px; display: block; font-weight: 400; }
+.cs-hero__title { margin: 24px 0; font-style: italic; }
+.cs-hero__concept { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: var(--ink-soft); border: 1px solid var(--ink-mute); padding: 16px 20px; max-width: 520px; margin: 32px 0; background: rgba(250,244,232,0.6); }
+.cs-hero__concept strong { color: var(--ink); }
+.cs-hero__tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(22px, 2.5vw, 30px); line-height: 1.4; color: var(--ink-soft); max-width: 720px; }
+.cs-hero__image { margin-top: 80px; aspect-ratio: 16/10; background: linear-gradient(135deg, var(--rose), var(--sky)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; color: var(--ink); font-size: 14px; font-style: italic; letter-spacing: 0.1em; }
+.cs-badge { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 4px 14px; border: 1px solid var(--ink-mute); color: var(--ink-mute); margin-bottom: 24px; }
+
+.cs-section { padding: 120px 0; border-top: 1px solid var(--ink-mute); border-top-style: dashed; }
+.cs-section-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 24px; font-weight: 400; }
+.cs-section-title { margin-bottom: 56px; max-width: 800px; font-style: italic; }
+.cs-section-body { max-width: 620px; }
+.cs-section-body p { margin-bottom: 24px; }
+
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+.cs-overview__tile { padding: 32px 0; border-top: 1px solid var(--ink-mute); }
+.cs-overview__tile-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 12px; }
+.cs-overview__tile-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; font-weight: 300; }
+
+.cs-brief__quote { margin-top: 56px; padding: 32px 0 32px 32px; border-left: 1px solid var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 32px; line-height: 1.3; color: var(--ink); max-width: 720px; }
+
+.cs-work__grid { display: grid; gap: 80px; margin-top: 72px; }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--rose), var(--sky)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-size: 13px; letter-spacing: 0.1em; padding: 16px; text-align: center; }
+.cs-deliverable__media--sage { background: linear-gradient(135deg, var(--sage), var(--gold)); }
+.cs-deliverable__media--gold { background: linear-gradient(135deg, var(--gold), var(--rose)); }
+.cs-deliverable__number { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 12px; }
+.cs-deliverable__title { margin-bottom: 16px; }
+
+.cs-process-note { background: var(--bg-1); border: 1px solid var(--ink-mute); border-style: dashed; padding: 40px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; color: var(--ink-soft); max-width: 720px; margin-top: 40px; }
+.cs-process-note strong { color: var(--ink); font-weight: 500; }
+
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 32px; margin-top: 48px; max-width: 720px; }
+.cs-credits__role { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); font-weight: 400; }
+.cs-credits__name { color: var(--ink); font-weight: 400; }
+
+.cs-next { margin-top: 80px; padding: 64px 0; border-top: 1px solid var(--ink-mute); border-top-style: dashed; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; }
+.cs-next:hover .cs-next__title { color: var(--ink-mute); }
+.cs-next__label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.cs-next__title { color: var(--ink); font-style: italic; transition: color 0.3s; }
+.cs-next__arrow { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 40px; color: var(--ink-mute); }
+
+.cs-end { text-align: center; padding: 96px 0; border-top: 1px solid var(--ink-mute); border-top-style: dashed; }
+.cs-end__text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 24px; color: var(--ink-mute); max-width: 600px; margin: 0 auto; }
+.cs-end__text a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink-mute); }
+
+@media (max-width: 768px) {
+  .cs-overview, .cs-deliverable, .cs-deliverable--reverse, .cs-next { grid-template-columns: 1fr; direction: ltr; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section, .cs-hero { padding: 80px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Selected Work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="container cs-hero__inner">
+    <span class="cs-hero__eyebrow">Boutique Hotel · Dubai · Est. MMXXVI</span>
+    <span class="cs-badge">Concept</span>
+    <h1 class="cs-hero__title">Hotel Halcyon.</h1>
+    <p class="cs-hero__concept"><strong>CONCEPT STUDY.</strong> HOTEL HALCYON is a designed brand, not a real hotel. The work shown demonstrates how we'd build a full identity + web + social + interior system for a surrealist boutique hotel.</p>
+    <p class="cs-hero__tagline">A place that's not quite real. Twenty-two rooms above the city, a pool that looks like a mirage, a library that isn't, and a concierge who remembers what you haven't said.</p>
+    <div class="cs-hero__image">[HERO — HOTEL HALCYON POOL, DREAMLIKE / 16:10]</div>
+  </div>
+</header>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Overview</div>
+    <h2 class="cs-section-title">A hotel that feels like a memory before it happens.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Brand</div>
+        <div class="cs-overview__tile-value">Hotel Halcyon</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Vertical</div>
+        <div class="cs-overview__tile-value">Boutique hotel</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Full identity system</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 32px;">HOTEL HALCYON is the kind of place a guest describes in the past tense the moment they leave. Soft pastels, soft serif, soft focus. The brand is the feeling of having dreamt a hotel — and then finding the door open the next morning. Twenty-two rooms. A pool that doesn't reflect the sky the way pools do. A library curated by someone who reads only the books that make you cry.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— The Brief</div>
+    <h2 class="cs-section-title">If a Dubai boutique hotel wanted to feel like a dream that didn't quite end.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build a brand identity, website, social system, interior graphics, and signage for a twenty-two-room hotel that wants the guest to feel like they've stepped sideways from the city the moment they enter the lobby. The brand is the mood. The mood is the brand.</p>
+      <p>Constraint: surrealism, but soft. Nothing jarring, nothing high-contrast. The dream is gentle. The dream is pastel. The dream doesn't need to be believed to be felt.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"You don't stay at Halcyon. You remember it, before you've arrived."</blockquote>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— The Work</div>
+    <h2 class="cs-section-title">Six deliverables. A dream built to scale.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[01 — WORDMARK, SEAL, COLOUR, TYPE / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE I</div>
+          <h3 class="cs-deliverable__title">Brand identity system</h3>
+          <p>Wordmark in Cormorant Garamond Italic, set with generous letterspacing, treated like a whispered name. Secondary mark: a hand-drawn moon-and-archway seal in a single gold line. Palette: dusty rose, sage, sky blue, antique gold, with cream as the paper and a soft ink as the foundation. Typography: Cormorant Garamond Italic throughout, Inter for small system text. Photography: slightly overexposed, dreamlike, mirrors and pools and archways.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media cs-deliverable__media--sage">[02 — DESKTOP + MOBILE WEB / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE II</div>
+          <h3 class="cs-deliverable__title">Website</h3>
+          <p>A website that opens with a single soft image, the wordmark, and a sentence. No hero video, no carousel, no booking widget screaming for attention. Sections unfold slowly — the rooms, the pool, the library, the dining room, the booking. Each section is one full-screen image and one short paragraph. The site reads like a letter from the hotel, not a brochure.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media cs-deliverable__media--gold">[03 — INSTAGRAM: 9-POST GRID / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE III</div>
+          <h3 class="cs-deliverable__title">Social content system</h3>
+          <p>Instagram grid that feels like a private album. Single-image posts, no carousels. Photography is soft, slightly overexposed, dreamlike. Captions are signed with the concierge's initials and a single line of observation — never promotional, never CTA-driven. The grid is a moodboard, not a feed.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media cs-deliverable__media--sage">[04 — ROOM KEY, DIRECTORY, ROOM CARD / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE IV</div>
+          <h3 class="cs-deliverable__title">In-room collateral</h3>
+          <p>Room key in cream with a debossed seal. A directory on cream paper set in Cormorant Garamond Italic. A small room card on the bedside with a hand-written note from the concierge and a pressed flower. The in-room collateral is the brand at the moment of closest contact — it should feel like receiving a letter from a friend.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[05 — POOL SIGN, ROOM NUMBERS, DIRECTIONALS / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE V</div>
+          <h3 class="cs-deliverable__title">Signage &amp; wayfinding</h3>
+          <p>Brass plaques with the wordmark in deep relief. Room numbers in hand-painted cream on rose-coloured tiles. Directional signs in soft ink, set in Cormorant Garamond Italic, that read like sentences rather than arrows ("the library, through the courtyard"). The wayfinding is the dream's grammar — it should feel like a soft instruction from the hotel itself.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media cs-deliverable__media--gold">[06 — MATCHING: MATCHBOOK, COASTER, NAPKIN / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">— DELIVERABLE VI</div>
+          <h3 class="cs-deliverable__title">Tabletop &amp; matches</h3>
+          <p>Coasters in cream with a debossed moon-and-archway. Napkins in dusty rose with a tiny wordmark in the corner. Matchbooks in soft cream with a hand-lettered phrase on the inside cover. The tabletop is the brand at the moment of departure — the last visual the guest takes home, even if they leave it behind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Outcome</div>
+    <h2 class="cs-section-title">A designed system, not a shipped hotel.</h2>
+    <div class="cs-process-note"><strong>CONCEPT STUDY.</strong> No real hotel, no real bookings, no real rooms. The brand, web, social, in-room, signage, and tabletop system shown are designed to demonstrate how a surrealist boutique hotel concept could be built: soft, dreamlike, with every layer earning its place. Use this as a reference for the kind of work we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Credits</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Web design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Interior graphics</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Signage</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Photography</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+    <p style="margin-top: 32px; font-size: 12px; color: var(--ink-mute);">HOTEL HALCYON is a concept study. Not a real hotel. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<section class="cs-end">
+  <div class="container">
+    <p class="cs-end__text">— the end of the case study set —<br><br><a href="../index.html">Return to selected work</a></p>
+  </div>
+</section>
+
+</body>
+</html>

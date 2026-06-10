@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "tessera",
+  "brandName": "TESSERA",
+  "vertical": "App / SaaS",
+  "geography": "Dubai, UAE",
+  "tier": "medium",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity", "product-ui", "supporting-collateral"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/tessera/hero-a-v1.png",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": false,
+  "socialHandleAvailable": false,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TESSERA — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Brand identity + product UI for a Swiss-coded productivity SaaS. The tool that just works.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg-1: #F5F5F5;
+  --bg-2: #EAEAEA;
+  --ink: #000000;
+  --ink-soft: #1A1A1A;
+  --ink-mute: #666666;
+  --ink-dim: #999999;
+  --signal: #0040FF;
+  --line: #E0E0E0;
+  --line-strong: #000000;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+h1, h2, h3, h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink);
+}
+h1 { font-size: clamp(64px, 14vw, 200px); font-weight: 800; }
+h2 { font-size: clamp(40px, 6vw, 80px); }
+h3 { font-size: clamp(24px, 3vw, 40px); }
+h4 { font-size: 18px; font-weight: 600; }
+p { color: var(--ink-soft); font-size: 16px; line-height: 1.6; max-width: 640px; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: white; border-bottom: 1px solid var(--line); padding: 16px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 800; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.cs-nav__back { color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; }
+
+/* ============================================================
+   TESSERA — Typographic Hero
+   Swiss grid: 12 columns, 24px gutter, 8px baseline.
+   Asymmetric: wordmark (cols 1-8), spec column (cols 9-12).
+   Wordmark = dominant type. Spec = JetBrains Mono.
+   ============================================================ */
+.cs-hero { padding: 80px 0 0; border-bottom: 2px solid var(--ink); }
+
+/* --- Top status row (FILE / STATUS / SCOPE / GEO) --- */
+.cs-hero__status {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 0 0 16px;
+  margin: 0 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+.cs-hero__status-cell { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cs-hero__status-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cs-hero__status-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.cs-hero__status-value--mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* --- Main 12-col grid: wordmark left, spec right --- */
+.cs-hero__main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+/* --- The wordmark block --- */
+.cs-hero__mark-block {
+  grid-column: 1 / 9;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eyebrow above the wordmark — JetBrains Mono, with the 2x2 mark */
+.cs-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.cs-hero__mark-2x2 {
+  display: grid;
+  grid-template-columns: 12px 12px;
+  grid-template-rows: 12px 12px;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.cs-hero__mark-2x2 span {
+  display: block;
+  background: var(--ink);
+}
+.cs-hero__mark-2x2 span:nth-child(3) {
+  background: var(--signal);
+}
+
+/* The wordmark itself — Inter Black, massive, mathematical */
+.cs-hero__wordmark {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(72px, 16vw, 240px);
+  line-height: 0.86;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.cs-hero__wordmark .wm-period {
+  color: var(--signal);
+  margin-left: 0.04em;
+}
+
+/* The tagline — Inter, measured, subordinate */
+.cs-hero__tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  font-weight: 400;
+  margin-top: 28px;
+  letter-spacing: -0.005em;
+}
+.cs-hero__tagline strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Concept-study caveat in JetBrains Mono, set in a hairline box */
+.cs-hero__concept {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  border: 1px solid var(--ink);
+  padding: 12px 16px;
+  max-width: 36rem;
+  margin-top: 32px;
+}
+.cs-hero__concept strong { color: var(--ink); font-weight: 600; }
+
+/* --- The spec column (right) --- */
+.cs-hero__spec {
+  grid-column: 9 / 13;
+  padding-top: 8px;
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cs-hero__spec-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.cs-hero__spec-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.cs-hero__spec-row:last-child { border-bottom: 0; }
+.cs-hero__spec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cs-hero__spec-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+}
+.cs-hero__spec-value--mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cs-hero__spec-value--serif {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.cs-hero__spec-value--swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.cs-hero__spec-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--ink);
+  flex-shrink: 0;
+}
+
+/* --- The hero image (existing dashboard render) --- */
+.cs-hero__image {
+  margin: 0 -32px 64px;
+  aspect-ratio: 16/10;
+  background: var(--bg-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-mute);
+  font-size: 12px;
+  overflow: hidden;
+}
+.cs-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.cs-hero__image-fallback {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+
+/* --- Responsive --- */
+@media (max-width: 960px) {
+  .cs-hero__status { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .cs-hero__main { grid-template-columns: 1fr; gap: 32px; }
+  .cs-hero__mark-block { grid-column: 1; }
+  .cs-hero__spec { grid-column: 1; border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 24px; }
+  .cs-hero__image { margin-left: -32px; margin-right: -32px; }
+}
+@media (max-width: 600px) {
+  .cs-hero__status { grid-template-columns: 1fr 1fr; }
+  .cs-hero__image { margin-left: -16px; margin-right: -16px; }
+}
+
+.cs-section { padding: 96px 0; border-top: 1px solid var(--line); }
+.cs-section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 24px; }
+.cs-section-title { margin-bottom: 48px; max-width: 800px; }
+.cs-section-body { max-width: 640px; }
+.cs-section-body p { margin-bottom: 20px; }
+
+.cs-overview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--ink); margin-top: 48px; }
+.cs-overview__tile { padding: 20px 24px; border-right: 1px solid var(--ink); }
+.cs-overview__tile:last-child { border-right: 0; }
+.cs-overview__tile-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+.cs-overview__tile-value { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.02em; }
+
+.cs-brief__quote { margin-top: 48px; padding: 24px 0 24px 24px; border-left: 4px solid var(--signal); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 28px; line-height: 1.2; color: var(--ink); max-width: 720px; letter-spacing: -0.02em; }
+
+.cs-work__grid { display: grid; gap: 64px; margin-top: 56px; }
+.cs-deliverable { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 4/3; background: var(--bg-1); border: 1px solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; color: var(--ink-mute); font-size: 11px; padding: 16px; text-align: center; }
+.cs-deliverable__number { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal); margin-bottom: 12px; }
+.cs-deliverable__title { margin-bottom: 16px; }
+
+.cs-process-note { background: var(--bg-1); border: 1px solid var(--line); padding: 32px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.7; color: var(--ink-soft); max-width: 720px; margin-top: 32px; }
+.cs-process-note strong { color: var(--ink); }
+
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 32px; margin-top: 48px; max-width: 720px; }
+.cs-credits__role { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+.cs-credits__name { color: var(--ink); font-weight: 500; }
+
+.cs-next { margin-top: 64px; padding: 48px 0; border-top: 2px solid var(--ink); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; transition: padding 0.2s; }
+.cs-next:hover { padding-left: 16px; }
+.cs-next__label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.cs-next__title { color: var(--ink); }
+.cs-next__arrow { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 300; }
+
+@media (max-width: 768px) {
+  .cs-overview { grid-template-columns: 1fr 1fr; }
+  .cs-overview__tile { border-bottom: 1px solid var(--ink); }
+  .cs-overview__tile:nth-last-child(-n+2) { border-bottom: 0; }
+  .cs-overview__tile:nth-child(2) { border-right: 0; }
+  .cs-deliverable, .cs-deliverable--reverse { grid-template-columns: 1fr; direction: ltr; }
+  .cs-next { grid-template-columns: 1fr; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Selected Work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="container">
+
+    <!-- Top status strip: File / Status / Scope / Geography -->
+    <div class="cs-hero__status">
+      <div class="cs-hero__status-cell">
+        <span class="cs-hero__status-label">File</span>
+        <span class="cs-hero__status-value--mono">CS / 08</span>
+      </div>
+      <div class="cs-hero__status-cell">
+        <span class="cs-hero__status-label">Status</span>
+        <span class="cs-hero__status-value">Concept</span>
+      </div>
+      <div class="cs-hero__status-cell">
+        <span class="cs-hero__status-label">Scope</span>
+        <span class="cs-hero__status-value">Brand + UI</span>
+      </div>
+      <div class="cs-hero__status-cell">
+        <span class="cs-hero__status-label">Geography</span>
+        <span class="cs-hero__status-value--mono">Dubai, UAE</span>
+      </div>
+    </div>
+
+    <!-- Asymmetric 12-col grid: wordmark (1-8) + spec (9-12) -->
+    <div class="cs-hero__main">
+
+      <div class="cs-hero__mark-block">
+
+        <div class="cs-hero__eyebrow">
+          <span class="cs-hero__mark-2x2" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          TESSERA &nbsp;/&nbsp; A SWISS-CODED PRODUCTIVITY SYSTEM
+        </div>
+
+        <h1 class="cs-hero__wordmark" aria-label="Tessera">
+          Tessera<span class="wm-period">.</span>
+        </h1>
+
+        <p class="cs-hero__tagline">
+          The tool that just works, for people who don&rsquo;t have time to learn tools.
+          A productivity system built on a <strong>strict grid</strong> and a <strong>single signal colour</strong>.
+        </p>
+
+        <p class="cs-hero__concept">
+          <strong>CONCEPT STUDY.</strong> TESSERA is a designed brand, not a real client. The work shown demonstrates how we&rsquo;d build a Swiss-coded productivity tool.
+        </p>
+
+      </div>
+
+      <aside class="cs-hero__spec" aria-label="Brand type spec">
+        <div class="cs-hero__spec-title">Brand &nbsp;Spec</div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Display</span>
+          <span class="cs-hero__spec-value--serif">Inter</span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Weight</span>
+          <span class="cs-hero__spec-value">800 / 900</span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Mono</span>
+          <span class="cs-hero__spec-value--mono">JetBrains</span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Tracking</span>
+          <span class="cs-hero__spec-value">&minus;60 / 1000</span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Signal</span>
+          <span class="cs-hero__spec-value--swatch">
+            <span class="cs-hero__spec-swatch" style="background:#0040FF"></span>
+            #0040FF
+          </span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Grid</span>
+          <span class="cs-hero__spec-value">12 col &middot; 24 gutter</span>
+        </div>
+
+        <div class="cs-hero__spec-row">
+          <span class="cs-hero__spec-label">Mark</span>
+          <span class="cs-hero__spec-value">2&times;2 &middot; 3 ink + 1 signal</span>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- The hero image: existing dashboard render at /assets/images/cases/tessera/hero-a-v1.png -->
+    <div class="cs-hero__image">
+      <picture>
+  <source type="image/avif" srcset="/assets/images/cases/tessera/hero-a-v1-400w.avif 400w, /assets/images/cases/tessera/hero-a-v1-800w.avif 800w, /assets/images/cases/tessera/hero-a-v1-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/tessera/hero-a-v1-400w.webp 400w, /assets/images/cases/tessera/hero-a-v1-800w.webp 800w, /assets/images/cases/tessera/hero-a-v1-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/tessera/hero-a-v1-400w.jpg 400w, /assets/images/cases/tessera/hero-a-v1-800w.jpg 800w, /assets/images/cases/tessera/hero-a-v1-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/tessera/hero-a-v1-1500w.jpg" alt="TESSERA product dashboard — Swiss-grid analytics interface with black and signal-blue palette." loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+    </div>
+
+  </div>
+</header>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-section-title">A productivity tool, designed like Swiss typography.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Brand</div>
+        <div class="cs-overview__tile-value">Tessera</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Vertical</div>
+        <div class="cs-overview__tile-value">SaaS</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Audience</div>
+        <div class="cs-overview__tile-value">Operators</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Brand + UI</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 32px;">TESSERA is the tool a thoughtful operator opens when they've decided that Notion is too flexible and Linear is too precious. The brand is Helvetica-heavy, black-and-white with one signal blue, asymmetric grid layouts, and a UI that puts the work above the chrome. The product feels built, not designed.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Brief</div>
+    <h2 class="cs-section-title">If a productivity tool wanted to feel like infrastructure, not a lifestyle.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build the brand identity and product UI a small SaaS team would commission if they wanted their product to feel as reliable as the database underneath it. No illustrations, no "delight" animations, no lifestyle photography of people laughing with laptops. The product is the brand.</p>
+      <p>Constraint: every visual decision must be defensible by function, not by taste. If a colour doesn't communicate state, it doesn't exist. If a typeface doesn't carry information, it's wrong.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"Form follows function. The product is the brand. The grid is the system."</blockquote>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Work</div>
+    <h2 class="cs-section-title">Three deliverables. One system. The discipline applied.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">
+          <img src="/assets/images/cases/tessera/identity-a.jpg" alt="TESSERA brand identity system — wordmark, 2×2 mark, signal blue #0040FF, Inter type specimen, and 12-column Swiss grid." onerror="this.style.display='none'; this.parentNode.innerHTML='[01 — WORDMARK, TYPE, COLOUR, GRID / 4:3 — pending]';" />
+        </div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE 01</div>
+          <h3 class="cs-deliverable__title">Brand identity system</h3>
+          <p>Wordmark set in Inter Bold, lowercase, with a single dot after the wordmark acting as the brand mark. Type system: Inter throughout, three weights (400, 600, 800). Colour: black, white, one signal blue. Grid: 12-column, 24px gutter, 8px baseline. The system is a 30-page document before it's a brand.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media">[02 — DASHBOARD, TASK VIEW, COMMAND BAR / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE 02</div>
+          <h3 class="cs-deliverable__title">Product UI</h3>
+          <p>Three core screens: dashboard (today, this week, this month), task view (the work), command bar (the entry point). Helvetica throughout, no rounded corners, signal blue used only for primary actions and live status. Empty states are typographic, not illustrated. The product feels like a spreadsheet that learned typography.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[03 — WEBSITE, DOCS, ONBOARDING / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE 03</div>
+          <h3 class="cs-deliverable__title">Marketing site &amp; docs</h3>
+          <p>Single-page marketing site that reads as a product page — every section shows a real screenshot, every claim is a feature. Documentation uses the same type system, the same grid, the same signal blue. Onboarding is a four-step flow that takes 90 seconds, no gamification, no progress confetti.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Outcome</div>
+    <h2 class="cs-section-title">A designed system, not a shipped product.</h2>
+    <div class="cs-process-note"><strong>CONCEPT STUDY.</strong> No real product, no real customers. The brand identity and product UI shown are designed to demonstrate how a Swiss-coded SaaS could be built: wordmark, type system, grid, and a UI discipline that does the work a real product team would do. Use this as a reference for the kind of work we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Credits</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">UI / UX</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Product copy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+    </div>
+    <p style="margin-top: 32px; font-size: 12px; color: var(--ink-mute);">TESSERA is a concept study. Not a real product. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <a href="foam-and-fold.html" style="text-decoration: none; color: inherit; display: block;">
+      <div class="cs-next">
+        <div>
+          <div class="cs-next__label">Next — 05/07</div>
+          <h3 class="cs-next__title">Foam &amp; Fold</h3>
+        </div>
+        <div class="cs-next__arrow">→</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

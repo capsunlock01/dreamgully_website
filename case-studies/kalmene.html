@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "kalmene",
+  "brandName": "KALMENE",
+  "vertical": "Skincare",
+  "geography": "Dubai, UAE",
+  "tier": "light",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/kalmene/hero-a.png",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": true,
+  "socialHandleAvailable": false,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALMENE — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Brand identity for a minimalist Dubai skincare line. One product, considered properly, with the calm of a slow morning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF8F4;
+  --bg-1: #F2EFE8;
+  --bg-2: #E8E4DA;
+  --ink: #1A1814;
+  --ink-soft: #4A4740;
+  --ink-mute: #8A857C;
+  --line: rgba(26,24,20,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 300;
+}
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+h1 { font-size: clamp(56px, 10vw, 140px); }
+h2 { font-size: clamp(40px, 5vw, 72px); font-weight: 400; }
+h3 { font-size: clamp(24px, 3vw, 36px); font-style: italic; font-weight: 400; }
+h4 { font-size: 20px; }
+p { color: var(--ink-soft); font-size: 17px; line-height: 1.8; max-width: 620px; font-weight: 300; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: rgba(250,248,244,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding: 20px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+.cs-nav__back { color: var(--ink-mute); text-decoration: none; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; }
+
+.cs-hero { padding: 120px 0 96px; }
+.cs-hero__eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 32px; font-weight: 400; }
+.cs-hero__title { font-style: italic; font-weight: 300; letter-spacing: 0.02em; }
+.cs-hero__concept { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: var(--ink-mute); border-left: 1px solid var(--ink-mute); padding: 4px 0 4px 20px; max-width: 480px; margin: 40px 0; font-weight: 300; }
+.cs-hero__concept strong { color: var(--ink); font-weight: 500; letter-spacing: 0.05em; }
+.cs-hero__tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 300; line-height: 1.4; color: var(--ink-soft); max-width: 640px; margin-top: 24px; font-style: italic; }
+.cs-hero__image { margin-top: 80px; aspect-ratio: 4/3; width: 100%; object-fit: cover; display: block; background: var(--bg-1); }
+.cs-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--ink-mute); color: var(--ink-mute); margin-bottom: 24px; font-weight: 400; }
+
+.cs-section { padding: 120px 0; border-top: 1px solid var(--line); }
+.cs-section-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 32px; font-weight: 400; }
+.cs-section-title { margin-bottom: 56px; max-width: 720px; font-style: italic; }
+.cs-section-body { max-width: 620px; }
+.cs-section-body p { margin-bottom: 24px; }
+
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--line); }
+.cs-overview__tile-label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 12px; }
+.cs-overview__tile-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; }
+
+.cs-brief__quote { margin-top: 56px; padding: 32px 0 32px 32px; border-left: 1px solid var(--ink); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 32px; font-weight: 300; line-height: 1.3; color: var(--ink); max-width: 720px; }
+
+.cs-work__grid { display: grid; gap: 80px; margin-top: 72px; }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 1/1; background: var(--bg-1); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; color: var(--ink-mute); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 24px; text-align: center; }
+.cs-deliverable__number { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 16px; }
+.cs-deliverable__title { font-style: italic; font-weight: 300; margin-bottom: 20px; }
+
+.cs-process-note { background: var(--bg-1); border: 1px solid var(--line); padding: 40px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; color: var(--ink-soft); max-width: 640px; margin-top: 40px; font-weight: 300; }
+.cs-process-note strong { color: var(--ink); font-weight: 500; }
+
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 48px; margin-top: 56px; max-width: 720px; }
+.cs-credits__role { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); font-weight: 400; }
+.cs-credits__name { color: var(--ink); font-weight: 400; }
+
+.cs-next { margin-top: 80px; padding: 56px 0; border-top: 1px solid var(--ink); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; transition: opacity 0.3s; }
+.cs-next:hover { opacity: 0.6; }
+.cs-next__label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.cs-next__title { color: var(--ink); font-style: italic; font-weight: 300; }
+.cs-next__arrow { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--ink); font-weight: 300; }
+
+@media (max-width: 768px) {
+  .cs-overview, .cs-deliverable, .cs-deliverable--reverse, .cs-next { grid-template-columns: 1fr; direction: ltr; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section { padding: 80px 0; }
+  .cs-hero { padding: 80px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Selected Work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="container">
+    <span class="cs-hero__eyebrow">Skincare — Dubai</span>
+    <span class="cs-badge">Concept</span>
+    <h1 class="cs-hero__title">kalmene.</h1>
+    <p class="cs-hero__concept"><strong>Concept study.</strong> KALMENE is a designed brand, not a real client. The work shown demonstrates how we'd build identity for a minimalist skincare line.</p>
+    <p class="cs-hero__tagline">One product. Designed properly. The calm of a slow morning, in a bottle that earns its place on the shelf.</p>
+    <picture>
+  <source type="image/avif" srcset="/assets/images/cases/kalmene/hero-a-400w.avif 400w, /assets/images/cases/kalmene/hero-a-800w.avif 800w, /assets/images/cases/kalmene/hero-a-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/kalmene/hero-a-400w.webp 400w, /assets/images/cases/kalmene/hero-a-800w.webp 800w, /assets/images/cases/kalmene/hero-a-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/kalmene/hero-a-400w.jpg 400w, /assets/images/cases/kalmene/hero-a-800w.jpg 800w, /assets/images/cases/kalmene/hero-a-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/kalmene/hero-a-1500w.jpg" alt="KALMENE skincare product line — full range on travertine vanity tray" loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+  </div>
+</header>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Overview</div>
+    <h2 class="cs-section-title">The kind of skincare brand that doesn't shout.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Brand</div>
+        <div class="cs-overview__tile-value">KALMENE</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Vertical</div>
+        <div class="cs-overview__tile-value">Skincare</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Brand identity</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 40px;">KALMENE is the studio a dermatologist opens when they decide the brand they've been buying is louder than the product. One serum. One cream. One cleanser. The brand is the restraint: cream, warm white, soft black, a single serif wordmark, the kind of packaging you keep on the counter long after the product runs out.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— The Brief</div>
+    <h2 class="cs-section-title">If a quiet skincare line asked for a brand that wouldn't age.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build the brand a thoughtful formulator would commission if they wanted the packaging to outlast the trend cycle. No claims of transformation. No seven-step routines. The product does the work; the brand holds the line quietly.</p>
+      <p>Constraint: nothing on the packaging or website should feel like it belongs to a specific year. The wordmark should look as right in 2030 as in 2026.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"The product does the work. The brand should hold the line quietly."</blockquote>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— The Work</div>
+    <h2 class="cs-section-title">A designed system. One deliverable. Every detail considered.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[01 — WORDMARK, BOTANICAL, TYPE / 1:1]</div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable one</div>
+          <h3 class="cs-deliverable__title">Brand identity</h3>
+          <p>Lowercase italic serif wordmark in soft black. Cream background. One accent tone — a quiet sage that reads as botanical without being decorative. Cormorant Garamond throughout, set generously, never tight. The packaging is glass, the label is letterpress, the typography carries the brand more than the imagery does.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Gallery</div>
+    <h2 class="cs-section-title">The flat-lay, in the same light.</h2>
+    <div style="margin-top: 40px;">
+      <picture>
+  <source type="image/avif" srcset="/assets/images/cases/kalmene/hero-b-400w.avif 400w, /assets/images/cases/kalmene/hero-b-800w.avif 800w, /assets/images/cases/kalmene/hero-b-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/kalmene/hero-b-400w.webp 400w, /assets/images/cases/kalmene/hero-b-800w.webp 800w, /assets/images/cases/kalmene/hero-b-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/kalmene/hero-b-400w.jpg 400w, /assets/images/cases/kalmene/hero-b-800w.jpg 800w, /assets/images/cases/kalmene/hero-b-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/kalmene/hero-b-1500w.jpg" alt="KALMENE skincare flat-lay — full product line, box, and brand card on cream linen" loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Outcome</div>
+    <h2 class="cs-section-title">A designed system, not a shipped business.</h2>
+    <div class="cs-process-note"><strong>Concept study.</strong> No real business outcomes. The identity shown is designed to demonstrate how a minimalist skincare line could be built: wordmark, type system, packaging logic, and a photographic discipline that does the work the product itself does. Use this as a reference for the kind of brand we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">— Credits</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Photography</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+    <p style="margin-top: 32px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--ink-mute); letter-spacing: 0.05em;">KALMENE is a concept study. Not a real client. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <a href="piper-and-co.html" style="text-decoration: none; color: inherit; display: block;">
+      <div class="cs-next">
+        <div>
+          <div class="cs-next__label">— Next — 03/07</div>
+          <h3 class="cs-next__title">Piper &amp; Co</h3>
+        </div>
+        <div class="cs-next__arrow">→</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

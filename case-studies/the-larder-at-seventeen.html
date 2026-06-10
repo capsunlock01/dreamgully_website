@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "the-larder-at-seventeen",
+  "brandName": "THE LARDER AT SEVENTEEN",
+  "vertical": "Restaurant",
+  "geography": "Dubai, UAE",
+  "tier": "heavy",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity", "web-design", "social-content", "menu-design", "interior-graphics"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/the-larder-at-seventeen/hero.jpg",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": true,
+  "socialHandleAvailable": true,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE LARDER AT SEVENTEEN — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Full brand + web + social + menu + interior graphics for a maximalist fine-dining restaurant in Dubai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0F0807;
+  --bg-1: #1A0E0A;
+  --bg-2: #2A1810;
+  --oxblood: #6B1A1A;
+  --gold: #C8A458;
+  --cream: #F5EBD5;
+  --ink: #F5EBD5;
+  --ink-soft: #C8B89A;
+  --ink-mute: #8A7B5E;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+  font-style: italic;
+}
+h1 { font-size: clamp(48px, 9vw, 130px); }
+h2 { font-size: clamp(40px, 6vw, 90px); }
+h3 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; }
+h4 { font-size: 22px; font-style: normal; font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+p { color: var(--ink-soft); font-size: 16px; line-height: 1.8; max-width: 640px; font-weight: 300; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--oxblood); padding: 20px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; font-style: italic; color: var(--gold); text-decoration: none; }
+.cs-nav__back { color: var(--ink-soft); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+.cs-hero { padding: 80px 0 64px; position: relative; overflow: hidden; }
+.cs-hero::before { content: ""; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, var(--oxblood), transparent 60%); z-index: 0; }
+.cs-hero__eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: block; font-weight: 500; }
+.cs-hero__title { margin: 24px 0; position: relative; z-index: 1; }
+.cs-hero__concept { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: var(--ink-soft); border: 1px solid var(--gold); padding: 16px 20px; max-width: 520px; margin: 32px 0; position: relative; z-index: 1; }
+.cs-hero__concept strong { color: var(--gold); }
+.cs-hero__tagline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(22px, 2.5vw, 30px); line-height: 1.3; color: var(--ink-soft); max-width: 720px; position: relative; z-index: 1; }
+.cs-hero__image { margin-top: 64px; aspect-ratio: 16/10; background: var(--bg-1); border: 1px solid var(--oxblood); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; color: var(--ink-mute); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; position: relative; z-index: 1; }
+.cs-badge { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 6px 16px; border: 1px solid var(--gold); color: var(--gold); margin-bottom: 24px; }
+
+.cs-section { padding: 96px 0; border-top: 1px solid var(--oxblood); position: relative; }
+.cs-section-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; font-weight: 500; }
+.cs-section-title { margin-bottom: 48px; max-width: 800px; }
+.cs-section-body { max-width: 640px; }
+.cs-section-body p { margin-bottom: 20px; }
+
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--oxblood); border: 1px solid var(--oxblood); margin-top: 48px; }
+.cs-overview__tile { background: var(--bg-1); padding: 32px 24px; }
+.cs-overview__tile-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.cs-overview__tile-value { font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; font-weight: 800; }
+
+.cs-brief__quote { margin-top: 48px; padding: 32px; background: var(--bg-1); border: 1px solid var(--oxblood); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 32px; line-height: 1.2; color: var(--gold); max-width: 720px; }
+
+.cs-work__grid { display: grid; gap: 80px; margin-top: 64px; }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 4/3; background: var(--bg-1); border: 1px solid var(--oxblood); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; color: var(--ink-mute); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px; text-align: center; }
+.cs-deliverable__number { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.cs-deliverable__title { margin-bottom: 16px; }
+
+.cs-process-note { background: var(--bg-1); border: 1px solid var(--oxblood); padding: 40px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; color: var(--ink-soft); max-width: 720px; margin-top: 32px; }
+.cs-process-note strong { color: var(--gold); }
+
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 32px; margin-top: 48px; max-width: 720px; }
+.cs-credits__role { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+.cs-credits__name { color: var(--ink); font-weight: 400; }
+
+.cs-next { margin-top: 64px; padding: 56px 32px; background: var(--oxblood); color: var(--cream); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; }
+.cs-next__label { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.cs-next__title { color: var(--cream); }
+.cs-next__arrow { font-family: 'Playfair Display', serif; font-style: italic; font-size: 48px; color: var(--gold); }
+
+@media (max-width: 768px) {
+  .cs-overview, .cs-deliverable, .cs-deliverable--reverse, .cs-next { grid-template-columns: 1fr; direction: ltr; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Selected Work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="container">
+    <span class="cs-hero__eyebrow">Restaurant · Dubai · Established MMXXVI</span>
+    <span class="cs-badge">Concept</span>
+    <h1 class="cs-hero__title">The Larder<br>at Seventeen.</h1>
+    <p class="cs-hero__concept"><strong>CONCEPT STUDY.</strong> THE LARDER AT SEVENTEEN is a designed brand, not a real restaurant. The work shown demonstrates how we'd build a full identity + web + social + menu + interior system for a maximalist fine-dining concept.</p>
+    <p class="cs-hero__tagline">An experience, not a meal. Curated ingredients, candlelit rooms, and a brand that treats every page like a magazine spread and every dish like a poem.</p>
+    <div class="cs-hero__image">[HERO — RESTAURANT INTERIOR, CANDLELIT / 16:10]</div>
+  </div>
+</header>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-section-title">A restaurant that is, from the first reading, an editorial.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Brand</div>
+        <div class="cs-overview__tile-value">The Larder at Seventeen</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Vertical</div>
+        <div class="cs-overview__tile-value">Fine dining</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Full identity system</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 32px;">THE LARDER AT SEVENTEEN is the restaurant a chef-owner opens when they've decided the food has always been the point, and the brand should look like the food feels. Deep oxblood, cream, gold. Playfair Display Italic for everything display, set generously, treated like a precious object. Every page dense, every spread considered, every menu a small portfolio piece.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Brief</div>
+    <h2 class="cs-section-title">If a Dubai fine-dining restaurant wanted the brand to feel like a magazine.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build a brand identity, website, social system, menu design, and interior graphics for a chef-driven restaurant that wants the customer to feel like they've entered a private club the moment they open the menu. The brand is the promise that the food will be worth the price of admission.</p>
+      <p>Constraint: maximalism, executed with discipline. Every layer earns its place. Nothing is decorative for its own sake. The density is the luxury.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"We are not in the business of feeding people. We are in the business of remembering dinners."</blockquote>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Work</div>
+    <h2 class="cs-section-title">Six deliverables. A complete dining-world system.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[01 — WORDMARK, SEAL, COLOUR, TYPE / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE I</div>
+          <h3 class="cs-deliverable__title">Brand identity system</h3>
+          <p>Wordmark in Playfair Display Black Italic, set in a tight stack. Wordmark-in-a-laurel-seal as a secondary mark for menu headers, plate stamps, and the front door. Palette: deep oxblood, antique gold, warm cream, with black as the foundational ink. Typography: Playfair Display for display, Cormorant Garamond for small caps and labels, Inter for body. Photography: dark, candlelit, plated food shot in editorial style, no daylight.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media">[02 — DESKTOP + MOBILE WEB / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE II</div>
+          <h3 class="cs-deliverable__title">Website</h3>
+          <p>Single-page site that reads as an editorial. Hero is a slow-fade dark video of the dining room. Sections unfold like magazine chapters — the chef, the philosophy, the menu, the cellar, the booking. No scrolling gimmicks, no "explore more" CTAs. Every paragraph is set in editorial measure, every section has a number, every spread has a single image treated at full width.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[03 — INSTAGRAM: 9-POST GRID / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE III</div>
+          <h3 class="cs-deliverable__title">Social content system</h3>
+          <p>Instagram grid that reads as a curated archive, not a feed. Single-image posts, no carousels, no reels of "behind the scenes." Photography is the brand: plated food at editorial angles, the dining room in low light, the chef's hands at work. Captions are short, set in serif, signed with the chef's initials. The grid is a portfolio, not a broadcast.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media">[04 — MENU: TASTING MENU, 5 COURSES / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE IV</div>
+          <h3 class="cs-deliverable__title">Menu design</h3>
+          <p>Tasting menu printed on heavy cream stock with gold foil, sealed with the laurel-seal mark, set in Playfair Display Italic. Five courses, each on its own spread, each with a small editorial photograph. Wine pairing list runs on the back, set in Cormorant Garamond with a small Roman numeral for each pairing. The menu is a small portfolio piece that lives in the customer's memory.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[05 — INTERIOR: PLAQUE, FRAMED TYPE, SIGNAGE / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE V</div>
+          <h3 class="cs-deliverable__title">Interior graphics</h3>
+          <p>Brass plaque at the entrance with the wordmark in deep relief. Three framed type pieces in the dining room — the chef's philosophy, a single line about the wine list, the address. Restroom signage in the same type system. The interior graphics are the brand in three dimensions, treated with the same editorial discipline as the menu.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media">[06 — MATCHING: PLATE STAMP, NAPKIN, CANDLE / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE VI</div>
+          <h3 class="cs-deliverable__title">Tabletop system</h3>
+          <p>Plate stamp on every dish, in oxblood, with the laurel-seal mark. Napkins in cream linen with a tiny wordmark in the corner. Candles in oxblood glass with a gold foil seal. The tabletop system is the brand at the moment of contact — the last visual the customer sees before the first bite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Outcome</div>
+    <h2 class="cs-section-title">A designed system, not a shipped restaurant.</h2>
+    <div class="cs-process-note"><strong>CONCEPT STUDY.</strong> No real restaurant, no real menu, no real reservations. The brand, web, social, menu, interior, and tabletop system shown are designed to demonstrate how a maximalist fine-dining concept could be built: dense, considered, with every layer earning its place. Use this as a reference for the kind of work we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Credits</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Web design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Menu design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Interior graphics</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Photography</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+    <p style="margin-top: 32px; font-size: 12px; color: var(--ink-mute);">THE LARDER AT SEVENTEEN is a concept study. Not a real restaurant. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <a href="hotel-halcyon.html" style="text-decoration: none; color: inherit; display: block;">
+      <div class="cs-next">
+        <div>
+          <div class="cs-next__label">Next — 07/07</div>
+          <h3 class="cs-next__title">Hotel Halcyon</h3>
+        </div>
+        <div class="cs-next__arrow">→</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

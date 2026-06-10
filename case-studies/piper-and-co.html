@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "piper-and-co",
+  "brandName": "PIPER & CO",
+  "vertical": "Cafe",
+  "geography": "Melbourne, AU",
+  "tier": "medium",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity", "supporting-collateral"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/piper-and-co/hero-a.png",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": true,
+  "socialHandleAvailable": true,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIPER & CO — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Brand identity + collateral for a Memphis-coded Melbourne cafe. The third place, but make it interesting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FBF6E9;
+  --pink: #FF4D8D;
+  --cobalt: #2A4DDC;
+  --mustard: #E8B23A;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-mute: #888;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: var(--ink);
+}
+h1 { font-size: clamp(56px, 10vw, 140px); }
+h2 { font-size: clamp(40px, 6vw, 80px); }
+h3 { font-size: clamp(24px, 3vw, 36px); }
+h4 { font-size: 20px; }
+p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; max-width: 640px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: var(--cream); border-bottom: 2px solid var(--ink); padding: 16px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); text-decoration: none; }
+.cs-nav__back { color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 100px; }
+.cs-nav__back:hover { background: var(--ink); color: var(--cream); }
+
+.cs-hero { padding: 80px 0 64px; position: relative; }
+.cs-hero__shape {
+  position: absolute; top: 80px; right: -100px;
+  width: 400px; height: 400px;
+  background: var(--pink); border-radius: 50%;
+  z-index: -1;
+}
+.cs-hero__shape-2 {
+  position: absolute; top: 240px; left: -80px;
+  width: 220px; height: 220px;
+  background: var(--cobalt); transform: rotate(45deg);
+  z-index: -1;
+}
+.cs-hero__eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 24px; display: inline-block; padding: 4px 12px; background: var(--mustard); }
+.cs-hero__title { margin: 24px 0 32px; }
+.cs-hero__concept { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.6; color: var(--ink-soft); background: var(--cream); border: 1.5px dashed var(--ink); padding: 12px 16px; max-width: 520px; margin: 24px 0 32px; }
+.cs-hero__concept strong { color: var(--ink); }
+.cs-hero__tagline { font-family: 'DM Serif Display', serif; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.2; color: var(--ink); max-width: 720px; }
+.cs-hero__image { margin-top: 64px; aspect-ratio: 4/3; width: 100%; object-fit: cover; display: block; background: white; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--pink); }
+.cs-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 12px; border: 1.5px solid var(--ink); color: var(--ink); margin-bottom: 24px; }
+
+.cs-section { padding: 96px 0; border-top: 1.5px solid var(--ink); }
+.cs-section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 24px; background: var(--mustard); display: inline-block; padding: 4px 10px; }
+.cs-section-title { margin-bottom: 48px; max-width: 800px; }
+.cs-section-body { max-width: 640px; }
+.cs-section-body p { margin-bottom: 20px; }
+
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); margin-top: 48px; background: white; }
+.cs-overview__tile { padding: 24px; border-right: 2px solid var(--ink); }
+.cs-overview__tile:last-child { border-right: 0; }
+.cs-overview__tile-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.cs-overview__tile-value { font-family: 'DM Serif Display', serif; font-size: 26px; }
+
+.cs-brief__quote { margin-top: 48px; padding: 24px; background: var(--pink); color: white; font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; max-width: 720px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--cobalt); }
+
+.cs-work__grid { display: grid; gap: 64px; margin-top: 56px; }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 4/3; background: white; border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; color: var(--ink-mute); font-size: 11px; padding: 16px; text-align: center; box-shadow: 6px 6px 0 var(--cobalt); }
+.cs-deliverable:nth-child(even) .cs-deliverable__media { box-shadow: 6px 6px 0 var(--pink); }
+.cs-deliverable__number { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); margin-bottom: 12px; }
+.cs-deliverable__title { margin-bottom: 16px; }
+
+.cs-process-note { background: white; border: 2px solid var(--ink); padding: 32px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.7; color: var(--ink-soft); max-width: 720px; margin-top: 32px; }
+.cs-process-note strong { color: var(--ink); }
+
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 32px; margin-top: 48px; max-width: 720px; }
+.cs-credits__role { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute); }
+.cs-credits__name { color: var(--ink); font-weight: 500; }
+
+.cs-next { margin-top: 64px; padding: 48px; background: var(--cobalt); color: white; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--pink); transition: transform 0.2s; }
+.cs-next:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--pink); }
+.cs-next__label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mustard); margin-bottom: 8px; }
+.cs-next__title { color: white; }
+.cs-next__arrow { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--mustard); }
+
+@media (max-width: 768px) {
+  .cs-overview, .cs-deliverable, .cs-deliverable--reverse, .cs-next { grid-template-columns: 1fr; direction: ltr; }
+  .cs-overview__tile { border-right: 0; border-bottom: 2px solid var(--ink); }
+  .cs-overview__tile:last-child { border-bottom: 0; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Selected Work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="cs-hero__shape"></div>
+  <div class="cs-hero__shape-2"></div>
+  <div class="container">
+    <span class="cs-hero__eyebrow">Cafe · Melbourne</span>
+    <span class="cs-badge">Concept</span>
+    <h1 class="cs-hero__title">Piper &amp; Co.</h1>
+    <p class="cs-hero__concept"><strong>CONCEPT STUDY.</strong> PIPER &amp; CO is a designed brand, not a real client. The work shown is a demonstration of how we'd build a brand for a Memphis-coded Melbourne cafe.</p>
+    <p class="cs-hero__tagline">A cafe that takes its third-place job seriously. Mismatched ceramics, hand-pulled espresso, and a brand that wants you to stay for the conversation, not the wifi.</p>
+    <picture>
+  <source type="image/avif" srcset="/assets/images/cases/piper-and-co/hero-a-400w.avif 400w, /assets/images/cases/piper-and-co/hero-a-800w.avif 800w, /assets/images/cases/piper-and-co/hero-a-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/piper-and-co/hero-a-400w.webp 400w, /assets/images/cases/piper-and-co/hero-a-800w.webp 800w, /assets/images/cases/piper-and-co/hero-a-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/piper-and-co/hero-a-400w.jpg 400w, /assets/images/cases/piper-and-co/hero-a-800w.jpg 800w, /assets/images/cases/piper-and-co/hero-a-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/piper-and-co/hero-a-1500w.jpg" alt="Piper & Co cafe storefront with logo sign on facade" loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+  </div>
+</header>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-section-title">The cafe the suburb actually needs.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Brand</div>
+        <div class="cs-overview__tile-value">Piper &amp; Co</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Vertical</div>
+        <div class="cs-overview__tile-value">Cafe</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Identity + collateral</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 32px;">PIPER &amp; CO is the cafe a thoughtful inner-Melbourne neighbourhood commissions when it decides it's tired of the third-wave-coffee-with-co-working-space template. The brand is loud on the wall, warm in the room, careful with the product. Geometric shapes, primary palette, friendly type — but the kind of friendly that's done on purpose, not by accident.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Brief</div>
+    <h2 class="cs-section-title">If Melbourne's Brunswick needed a third place that didn't take itself too seriously.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build the brand a small cafe group would commission if they wanted the visual identity to do the marketing — no Instagram captions needed, the design is the hook. Geometric, playful, confident, with a colour palette that doesn't apologise.</p>
+      <p>Constraint: every visual element has to feel designed, not found. The shapes are not "Memphis-inspired" — they're Memphis, full stop, with the discipline of a 2026 studio applying a 1985 vocabulary.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"The design is the marketing. The cafe is the proof."</blockquote>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Work</div>
+    <h2 class="cs-section-title">Two deliverables. One system. A cafe that knows what it is.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[01 — WORDMARK, TYPE, COLOUR, SHAPES / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE /01</div>
+          <h3 class="cs-deliverable__title">Brand identity system</h3>
+          <p>Wordmark in a friendly display serif (think DM Serif Display). Primary palette: cream, hot pink, cobalt, mustard. Geometric shapes as background elements, not decoration — they hold the layout. Sans-serif for system text, monospace for menu and price tags. The system is loud at the door, quiet on the cup.</p>
+        </div>
+      </div>
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media">[02 — MENU CARD, COASTER, BAG, STAMP / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">DELIVERABLE /02</div>
+          <h3 class="cs-deliverable__title">Supporting collateral</h3>
+          <p>Menu card (folded, letterpress-feel), takeaway cup with a single coloured sleeve, branded coaster set, paper bag with the wordmark in a hot-pink block, loyalty card stamped on a custom brass die. The pieces are designed to be photographed, collected, and recognised across a hundred cafes in a city that has too many cafes already.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Gallery</div>
+    <h2 class="cs-section-title">Inside, the working bar. Outside, the menu.</h2>
+    <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+      <picture>
+  <source type="image/avif" srcset="/assets/images/cases/piper-and-co/hero-b-400w.avif 400w, /assets/images/cases/piper-and-co/hero-b-800w.avif 800w, /assets/images/cases/piper-and-co/hero-b-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/piper-and-co/hero-b-400w.webp 400w, /assets/images/cases/piper-and-co/hero-b-800w.webp 800w, /assets/images/cases/piper-and-co/hero-b-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/piper-and-co/hero-b-400w.jpg 400w, /assets/images/cases/piper-and-co/hero-b-800w.jpg 800w, /assets/images/cases/piper-and-co/hero-b-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/piper-and-co/hero-b-1500w.jpg" alt="Piper & Co cafe interior — espresso machine and counter detail" loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+      <picture>
+  <source type="image/avif" srcset="/assets/images/cases/piper-and-co/hero-c-menu-flatlay-400w.avif 400w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-800w.avif 800w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-1500w.avif 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/webp" srcset="/assets/images/cases/piper-and-co/hero-c-menu-flatlay-400w.webp 400w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-800w.webp 800w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-1500w.webp 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="/assets/images/cases/piper-and-co/hero-c-menu-flatlay-400w.jpg 400w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-800w.jpg 800w, /assets/images/cases/piper-and-co/hero-c-menu-flatlay-1500w.jpg 1500w" sizes="(max-width: 800px) 100vw, 50vw">
+  <img src="/assets/images/cases/piper-and-co/hero-c-menu-flatlay-1500w.jpg" alt="Piper & Co matcha launch promo menu on marble counter" loading="lazy" decoding="async" width="1500" height="900">
+</picture>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Outcome</div>
+    <h2 class="cs-section-title">A designed system, not a shipped business.</h2>
+    <div class="cs-process-note"><strong>CONCEPT STUDY.</strong> No real business outcomes. The identity and collateral shown are designed to demonstrate how a Memphis-coded cafe brand could be built: wordmark, palette, type system, and a set of touchpoints that work in a hand and on a shelf. Use this as a reference for the kind of brand we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Credits</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">Photography</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+    <p style="margin-top: 32px; font-size: 12px; color: var(--ink-mute);">PIPER &amp; CO is a concept study. Not a real client. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="container">
+    <a href="tessera.html" style="text-decoration: none; color: inherit; display: block;">
+      <div class="cs-next">
+        <div>
+          <div class="cs-next__label">Next — 04/07</div>
+          <h3 class="cs-next__title">Tessera</h3>
+        </div>
+        <div class="cs-next__arrow">→</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

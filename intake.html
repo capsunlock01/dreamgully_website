@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Your Project — DreamGully</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --card: #12121a;
+      --border: #1e1e2a;
+      --gold: #FFD700;
+      --gold-dim: #b89b00;
+      --text: #ffffff;
+      --text-muted: #a0a0b0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 60px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 40px;
+      transition: color 0.3s;
+    }
+    .back:hover { color: var(--gold); }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .form-group { margin-bottom: 28px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    select { cursor: pointer; appearance: none; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .hint {
+      font-size: 12px;
+      color: #606070;
+      margin-top: 6px;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+    }
+
+    .privacy {
+      text-align: center;
+      font-size: 12px;
+      color: #606070;
+      margin-top: 16px;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 60px 0;
+    }
+    .success h2 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; margin-bottom: 12px; }
+    .success p { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back">← Back to DreamGully</a>
+
+    <div id="form-view">
+      <h1>Start Your Project</h1>
+      <p class="sub">Tell us a bit about your business. We'll get back to you within 24 hours.</p>
+
+      <form id="intake-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- Basic Info -->
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Full name" required>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@business.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="business">Business Name</label>
+          <input type="text" id="business" name="business" placeholder="Your business or brand name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="website">Website / Social Links</label>
+          <input type="text" id="website" name="website" placeholder="Website URL, Instagram, etc.">
+          <p class="hint">Not required but helps us research you faster</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Project Details -->
+        <div class="form-group">
+          <label for="service">What do you need?</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="starter">Starter Package — Brand foundation ($997)</option>
+            <option value="growth">Growth Package — Social + content ($1,997)</option>
+            <option value="scale">Scale Package — Full brand + marketing ($3,497)</option>
+            <option value="custom">Custom project — Something specific</option>
+            <option value="unsure">Not sure yet — need advice</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="industry">Industry / Business Type</label>
+          <select id="industry" name="industry">
+            <option value="" disabled selected>Select your industry...</option>
+            <option value="restaurant">Restaurant / Cafe / Food</option>
+            <option value="retail">Retail / Shop</option>
+            <option value="realestate">Real Estate</option>
+            <option value="carwash">Car Wash / Auto</option>
+            <option value="laundry">Laundry / Dry Clean</option>
+            <option value="salon">Salon / Beauty</option>
+            <option value="fitness">Fitness / Gym</option>
+            <option value="professional">Professional Services</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Tell us about your project</label>
+          <textarea id="description" name="description" placeholder="What are you trying to achieve? Any specific goals, deadlines, or constraints?"></textarea>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Budget & Timeline -->
+        <div class="row">
+          <div class="form-group">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Select...</option>
+              <option value="under-1k">Under $1,000</option>
+              <option value="1k-2k">$1,000 – $2,000</option>
+              <option value="2k-4k">$2,000 – $4,000</option>
+              <option value="4k-plus">$4,000+</option>
+              <option value="flexible">Flexible /取决于预算</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="timeline">Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="" disabled selected>Select...</option>
+              <option value="asap">ASAP — urgent</option>
+              <option value="2-weeks">Within 2 weeks</option>
+              <option value="1-month">Within 1 month</option>
+              <option value="1-2-months">1–2 months</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="referral">How did you find us?</label>
+          <select id="referral" name="referral">
+            <option value="" disabled selected>Select...</option>
+            <option value="google">Google Search</option>
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="referral">Friend / Referral</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit — We'll Be in Touch</button>
+        <p class="privacy">We don't share your information. Ever.</p>
+      </form>
+    </div>
+
+    <div id="success-view" class="success">
+      <h2>Got it. We'll be in touch soon.</h2>
+      <p>Within 24 hours. Check your inbox (and spam folder just in case).</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('intake-form').addEventListener('submit', function(e) {
+      // For now, show success state. Replace with actual Formspree / email integration.
+      e.preventDefault();
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      // To make this live: change action to your Formspree endpoint, remove this listener
+    });
+  </script>
+</body>
+</html>

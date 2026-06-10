@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "raw-load",
+  "brandName": "RAW LOAD",
+  "vertical": "Fitness Studio",
+  "geography": "Melbourne, AU",
+  "tier": "light",
+  "source": "concept",
+  "year": 2026,
+  "services": ["brand-identity"],
+  "liveUrl": null,
+  "heroImage": "assets/images/cases/raw-load/hero.jpg",
+  "shipped": false,
+  "clientPermissionOnFile": false,
+  "trademarkCleared": true,
+  "domainAvailable": false,
+  "socialHandleAvailable": false,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAW LOAD — Case Study | DreamGully</title>
+<meta name="description" content="Concept study: Brand identity for a brutalist Melbourne fitness studio. Concrete, monospace, no decoration, no apologies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --bg-1: #141414;
+  --bg-2: #1F1F1F;
+  --concrete: #2A2A2A;
+  --steel: #3A3A3A;
+  --hazard: #FF3B00;
+  --text: #F5F5F5;
+  --text-mute: #888;
+  --text-dim: #555;
+  --border: rgba(255,255,255,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+h1, h2, h3, h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--text);
+}
+h1 { font-size: clamp(64px, 14vw, 180px); }
+h2 { font-size: clamp(36px, 6vw, 80px); }
+h3 { font-size: clamp(24px, 3vw, 40px); }
+h4 { font-size: 20px; }
+p { color: #BBB; font-size: 16px; line-height: 1.6; max-width: 640px; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* Nav */
+.cs-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); padding: 16px 0; }
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.05em; }
+.cs-nav__back { color: var(--text-mute); text-decoration: none; font-size: 13px; font-family: 'Space Mono', monospace; }
+.cs-nav__back:hover { color: var(--hazard); }
+
+/* Hero */
+.cs-hero { padding: 96px 0 64px; border-bottom: 4px solid var(--text); }
+.cs-hero__eyebrow { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hazard); margin-bottom: 24px; display: block; }
+.cs-hero__title { margin: 24px 0 32px; }
+.cs-hero__concept {
+  font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6;
+  color: var(--text-mute); border-left: 2px solid var(--hazard);
+  padding: 8px 0 8px 16px; max-width: 520px; margin: 24px 0 32px;
+}
+.cs-hero__tagline { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.2; color: var(--text); max-width: 720px; letter-spacing: -0.02em; text-transform: none; }
+.cs-hero__image { margin-top: 64px; aspect-ratio: 16/9; background: var(--bg-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; color: var(--text-dim); font-size: 12px; overflow: hidden; padding: 0; }
+.cs-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--text-dim); color: var(--text-mute); margin-bottom: 24px; }
+
+/* Sections */
+.cs-section { padding: 96px 0; border-top: 1px solid var(--border); }
+.cs-section-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 24px; }
+.cs-section-title { margin-bottom: 48px; max-width: 800px; }
+.cs-section-body { max-width: 640px; }
+.cs-section-body p { margin-bottom: 20px; }
+
+/* Overview */
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); margin-top: 48px; }
+.cs-overview__tile { padding: 24px; border-right: 1px solid var(--border); }
+.cs-overview__tile:last-child { border-right: 0; }
+.cs-overview__tile-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 8px; }
+.cs-overview__tile-value { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: -0.02em; }
+
+/* Brief */
+.cs-brief__quote { margin-top: 48px; padding: 24px 0 24px 24px; border-left: 4px solid var(--hazard); font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px; line-height: 1.1; text-transform: uppercase; color: var(--text); max-width: 720px; }
+
+/* Work */
+.cs-work__grid { display: grid; gap: 80px; margin-top: 64px; }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media { aspect-ratio: 4/3; background: var(--bg-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; color: var(--text-dim); font-size: 11px; padding: 16px; text-align: center; }
+.cs-deliverable__number { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hazard); margin-bottom: 12px; }
+.cs-deliverable__title { margin-bottom: 16px; }
+
+/* Process note (fictional) */
+.cs-process-note { background: var(--bg-1); border: 1px solid var(--border); padding: 32px; font-family: 'Space Mono', monospace; font-size: 14px; line-height: 1.7; color: var(--text-mute); max-width: 720px; margin-top: 32px; }
+.cs-process-note strong { color: var(--text); font-weight: 700; }
+
+/* Credits */
+.cs-credits { display: grid; grid-template-columns: 200px 1fr; gap: 16px 32px; margin-top: 48px; max-width: 720px; }
+.cs-credits__role { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mute); }
+.cs-credits__name { color: var(--text); font-weight: 600; }
+
+/* Next */
+.cs-next { margin-top: 64px; padding: 48px 0; border-top: 4px solid var(--text); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; text-decoration: none; }
+.cs-next:hover .cs-next__title { color: var(--hazard); }
+.cs-next__label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 8px; }
+.cs-next__title { color: var(--text); transition: color 0.2s; }
+.cs-next__arrow { font-family: 'Space Mono', monospace; font-size: 32px; color: var(--hazard); }
+
+@media (max-width: 768px) {
+  .cs-overview { grid-template-columns: 1fr; }
+  .cs-overview__tile { border-right: 0; border-bottom: 1px solid var(--border); }
+  .cs-overview__tile:last-child { border-bottom: 0; }
+  .cs-deliverable, .cs-deliverable--reverse { grid-template-columns: 1fr; direction: ltr; }
+  .cs-next { grid-template-columns: 1fr; }
+  .cs-credits { grid-template-columns: 1fr; gap: 4px; }
+  .cs-section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DREAMGULLY/CASES</a>
+    <a href="../index.html" class="cs-nav__back">← INDEX</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="container">
+    <span class="cs-hero__eyebrow">// FITNESS · MELBOURNE</span>
+    <span class="cs-badge">CONCEPT</span>
+    <h1 class="cs-hero__title">RAW<br>LOAD.</h1>
+    <p class="cs-hero__concept"><strong>CONCEPT STUDY.</strong> RAW LOAD is a designed brand, not a real client. The work shown is a demonstration of how we'd build identity for a brutalist fitness studio.</p>
+    <p class="cs-hero__tagline">A strength facility for people who train like they mean it. Concrete, steel, no decoration, no apologies.</p>
+    <div class="cs-hero__image"><img src="/assets/images/cases/raw-load/hero-a.jpg" alt="RAW LOAD — industrial gym interior with barbell and stenciled wordmark" /></div>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">/01 OVERVIEW</div>
+    <h2 class="cs-section-title">A studio for the load, not the look.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">CLIENT</div>
+        <div class="cs-overview__tile-value">RAW LOAD</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">VERTICAL</div>
+        <div class="cs-overview__tile-value">FITNESS</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">SCOPE</div>
+        <div class="cs-overview__tile-value">BRAND IDENTITY</div>
+      </div>
+    </div>
+    <p class="cs-section-body" style="margin-top: 32px;">RAW LOAD is the studio a brutalist architecture fan opens when they decide to get strong. No neon, no mirrors, no motivational posters. The brand reads as concrete and steel, the membership is the work itself, the only signal colour is hazard red — used sparingly, only where it matters.</p>
+  </div>
+</section>
+
+<!-- BRIEF -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">/02 THE BRIEF</div>
+    <h2 class="cs-section-title">If a Melbourne strength studio wanted to be taken seriously.</h2>
+    <div class="cs-section-body">
+      <p>The brief we wrote for this concept: build the brand identity a strength-only facility would commission if it wanted members to take the work — not the brand — seriously. Decoration is the enemy. The mark should look like it was cut from the same steel as the plates.</p>
+      <p>Constraint: zero warmth, zero softness, zero community-coded language. The brand doesn't want to be liked. It wants to be used.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"THE LOGO SHOULD LOOK LIKE IT WAS CUT, NOT DRAWN."</blockquote>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">/03 THE WORK</div>
+    <h2 class="cs-section-title">One deliverable. One direction. Zero margin for doubt.</h2>
+    <div class="cs-work__grid">
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media">[01 — WORDMARK, MARK, COLOR, TYPE / 4:3]</div>
+        <div>
+          <div class="cs-deliverable__number">/DELIVERABLE 01</div>
+          <h3 class="cs-deliverable__title">BRAND IDENTITY</h3>
+          <p>Wordmark in a heavy industrial sans (think Söhne Breit, or a custom cut). One mark — a black bar with a single white "L" cut through. Type system: Inter for everything, weight 900 for display, monospace for system labels. Colour: black, concrete grey, steel, one signal red. No gradients. No shadows. No second colour.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS (FICTIONAL = PROCESS NOTE) -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">/04 OUTCOME</div>
+    <h2 class="cs-section-title">A designed system, not a shipped business.</h2>
+    <div class="cs-process-note"><strong>CONCEPT STUDY.</strong> No real business outcomes. The identity shown is designed to demonstrate how a brutalist fitness brand could be built: wordmark, mark, type system, and a colour discipline that does the work the gym itself does. Use this as a reference for the kind of brand we build, not a claim about a real client.</div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">/05 CREDITS</div>
+    <h2 class="cs-section-title">Who built it.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">CREATIVE DIRECTION</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">BRAND STRATEGY</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">DESIGN</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+      <div class="cs-credits__role">PHOTOGRAPHY</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+    <p style="margin-top: 32px; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text-dim);">RAW LOAD is a concept study. Not a real client. Not a shipped engagement.</p>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section class="cs-section">
+  <div class="container">
+    <a href="kalmene.html" class="cs-next" style="color: inherit; text-decoration: none;">
+      <div>
+        <div class="cs-next__label">/NEXT — 02/07</div>
+        <h3 class="cs-next__title">KALMENE</h3>
+      </div>
+      <div class="cs-next__arrow">→</div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

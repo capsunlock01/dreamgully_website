@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DreamGully — Creative for the AI Age</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       DESIGN TOKENS
+    ======================================== */
+    :root {
+      /* Greys */
+      --bg-deep:      #0A0A0A;
+      --bg-section-1: #111111;
+      --bg-section-2: #1A1A1A;
+      --bg-card:      #262626;
+      --bg-card-hover:#2E2E2E;
+      --border:       #333333;
+      --border-light: #444444;
+
+      /* White text shades */
+      --text-primary:   #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted:     #94A3B8;
+      --text-faint:     #64748B;
+
+      /* Blue gradient (title accent) */
+      --blue-light: #38BDF8;
+      --blue-mid:   #3B82F6;
+      --blue-dark:  #1E40AF;
+      --blue-darker:#1E3A8A;
+
+      /* Gradient shorthand */
+      --gradient-blue: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-dark) 100%);
+
+      /* Fonts */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-xs:  12px;
+      --space-sm:  20px;
+      --space-md:  32px;
+      --space-lg:  64px;
+      --space-xl:  100px;
+      --space-2xl: 140px;
+
+      /* Transitions */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 150ms ease;
+      --transition-base: 300ms ease;
+      --transition-slow: 600ms var(--ease-out-expo);
+    }
+
+
+    /* ========================================
+       THE REACH
+    ======================================== */
+    .reach {
+      background: var(--bg-section-1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .reach::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,189,248,0.06), transparent 65%);
+      pointer-events: none;
+    }
+    .reach-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .reach-left .reach-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 28px;
+    }
+    .reach-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .reach-left h2 .grad {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-style: italic;
+    }
+    .reach-left .reach-sub {
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+    .reach-left .reach-attribution {
+      font-size: 13px;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+    .reach-left .reach-attribution a {
+      color: var(--text-muted);
+      border-bottom: 1px dashed var(--text-faint);
+      transition: color var(--transition-base), border-color var(--transition-base);
+    }
+    .reach-left .reach-attribution a:hover { color: var(--blue-light); border-color: var(--blue-light); }
+
+    /* Right column: carousel */
+    .reach-right { position: relative; }
+    .reach-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .reach-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .reach-frame iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .reach-meta {
+      position: absolute;
+      left: 14px; right: 14px;
+      bottom: 14px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .reach-meta .reach-views { color: var(--blue-light); font-weight: 600; }
+    .reach-meta .reach-handle { color: var(--text-primary); }
+
+    .reach-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .reach-thumb {
+      cursor: pointer;
+      aspect-ratio: 9 / 16;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      transition: transform var(--transition-base), border-color var(--transition-base);
+    }
+    .reach-thumb:hover { transform: translateY(-2px); border-color: var(--blue-mid); }
+    .reach-thumb.active {
+      border-color: var(--blue-light);
+      box-shadow: 0 0 0 1px var(--blue-light);
+    }
+    .reach-thumb .thumb-views {
+      position: absolute;
+      top: 6px; left: 6px;
+      font-size: 10px; font-weight: 600;
+      background: rgba(0,0,0,0.7);
+      color: var(--blue-light);
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+    .reach-thumb .thumb-play {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    .reach-thumb .thumb-play svg { width: 18px; height: 18px; }
+    .reach-thumb.active .thumb-play { color: var(--blue-light); opacity: 1; }
+    .reach-thumb .thumb-handle {
+      position: absolute;
+      bottom: 4px; left: 6px; right: 6px;
+      font-size: 9px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ========================================
+       THE SERIES CTA (first CTA, between Reach and Selected Work)
+    ======================================== */
+    .series-cta {
+      background: var(--bg-deep);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .series-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,189,248,0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .series-cta .container { position: relative; z-index: 2; max-width: 900px; text-align: center; }
+    .series-cta .series-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 28px;
+    }
+    .series-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .series-cta h2 .grad {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-style: italic;
+    }
+    .series-cta p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+    .series-cta .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 18px 32px;
+      font-size: 15px; font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .reach-layout { grid-template-columns: 1fr; gap: 50px; }
+      .reach-left h2 { font-size: clamp(36px, 8vw, 52px); }
+    }
+
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-deep);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--blue-mid);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-deep);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    img, video {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      line-height: 1.1;
+      /* Gradient text */
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h1 { font-size: clamp(48px, 9vw, 120px); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(36px, 5.5vw, 72px); letter-spacing: -0.03em; }
+    h3 { font-size: clamp(24px, 3.5vw, 44px); }
+    h4 { font-size: 20px; }
+
+    p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .container {
+      max-width: 86rem;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    section {
+      padding: var(--space-xl) 0;
+    }
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: var(--space-sm) 0;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      position: relative;
+      overflow: hidden;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      background: var(--gradient-blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-xs);
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: var(--bg-deep);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-lg);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition-base);
+        z-index: 99;
+      }
+      .mobile-menu.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .mobile-menu a {
+        font-family: var(--font-display);
+        font-size: 32px;
+        background: var(--gradient-blue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    /* ========================================
+       HERO
+    ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      overflow: hidden;
+      background: var(--bg-deep);
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(ellipse, rgba(56, 189, 248, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 72rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      animation: pulse-dot 2s ease infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ---------- Typographic wordmark ----------
+       The hero headline becomes a typographic artifact:
+       three-line lockup (eyebrow / display / sub) with
+       a horizontal rule and a spec strip below.          */
+    .hero-headline {
+      position: relative;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: var(--blue-light);
+      display: inline-block;
+    }
+
+    /* The wordmark — dominant type. Two-tone treatment:
+       DREAM in display serif, GULLY in display serif at a
+       lighter weight to create rhythm. One line, huge.      */
+    .hero-wordmark {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(72px, 14vw, 196px);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      color: var(--text-primary);
+      background: none;
+      -webkit-text-fill-color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .hero-wordmark .wm-1 {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-wordmark .wm-2 {
+      color: var(--text-primary);
+      font-weight: 400;
+      font-style: italic;
+      margin-left: 0.18em;
+    }
+
+    /* The display claim sits below the wordmark, in Inter —
+       supporting copy, small, set in a tight measured block.   */
+    .hero-claim {
+      margin-top: 28px;
+      max-width: 44rem;
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.005em;
+      color: var(--text-secondary);
+      -webkit-text-fill-color: var(--text-secondary);
+    }
+    .hero-claim strong {
+      font-weight: 500;
+      color: var(--text-primary);
+      -webkit-text-fill-color: var(--text-primary);
+    }
+
+    /* The horizontal rule between claim and spec strip —
+       a typographer's hairline rule.                          */
+    .hero-rule {
+      margin-top: 36px;
+      height: 1px;
+      width: 100%;
+      max-width: 44rem;
+      background: linear-gradient(to right, var(--border-light) 0%, transparent 100%);
+    }
+
+    /* The spec strip — 4 columns of brand-typography spec,
+       like a type-specimen sheet.                              */
+    .hero-spec {
+      margin-top: 22px;
+      max-width: 44rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .hero-spec__cell {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+    .hero-spec__label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .hero-spec__value {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .hero-spec__value--serif {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .hero-spec__value--sample {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--blue-light);
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 720px) {
+      .hero-spec { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .hero-eyebrow { font-size: 11px; letter-spacing: 0.24em; }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(17px, 2vw, 21px);
+      color: var(--text-secondary);
+      max-width: 42rem;
+      margin-bottom: var(--space-md);
+      line-height: 1.65;
+      font-weight: 300;
+      font-family: var(--font-body);
+      -webkit-text-fill-color: var(--text-secondary);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      background: var(--gradient-blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: var(--font-body);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-primary svg {
+      width: 18px;
+      height: 18px;
+      transition: transform var(--transition-fast);
+    }
+    .btn-primary:hover svg {
+      transform: translateX(4px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: var(--font-body);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-light);
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-faint);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      animation: scroll-line 2s ease infinite;
+    }
+
+    @keyframes scroll-line {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ========================================
+       LOGOS / TRUST BAR
+    ======================================== */
+    .trust-bar {
+      background: var(--bg-section-1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-md) 0;
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      overflow: hidden;
+    }
+
+    .trust-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .trust-logos {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .trust-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-faint);
+      letter-spacing: -0.01em;
+      transition: color var(--transition-fast);
+      opacity: 0.5;
+    }
+
+    .trust-logo:hover {
+      opacity: 0.8;
+      color: var(--text-muted);
+    }
+
+    /* ========================================
+       SERVICES
+    ======================================== */
+    .services {
+      background: var(--bg-section-1);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-header p {
+      max-width: 36rem;
+      margin-top: var(--space-sm);
+      font-size: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--bg-section-2);
+      padding: var(--space-md);
+      transition: background var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-blue);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .service-card:hover {
+      background: var(--bg-card);
+    }
+
+    .service-card:hover::before {
+      opacity: 0.03;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-sm);
+      color: var(--blue-light);
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .service-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-card h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================================
+       WORK SHOWCASE
+    ======================================== */
+    .showcase {
+      background: var(--bg-deep);
+      overflow: hidden;
+    }
+
+    .showcase-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .showcase-left {
+      background: var(--bg-section-2);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .showcase-number {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      font-family: var(--font-display);
+      font-size: clamp(100px, 18vw, 220px);
+      font-weight: 700;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px rgba(56, 189, 248, 0.08);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .showcase-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .showcase-category {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+
+    .showcase-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 500;
+      line-height: 1.1;
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+
+    .showcase-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: var(--space-md);
+    }
+
+    .showcase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+    }
+
+    .showcase-tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 100px;
+      color: var(--blue-light);
+    }
+
+    .showcase-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all var(--transition-fast);
+      width: fit-content;
+      background: transparent;
+      font-family: var(--font-body);
+      cursor: pointer;
+    }
+
+    .showcase-cta:hover {
+      background: var(--gradient-blue);
+      border-color: transparent;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .showcase-cta svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-fast);
+    }
+
+    .showcase-cta:hover svg {
+      transform: translateX(4px);
+    }
+
+    .showcase-right {
+      background: var(--bg-section-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      position: relative;
+    }
+
+    .showcase-visual-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .showcase-visual-secondary {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .showcase-visual-secondary img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .showcase-visual {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .showcase-visual-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section-2) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-faint);
+    }
+
+    .showcase-visual-placeholder svg {
+      width: 40px;
+      height: 40px;
+      opacity: 0.4;
+    }
+
+    .showcase-visual-placeholder span {
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.4;
+    }
+
+    .showcase-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .showcase-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--space-md);
+    }
+
+    .showcase-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .showcase-nav-btn:hover {
+      background: var(--gradient-blue);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .showcase-nav-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .showcase-dots {
+      display: flex;
+      gap: 6px;
+      margin-left: 8px;
+    }
+
+    .showcase-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .showcase-dot.active {
+      background: var(--gradient-blue);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .showcase-layout { grid-template-columns: 1fr; }
+      .showcase-left { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+
+    /* ========================================
+       ANIMATED SERIES
+    ======================================== */
+      background: var(--bg-section-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .series-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .series-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: var(--space-sm);
+    }
+
+    .series-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--blue-light);
+    }
+
+      margin-bottom: var(--space-sm);
+      text-align: left;
+    }
+
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+      max-width: 480px;
+    }
+
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-light);
+    }
+
+      width: 16px;
+      height: 16px;
+    }
+
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+      position: relative;
+    }
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+      aspect-ratio: 1;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: all var(--transition-base);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-blue);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+    }
+
+      opacity: 0.06;
+    }
+
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+    }
+
+      width: 36px;
+      height: 36px;
+      color: var(--blue-light);
+      opacity: 0.7;
+      transition: opacity var(--transition-fast);
+    }
+
+      opacity: 1;
+    }
+
+      width: 100%;
+      height: 100%;
+    }
+
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+
+    @media (max-width: 900px) {
+      .series-layout { grid-template-columns: 1fr; gap: var(--space-lg); }
+    }
+
+    /* ========================================
+       STATS ROW
+    ======================================== */
+    .stats {
+      background: var(--bg-section-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .stat-item {
+      background: var(--bg-section-2);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 600;
+      line-height: 1;
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ========================================
+       PROCESS
+    ======================================== */
+    .process {
+      background: var(--bg-section-1);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: "";
+      position: absolute;
+      top: 32px;
+      left: calc(var(--space-md) + 16px);
+      right: calc(var(--space-md) + 16px);
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .process-step {
+      background: var(--bg-section-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: var(--space-md);
+      position: relative;
+      z-index: 1;
+      transition: all var(--transition-base);
+    }
+
+    .process-step:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card);
+    }
+
+    .process-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gradient-blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-sm);
+    }
+
+    .process-step h4 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+    }
+
+    /* ========================================
+       CTA SECTION
+    ======================================== */
+    .cta-section {
+      background: var(--bg-deep) url("assets/images/cta-bg.jpg") center / cover no-repeat;
+      text-align: center;
+      padding: var(--space-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(10, 15, 25, 0.75) 0%, rgba(10, 15, 25, 0.55) 50%, rgba(10, 15, 25, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(ellipse, rgba(56, 189, 248, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 2;
+      color: #FAF8F5;
+    }
+
+    .cta-section p {
+      color: rgba(250, 248, 245, 0.78);
+      max-width: 30rem;
+      margin: 0 auto var(--space-lg);
+      font-size: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-section .section-label {
+      color: #93C5FD;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-actions {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    footer {
+      background: var(--bg-section-1);
+      border-top: 1px solid var(--border);
+      padding: var(--space-xl) 0 var(--space-md);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .footer-brand .logo {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      max-width: 280px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--text-faint);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .footer-bottom-links a {
+      font-size: 13px;
+      color: var(--text-faint);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: var(--space-sm); text-align: center; }
+    }
+
+    /* Selected Work grid (case studies) */
+    .section-intro { color: var(--text-muted); font-size: 16px; max-width: 720px; margin-top: 16px; line-height: 1.6; }
+    .sw-row-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin: 64px 0 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); }
+    .sw-row-label:first-of-type { margin-top: 32px; }
+    .sw-grid { display: grid; gap: 24px; }
+    .sw-grid--real { grid-template-columns: repeat(2, 1fr); }
+    .sw-grid--fictional { grid-template-columns: repeat(3, 1fr); }
+    .sw-card { display: block; background: var(--bg-section-1); border: 1px solid var(--border-subtle); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
+    .sw-card:hover { transform: translateY(-2px); border-color: rgba(56,189,248,0.4); }
+    .sw-card__media { aspect-ratio: 4/3; background: var(--bg-section-2); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0; overflow: hidden; position: relative; }
+.sw-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sw-card__body { padding: 24px; }
+    .sw-card__meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+    .sw-card__geo { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .sw-card__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; line-height: 1.1; }
+    .sw-card__tagline { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+    .sw-card__tagline strong { color: var(--text-primary); font-weight: 600; }
+    .sw-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    .sw-badge--client { background: var(--gradient-blue); color: white; font-weight: 600; }
+    .sw-badge--in-progress { background: var(--bg-section-2); color: var(--text-muted); border: 1px solid var(--border-subtle); font-style: italic; }
+    .sw-badge--concept { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+    @media (max-width: 1024px) { .sw-grid--fictional { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .sw-grid--real, .sw-grid--fictional { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">DreamGully</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#series">Animated Series</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Get Started</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Now accepting new clients
+        </div>
+
+        <div class="hero-headline">
+          <div class="hero-eyebrow">Brand &mdash; Design &mdash; Content &mdash; Social &mdash; Web</div>
+
+          <h1 class="hero-wordmark" aria-label="DreamGully">
+            <span class="wm-1">Dream</span><span class="wm-2">Gully</span>
+          </h1>
+
+          <p class="hero-claim">
+            A creative studio for the <strong>AI age</strong>. Brand identity, design systems,
+            content, social, and web &mdash; built end-to-end on AI-native workflows, delivered
+            at mid-market pricing.
+          </p>
+
+          <div class="hero-rule"></div>
+
+          <div class="hero-spec" aria-label="Brand type spec">
+            <div class="hero-spec__cell">
+              <span class="hero-spec__label">Display</span>
+              <span class="hero-spec__value--serif">Cormorant</span>
+            </div>
+            <div class="hero-spec__cell">
+              <span class="hero-spec__label">Text</span>
+              <span class="hero-spec__value">Inter</span>
+            </div>
+            <div class="hero-spec__cell">
+              <span class="hero-spec__label">Tracking</span>
+              <span class="hero-spec__value">&minus;45 / 1000</span>
+            </div>
+            <div class="hero-spec__cell">
+              <span class="hero-spec__label">Voice</span>
+              <span class="hero-spec__value--sample">confident</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Start a project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#work" class="btn-ghost">View our work</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container trust-bar-inner">
+      <span class="trust-label">Trusted by</span>
+      <div class="trust-logos">
+        <span class="trust-logo">Emaar Properties</span>
+        <span class="trust-logo">Melbourne Car Wash</span>
+        <span class="trust-logo">Bay Gardens</span>
+        <span class="trust-logo">Auto Spa AU</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE REACH -->
+  <section class="reach" id="reach">
+    <div class="container">
+      <div class="reach-layout">
+        <div class="reach-left">
+          <span class="reach-eyebrow">The Reach</span>
+          <h2>32 million. Then 3 million. Then <span class="grad">1.2 million.</span></h2>
+          <p class="reach-sub">One studio, three reels, zero paid views. The organic reach money can't buy &mdash; we already proved we can get it. Now we build runs like this for clients.</p>
+          <p class="reach-attribution">Selected from <a href="https://www.instagram.com/dreamgully" target="_blank" rel="noopener">@dreamgully</a> &middot; <a href="https://www.instagram.com/vogueartlier" target="_blank" rel="noopener">@vogueartlier</a> &middot; <a href="https://www.instagram.com/beyondbasics_in" target="_blank" rel="noopener">@beyondbasics_in</a></p>
+        </div>
+        <div class="reach-right">
+          <div class="reach-carousel">
+            <div class="reach-frame">
+              <iframe id="reach-iframe" src="https://www.instagram.com/reel/DQKnGwDE83_/embed/" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no" loading="lazy"></iframe>
+              <div class="reach-meta">
+                <span class="reach-views" id="reach-views">32.6M</span>
+                <span class="reach-handle" id="reach-handle">@dreamgully</span>
+              </div>
+            </div>
+            <div class="reach-thumbs">
+              <div class="reach-thumb active" data-reel-id="dream_32m" data-url="https://www.instagram.com/reel/DQKnGwDE83_/embed/" data-views="32.6M" data-handle="@dreamgully">
+                <span class="thumb-views">32.6M</span>
+                <div class="thumb-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                <span class="thumb-handle">@dreamgully</span>
+              </div>
+              <div class="reach-thumb" data-reel-id="vogue_3m" data-url="https://www.instagram.com/reel/DVbfvb0iHYu/embed/" data-views="3.0M" data-handle="@vogueartlier">
+                <span class="thumb-views">3.0M</span>
+                <div class="thumb-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                <span class="thumb-handle">@vogueartlier</span>
+              </div>
+              <div class="reach-thumb" data-reel-id="beyond_1.2m" data-url="https://www.instagram.com/reel/C_p4rhOy8Uo/embed/" data-views="1.2M" data-handle="@beyondbasics_in">
+                <span class="thumb-views">1.2M</span>
+                <div class="thumb-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                <span class="thumb-handle">@beyondbasics_in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SERIES CTA -->
+  <section class="series-cta" id="series-cta">
+    <div class="container">
+      <span class="series-eyebrow">The Series</span>
+      <h2>We turn one brand into <span class="grad">a full season.</span></h2>
+      <p>DreamGully produces custom multi-episode reel series for clients &mdash; written, shot-ready, edited, delivered as a library. Not a one-off. A run.</p>
+      <a href="series.html" class="btn-primary">
+        See how The Series works
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">What we do</span>
+        <h2>Full-stack creative,<br>AI-native delivery</h2>
+        <p>Everything your brand needs — from a blank canvas to a full launch. We handle it all, faster and better than traditional agencies.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-image">
+            <img src="assets/images/svc-01.jpg" alt="Brand identity design materials" loading="lazy">
+          </div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Brand Identity</h4>
+          <p>Logo, colours, typography, voice — everything that makes your brand unmistakably yours.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <h4>Visual Design</h4>
+          <p>Social posts, ads, print, packaging — consistent design that stops the scroll.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h4>Content & Copy</h4>
+          <p>Compelling copy and content that speaks to your audience and drives action.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <h4>Social Media</h4>
+          <p>Strategy, scheduling, and content — the full social presence your business deserves.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h4>Web Design</h4>
+          <p>Fast, beautiful websites built to convert visitors into customers.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          <h4>Video & Motion</h4>
+          <p>AI-powered video creation and motion graphics that bring your brand to life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section class="selected-work" id="work">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Selected work</span>
+        <h2>11 case studies. One studio. Built to show range.</h2>
+        <p class="section-intro">A mix of client engagements and concept studies. Concept studies are fictional brands designed to showcase our process. Real client work is shipped and on the record.</p>
+      </div>
+
+      <div class="sw-real">
+        <div class="sw-row-label">Client work</div>
+        <div class="sw-grid sw-grid--real">
+
+          <a href="case-studies/dreamgully.html" class="sw-card sw-card--real">
+            <div class="sw-card__media">[DREAMGULLY HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--client">Client Work</span>
+                <span class="sw-card__geo">Global</span>
+              </div>
+              <h3 class="sw-card__title">DreamGully</h3>
+              <p class="sw-card__tagline">The studio's own brand. Built first, used every day since.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/beyond-basics.html" class="sw-card sw-card--real">
+            <div class="sw-card__media">[BEYOND BASICS HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--client">Client Work</span>
+                <span class="sw-card__geo">India</span>
+              </div>
+              <h3 class="sw-card__title">Beyond Basics</h3>
+              <p class="sw-card__tagline">Streetwear retail. Brand, product, and an Etsy storefront that ships.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/vogue-atelier.html" class="sw-card sw-card--real">
+            <div class="sw-card__media">[VOGUE ATELIER HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--client">Client Work</span>
+                <span class="sw-card__geo">India</span>
+              </div>
+              <h3 class="sw-card__title">Vogue Atelier</h3>
+              <p class="sw-card__tagline">Women's ethnic + everyday. Two reels at 500k and 1M views. Brand in progress.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/dubai-realestate.html" class="sw-card sw-card--real">
+            <div class="sw-card__media">[DUBAI REAL ESTATE HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--in-progress">In Progress · Coming Q3 2026</span>
+                <span class="sw-card__geo">Dubai</span>
+              </div>
+              <h3 class="sw-card__title">Dubai Real Estate</h3>
+              <p class="sw-card__tagline">Brokerage rebrand for Emaar + major builder properties. Engagement in progress.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="sw-fictional">
+        <div class="sw-row-label">Concept studies</div>
+        <div class="sw-grid sw-grid--fictional">
+
+          <a href="case-studies/raw-load.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media"><img src="/assets/images/cases/raw-load/hero-a.jpg" alt="RAW LOAD — industrial gym" /></div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Melbourne</span>
+              </div>
+              <h3 class="sw-card__title">Raw Load</h3>
+              <p class="sw-card__tagline"><strong>Brutalism.</strong> A strength facility for people who train like they mean it.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/kalmene.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[KALMENE HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Dubai</span>
+              </div>
+              <h3 class="sw-card__title">Kalmene</h3>
+              <p class="sw-card__tagline"><strong>Minimalism.</strong> One product. Designed properly. The calm of a slow morning.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/piper-and-co.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[PIPER & CO HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Melbourne</span>
+              </div>
+              <h3 class="sw-card__title">Piper &amp; Co</h3>
+              <p class="sw-card__tagline"><strong>Memphis.</strong> The third place, but make it interesting.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/tessera.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[TESSERA HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Dubai</span>
+              </div>
+              <h3 class="sw-card__title">Tessera</h3>
+              <p class="sw-card__tagline"><strong>Swiss.</strong> The tool that just works, for people who don't have time to learn tools.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/foam-and-fold.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[FOAM & FOLD HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Melbourne</span>
+              </div>
+              <h3 class="sw-card__title">Foam &amp; Fold</h3>
+              <p class="sw-card__tagline"><strong>Mid-century.</strong> The local service that feels like it belongs in your suburb.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/the-larder-at-seventeen.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[THE LARDER HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Dubai</span>
+              </div>
+              <h3 class="sw-card__title">The Larder at Seventeen</h3>
+              <p class="sw-card__tagline"><strong>Maximalism.</strong> An experience, not a meal. Every page a magazine spread.</p>
+            </div>
+          </a>
+
+          <a href="case-studies/hotel-halcyon.html" class="sw-card sw-card--concept">
+            <div class="sw-card__media">[HOTEL HALCYON HERO]</div>
+            <div class="sw-card__body">
+              <div class="sw-card__meta">
+                <span class="sw-badge sw-badge--concept">Concept</span>
+                <span class="sw-card__geo">Dubai</span>
+              </div>
+              <h3 class="sw-card__title">Hotel Halcyon</h3>
+              <p class="sw-card__tagline"><strong>Surrealism.</strong> A place that's not quite real. Twenty-two rooms above the city.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <span class="section-label">Ready to start?</span>
+      <h2>Let's build something<br>remarkable</h2>
+      <p>Tell us about your project. We'll get back to you within 24 hours with a clear plan and honest pricing.</p>
+      <div class="cta-actions">
+        <a href="https://calendly.com/YOUR_CALENDLY_LINK" class="btn-primary" target="_blank" rel="noopener">
+          Book a free call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">DreamGully</div>
+          <p>Creative studio for the AI age. Full-stack brand, design, content, and web services.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#">Brand Identity</a></li>
+            <li><a href="#">Visual Design</a></li>
+            <li><a href="#">Content & Copy</a></li>
+            <li><a href="#">Social Media</a></li>
+            <li><a href="#">Web Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Process</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="#">hello@dreamgully.com</a></li>
+            <li><a href="#">Melbourne, AU</a></li>
+            <li><a href="#">Dubai, UAE</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 DreamGully. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.mobile-menu').classList.toggle('active');
+    });
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.mobile-menu').classList.remove('active');
+      });
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(10, 10, 10, 0.98)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 10, 0.92)';
+      }
+    });
+
+    // Showcase nav (dots and arrows)
+    const dots = document.querySelectorAll('.showcase-dot');
+    const prevBtn = document.querySelector('.showcase-nav-btn[aria-label="Previous"]');
+    const nextBtn = document.querySelector('.showcase-nav-btn[aria-label="Next"]');
+    let currentSlide = 0;
+
+    function goToSlide(index) {
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      currentSlide = index;
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+    prevBtn?.addEventListener('click', () => goToSlide((currentSlide - 1 + dots.length) % dots.length));
+    nextBtn?.addEventListener('click', () => goToSlide((currentSlide + 1) % dots.length));
+  
+    // THE REACH — reel carousel
+    (function() {
+      const iframe = document.getElementById('reach-iframe');
+      const viewsEl = document.getElementById('reach-views');
+      const handleEl = document.getElementById('reach-handle');
+      const thumbs = document.querySelectorAll('.reach-thumb');
+      if (!iframe || !thumbs.length) return;
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          const newUrl = thumb.dataset.url;
+          const newViews = thumb.dataset.views;
+          const newHandle = thumb.dataset.handle;
+          if (iframe.src !== newUrl) {
+            iframe.src = newUrl;
+            viewsEl.textContent = newViews;
+            handleEl.textContent = newHandle;
+          }
+          thumbs.forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        });
+      });
+    })();
+  </script>
+
+
+</body>
+</html>

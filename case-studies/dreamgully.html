@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+{
+  "slug": "dreamgully",
+  "brandName": "DreamGully",
+  "vertical": "Creative Studio",
+  "geography": "Global",
+  "tier": "heavy",
+  "source": "client",
+  "year": 2026,
+  "services": ["brand-strategy", "brand-identity", "web-design", "content-system", "process-design"],
+  "liveUrl": "/",
+  "heroImage": "assets/images/cases/dreamgully/hero.jpg",
+  "shipped": true,
+  "clientPermissionOnFile": true,
+  "trademarkCleared": true,
+  "domainAvailable": true,
+  "socialHandleAvailable": true,
+  "lastUpdated": "2026-06-03"
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamGully — Case Study | DreamGully</title>
+<meta name="description" content="How we built the DreamGully studio brand from scratch in 30 days: strategy, identity, website, and content system for a creative studio launching into the AI age.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0A0A0A;
+  --bg-section-1: #111111;
+  --bg-section-2: #1A1A1A;
+  --bg-card: #262626;
+  --gradient-blue: linear-gradient(135deg, #38BDF8, #1E40AF);
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-subtle: rgba(255,255,255,0.08);
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 96px;
+  --space-2xl: 128px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: clamp(48px, 8vw, 96px); line-height: 1.05; }
+h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.1; }
+h3 { font-size: clamp(24px, 3vw, 36px); line-height: 1.2; }
+h4 { font-size: clamp(20px, 2.5vw, 28px); line-height: 1.3; }
+p { color: var(--text-secondary); font-size: 17px; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md); }
+
+/* Nav */
+.cs-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-sm) 0;
+}
+.cs-nav__inner { display: flex; justify-content: space-between; align-items: center; }
+.cs-nav__logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500;
+  background: var(--gradient-blue); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; text-decoration: none;
+}
+.cs-nav__back { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.cs-nav__back:hover { color: var(--text-primary); }
+
+/* Hero */
+.cs-hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(56,189,248,0.08), transparent 50%),
+    var(--bg-deep);
+}
+.cs-hero__inner { display: grid; gap: var(--space-lg); }
+.cs-hero__eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  width: fit-content;
+}
+.cs-hero__title { margin-top: var(--space-sm); }
+.cs-hero__tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-md);
+  max-width: 720px;
+}
+.cs-hero__image {
+  margin-top: var(--space-lg);
+  aspect-ratio: 16/9;
+  background: var(--bg-section-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  background-image:
+    linear-gradient(135deg, rgba(56,189,248,0.05), transparent),
+    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+}
+.cs-hero__image-placeholder {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: var(--space-md);
+}
+.cs-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 100px;
+  width: fit-content;
+  margin-top: var(--space-md);
+}
+.cs-badge--client {
+  background: var(--gradient-blue);
+  color: white; font-weight: 600;
+}
+.cs-badge--client::before { content: "●"; }
+
+/* Sections */
+.cs-section {
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.cs-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+.cs-section-title { margin-bottom: var(--space-lg); max-width: 800px; }
+.cs-section-body { max-width: 720px; }
+.cs-section-body p { margin-bottom: var(--space-md); }
+
+/* Overview */
+.cs-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.cs-overview__tile {
+  background: var(--bg-section-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: var(--space-md);
+}
+.cs-overview__tile-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+.cs-overview__tile-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 500;
+  color: var(--text-primary);
+}
+.cs-summary { margin-top: var(--space-lg); max-width: 720px; }
+
+/* Brief */
+.cs-brief__quote {
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-left: 3px solid;
+  border-image: var(--gradient-blue) 1;
+  background: var(--bg-section-1);
+  border-radius: 0 12px 12px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-style: italic;
+  color: var(--text-primary);
+  max-width: 720px;
+}
+
+/* Work deliverables */
+.cs-work__grid { display: grid; gap: var(--space-xl); margin-top: var(--space-lg); }
+.cs-deliverable { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: center; }
+.cs-deliverable--reverse { direction: rtl; }
+.cs-deliverable--reverse > * { direction: ltr; }
+.cs-deliverable__media {
+  aspect-ratio: 4/3;
+  background: var(--bg-section-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background-image:
+    linear-gradient(135deg, rgba(56,189,248,0.05), transparent),
+    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+}
+.cs-deliverable__media-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--text-muted);
+  text-align: center; padding: var(--space-sm);
+}
+.cs-deliverable__number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+.cs-deliverable__title { margin-bottom: var(--space-md); }
+
+/* Results */
+.cs-results__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md); margin-top: var(--space-lg);
+}
+.cs-metric {
+  background: var(--bg-section-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: var(--space-md);
+}
+.cs-metric__value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 500;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+.cs-metric__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Credits */
+.cs-credits {
+  display: grid; grid-template-columns: 200px 1fr; gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+.cs-credits__role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cs-credits__name { color: var(--text-primary); }
+
+/* Next case study */
+.cs-next {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);
+  align-items: center;
+}
+.cs-next__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+.cs-next__title { font-size: clamp(28px, 4vw, 48px); }
+.cs-next__cta { color: var(--text-muted); text-decoration: none; }
+.cs-next__cta:hover { color: var(--text-primary); }
+
+@media (max-width: 768px) {
+  .cs-overview, .cs-results__grid { grid-template-columns: 1fr; }
+  .cs-deliverable, .cs-deliverable--reverse { grid-template-columns: 1fr; direction: ltr; }
+  .cs-next { grid-template-columns: 1fr; }
+  .cs-credits { grid-template-columns: 1fr; gap: var(--space-xs); }
+  .cs-section { padding: var(--space-lg) 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <div class="container cs-nav__inner">
+    <a href="../index.html" class="cs-nav__logo">DreamGully</a>
+    <a href="../index.html" class="cs-nav__back">← Back to studio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="container cs-hero__inner">
+    <span class="cs-hero__eyebrow">Creative Studio · Global</span>
+    <span class="cs-badge cs-badge--client">Client Work</span>
+    <h1 class="cs-hero__title">DreamGully</h1>
+    <p class="cs-hero__tagline">A creative studio for the AI age. Built from zero in 30 days — strategy, identity, website, and the operating system underneath it all.</p>
+    <div class="cs-hero__image">
+      <div class="cs-hero__image-placeholder">
+        [Hero image — DreamGully site screenshot or hero composition]<br>
+        16:9 · ~2400px wide
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-section-title">Building the studio we wanted to work with.</h2>
+    <div class="cs-overview">
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Year</div>
+        <div class="cs-overview__tile-value">2026</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Duration</div>
+        <div class="cs-overview__tile-value">30 days</div>
+      </div>
+      <div class="cs-overview__tile">
+        <div class="cs-overview__tile-label">Scope</div>
+        <div class="cs-overview__tile-value">Full studio build</div>
+      </div>
+    </div>
+    <p class="cs-summary">DreamGully is our own studio — the first case study we shipped, because if we couldn't build our own brand, we shouldn't be building anyone else's. The work covered positioning, visual identity, website, and the content system that runs underneath it. The result is a studio brand that's clear about what it does, honest about how it does it, and built to be a working example of the kind of work we deliver to clients.</p>
+  </div>
+</section>
+
+<!-- THE BRIEF -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Brief</div>
+    <h2 class="cs-section-title">Could we be a credible AI-native studio, or just another agency with an AI badge?</h2>
+    <div class="cs-section-body">
+      <p>Most "AI agencies" are traditional agencies that added a ChatGPT subscription. The brief to ourselves was sharper: build a studio that's AI-native from the foundation up — where AI isn't a tool we use, it's how the studio operates. Every workflow, every deliverable, every client interaction should demonstrate the difference.</p>
+      <p>The brand had to work for two audiences at once: small service businesses in Melbourne and Dubai who are skeptical of agencies, and real estate brokerages who are drowning in marketing options. The studio brand had to be premium enough to charge mid-market rates, plain enough to feel approachable to a cafe owner, and sharp enough to attract the kind of clients we actually want to work with.</p>
+    </div>
+    <blockquote class="cs-brief__quote">"If we can't build our own brand from zero, we have no business building anyone else's."</blockquote>
+  </div>
+</section>
+
+<!-- THE WORK -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">The Work</div>
+    <h2 class="cs-section-title">Eight deliverables. One studio. Thirty days.</h2>
+    <div class="cs-work__grid">
+
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[01 · Positioning & strategy doc]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 01</div>
+          <h3 class="cs-deliverable__title">Positioning & strategy</h3>
+          <p>The foundation. Defined who DreamGully is for, what it does, and what it doesn't do. Wrote the positioning around "creative studio for the AI age" — sharp enough to differentiate, broad enough to grow into.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[02 · Brand identity system]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 02</div>
+          <h3 class="cs-deliverable__title">Brand identity system</h3>
+          <p>Wordmark, color tokens, typography, motion principles, voice. The system holds the line: editorial but not precious, modern but not trendy. Cormorant Garamond for display, DM Sans for body, a blue gradient as the through-line.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[03 · Logo explorations]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 03</div>
+          <h3 class="cs-deliverable__title">Logo exploration</h3>
+          <p>Eight rounds of wordmark and mark exploration before landing on the final lockup. The work is in the file: failed versions, reasoning, the moment it clicked. The log itself is a study in how the brand came to be.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[04 · Website — desktop + mobile]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 04</div>
+          <h3 class="cs-deliverable__title">Website</h3>
+          <p>Single-page site built to do four things: communicate the offer, show the work, build trust, capture leads. Grey + blue gradient system. Editorial type. No stock photography. Fast, accessible, and built to convert.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[05 · Service offerings + packages]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 05</div>
+          <h3 class="cs-deliverable__title">Service packages</h3>
+          <p>Three anchor packages — Brand Foundation, Growth Engine, Studio Retainer — each with a clear scope, a clear outcome, and a clear price. Custom quotes for everything else. The page explains what you get, what you don't, and what happens next.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[06 · Process & client deck]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 06</div>
+          <h3 class="cs-deliverable__title">Process & client deck</h3>
+          <p>Four-step process — Discovery, Strategy, Creation, Launch — each step explained in plain language with what's delivered, when, and what the client does. The deck doubles as a sales tool for prospects and an onboarding doc for new clients.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[07 · Client intake system]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 07</div>
+          <h3 class="cs-deliverable__title">Client intake system</h3>
+          <p>The form on the site routes inquiries into a structured intake. Every lead comes pre-qualified, with project type, budget range, timeline, and the question that tells us whether to take the call or pass. Built to filter, not just collect.</p>
+        </div>
+      </div>
+
+      <div class="cs-deliverable cs-deliverable--reverse">
+        <div class="cs-deliverable__media"><div class="cs-deliverable__media-label">[08 · Content system]</div></div>
+        <div>
+          <div class="cs-deliverable__number">Deliverable 08</div>
+          <h3 class="cs-deliverable__title">Content system</h3>
+          <p>The studio's own content is the working example of how we work for clients. Editorial still-lifes, prompt-engineered imagery, brand assets generated and curated. The system — not individual posts — is the deliverable. Replicable for any client engagement.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Results</div>
+    <h2 class="cs-section-title">A studio brand that works as hard as the work it sells.</h2>
+    <div class="cs-results__grid">
+      <div class="cs-metric">
+        <div class="cs-metric__value">30</div>
+        <div class="cs-metric__label">Days from zero to live</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric__value">8</div>
+        <div class="cs-metric__label">Deliverables shipped</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric__value">1</div>
+        <div class="cs-metric__label">Anchor case study for the portfolio</div>
+      </div>
+    </div>
+    <p style="margin-top: var(--space-lg); max-width: 720px;">The honest metric is this: the brand works because we use it every day. Every client proposal is built on this system. Every case study page extends it. The studio is the first and most consistent case study of how we operate.</p>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label">Credits</div>
+    <h2 class="cs-section-title">Who did what.</h2>
+    <div class="cs-credits">
+      <div class="cs-credits__role">Creative direction</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+
+      <div class="cs-credits__role">Brand strategy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+
+      <div class="cs-credits__role">Design</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+
+      <div class="cs-credits__role">Copy</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+
+      <div class="cs-credits__role">Web development</div>
+      <div class="cs-credits__name">Taimoor / DreamGully</div>
+
+      <div class="cs-credits__role">Photography</div>
+      <div class="cs-credits__name">Generated with AI tools (Freepik / Seedream / Flux)</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section class="cs-section">
+  <div class="container">
+    <a href="beyond-basics.html" class="cs-next__cta">
+      <div class="cs-next">
+        <div>
+          <div class="cs-next__label">Next case study</div>
+          <h3 class="cs-next__title">Beyond Basics</h3>
+        </div>
+        <div style="text-align: right; color: var(--text-muted);">
+          Streetwear · India →
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

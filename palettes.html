@@ -529,34 +529,35 @@ body {
   overflow: hidden;
   transition: transform 0.3s var(--ease);
 }
-.cs-card:nth-child(1) { --shadow-color: var(--amber); }
-.cs-card:nth-child(2) { --shadow-color: var(--pink); }
-.cs-card:nth-child(3) { --shadow-color: var(--sky); }
-.cs-card:nth-child(4) { --shadow-color: var(--lavender); }
-.cs-card:nth-child(5) { --shadow-color: var(--peach); }
-.cs-card:nth-child(6) { --shadow-color: var(--cobalt); }
+.cs-card:nth-child(1) { --shadow-color: var(--amber); --tint: rgba(245, 158, 11, 0.08); }
+.cs-card:nth-child(2) { --shadow-color: var(--pink); --tint: rgba(236, 72, 153, 0.08); }
+.cs-card:nth-child(3) { --shadow-color: var(--sky); --tint: rgba(56, 189, 248, 0.08); }
+.cs-card:nth-child(4) { --shadow-color: var(--lavender); --tint: rgba(167, 139, 250, 0.1); }
+.cs-card:nth-child(5) { --shadow-color: var(--peach); --tint: rgba(251, 146, 60, 0.08); }
+.cs-card:nth-child(6) { --shadow-color: var(--cobalt); --tint: rgba(42, 77, 220, 0.1); }
 
+/* V4: the whole card is one glass surface. Image is the BG. Text floats on the glass. */
 .cs-card__frame {
   position: relative;
-  background: var(--glass-white);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  aspect-ratio: 4 / 3;
+  background: var(--bone);
   border: 1.5px solid var(--ink);
   border-radius: 24px;
-  padding: 12px;
+  overflow: hidden;
   box-shadow: 8px 8px 0 var(--shadow-color);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  isolation: isolate;
 }
 .cs-card:hover .cs-card__frame {
   transform: translate(-3px, -3px);
   box-shadow: 11px 11px 0 var(--shadow-color);
 }
+
+/* The image is full-bleed, behind everything */
 .cs-card__image {
-  aspect-ratio: 4/3;
-  background: var(--bone);
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -572,8 +573,49 @@ body {
   object-fit: cover;
   display: block;
 }
+
+/* The glass layer: blur + tint, sits on top of the image */
+.cs-card__glass {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--tint);
+  backdrop-filter: blur(2px) saturate(160%);
+  -webkit-backdrop-filter: blur(2px) saturate(160%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  border-radius: 24px;
+  transition: backdrop-filter 0.3s, background 0.3s;
+}
+.cs-card:hover .cs-card__glass {
+  backdrop-filter: blur(6px) saturate(180%);
+  -webkit-backdrop-filter: blur(6px) saturate(180%);
+}
+
+/* Top row: badge + geo */
+.cs-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Bottom area: bottom gradient for text readability + body */
 .cs-card__body {
-  padding: 16px 8px 8px;
+  position: relative;
+  z-index: 2;
+  /* Subtle dark gradient at the bottom for text legibility */
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.0) 30%, rgba(15, 23, 42, 0.45) 100%);
+  margin: -18px;
+  padding: 60px 18px 18px;
+  border-radius: 0 0 24px 24px;
+}
+.cs-card__body-inner {
+  position: relative;
+  z-index: 3;
 }
 .cs-card__meta {
   display: flex;
@@ -593,32 +635,36 @@ body {
   color: white;
   padding: 4px 10px;
   border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .cs-card__badge--concept {
-  background: transparent;
-  color: var(--ink-soft);
-  border: 1.5px dashed var(--ink-mute);
+  background: var(--ink);
+  color: var(--cloud);
+  border: none;
 }
 .cs-card__geo {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: white;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 .cs-card__title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--ink);
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
   margin-bottom: 6px;
-  line-height: 1.1;
+  line-height: 1.05;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 .cs-card__tagline {
   font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 @media (max-width: 900px) {
@@ -753,42 +799,54 @@ body {
   <div class="card-grid">
     <a href="#" class="cs-card">
       <div class="cs-card__frame">
-        <div class="cs-card__image">[KALMENE HERO IMAGE]</div>
-        <div class="cs-card__body">
-          <div class="cs-card__meta">
+        <div class="cs-card__image">[KALMENE HERO IMAGE — full bleed background]</div>
+        <div class="cs-card__glass">
+          <div class="cs-card__top">
             <span class="cs-card__badge">Client Work</span>
-            <span class="cs-card__geo">Dubai · Skincare</span>
+            <span class="cs-card__geo">Dubai</span>
           </div>
-          <h3 class="cs-card__title">KALMENE</h3>
-          <p class="cs-card__tagline">The brand system for a Dubai skincare line that wanted quiet confidence.</p>
+          <div class="cs-card__body">
+            <div class="cs-card__body-inner">
+              <h3 class="cs-card__title">KALMENE</h3>
+              <p class="cs-card__tagline">The brand system for a Dubai skincare line that wanted quiet confidence.</p>
+            </div>
+          </div>
         </div>
       </div>
     </a>
 
     <a href="#" class="cs-card">
       <div class="cs-card__frame">
-        <div class="cs-card__image">[PIPER & CO HERO]</div>
-        <div class="cs-card__body">
-          <div class="cs-card__meta">
+        <div class="cs-card__image">[PIPER & CO HERO — full bleed]</div>
+        <div class="cs-card__glass">
+          <div class="cs-card__top">
             <span class="cs-card__badge">Client Work</span>
-            <span class="cs-card__geo">Melbourne · Cafe</span>
+            <span class="cs-card__geo">Melbourne</span>
           </div>
-          <h3 class="cs-card__title">Piper &amp; Co</h3>
-          <p class="cs-card__tagline">A Memphis-coded Melbourne cafe. The design is the marketing.</p>
+          <div class="cs-card__body">
+            <div class="cs-card__body-inner">
+              <h3 class="cs-card__title">Piper &amp; Co</h3>
+              <p class="cs-card__tagline">A Memphis-coded Melbourne cafe. The design is the marketing.</p>
+            </div>
+          </div>
         </div>
       </div>
     </a>
 
     <a href="#" class="cs-card">
       <div class="cs-card__frame">
-        <div class="cs-card__image">[TESSERA HERO]</div>
-        <div class="cs-card__body">
-          <div class="cs-card__meta">
+        <div class="cs-card__image">[TESSERA HERO — full bleed]</div>
+        <div class="cs-card__glass">
+          <div class="cs-card__top">
             <span class="cs-card__badge cs-card__badge--concept">Concept</span>
-            <span class="cs-card__geo">Dubai · SaaS</span>
+            <span class="cs-card__geo">Dubai</span>
           </div>
-          <h3 class="cs-card__title">Tessera</h3>
-          <p class="cs-card__tagline">A SaaS brand that needed to feel like a creative studio, not a dashboard.</p>
+          <div class="cs-card__body">
+            <div class="cs-card__body-inner">
+              <h3 class="cs-card__title">Tessera</h3>
+              <p class="cs-card__tagline">A SaaS brand that needed to feel like a creative studio, not a dashboard.</p>
+            </div>
+          </div>
         </div>
       </div>
     </a>

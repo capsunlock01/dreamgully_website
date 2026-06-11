@@ -30,6 +30,7 @@
       --ink-mute:     #6B7280;
       --cloud:        #F8FAFC;
       --bone:         #EDE9FE;
+      --cream:        #FDF8F0;
 
       /* A's glass treatment */
       --cobalt:       #2A4DDC;
@@ -96,8 +97,13 @@
        THE REACH
     ======================================== */
     .reach {
-      background: linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
+      position: relative;
+      background:
+        radial-gradient(ellipse 800px 500px at 0% 30%, var(--peach-soft), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 100% 70%, var(--sky-soft), transparent 60%),
+        linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
       border-top: 1.5px solid var(--lavender-soft);
+      overflow: hidden;
       border-bottom: 1.5px solid var(--lavender-soft);
       padding: 120px 0;
       position: relative;
@@ -258,9 +264,13 @@
        THE SERIES CTA (first CTA, between Reach and Selected Work)
     ======================================== */
     .series-cta {
-      background: var(--bg-page);
-      padding: 120px 0;
       position: relative;
+      padding: 120px 0;
+      background:
+        radial-gradient(ellipse 800px 500px at 20% 30%, var(--lav-soft), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 80% 70%, rgba(236, 72, 153, 0.18), transparent 60%),
+        radial-gradient(ellipse 500px 400px at 50% 90%, var(--peach-soft), transparent 60%),
+        linear-gradient(135deg, var(--cobalt) 0%, #1E3A8A 100%);
       overflow: hidden;
     }
     /* Memphis shapes */
@@ -299,7 +309,7 @@
       line-height: 1.05;
       letter-spacing: -0.02em;
       margin-bottom: 28px;
-      color: var(--ink);
+      color: var(--cloud);
     }
     .series-cta h2 .grad {
       background: var(--grad-lav-sky);
@@ -310,7 +320,7 @@
     .series-cta p {
       font-size: 19px;
       line-height: 1.55;
-      color: var(--ink-soft);
+      color: rgba(248, 250, 252, 0.85);
       max-width: 600px;
       margin: 0 auto 40px;
     }
@@ -538,17 +548,40 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
+      padding: 140px 0 100px;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
+      /* COMPOSITION 3: atmospheric color washes (no plain white) */
+      background:
+        radial-gradient(ellipse 1200px 800px at 25% 15%, var(--lavender-soft), transparent 60%),
+        radial-gradient(ellipse 900px 700px at 80% 75%, var(--peach-soft), transparent 60%),
+        radial-gradient(ellipse 700px 600px at 15% 85%, var(--sky-soft), transparent 60%),
+        radial-gradient(ellipse 500px 500px at 90% 20%, rgba(236, 72, 153, 0.12), transparent 60%),
+        linear-gradient(135deg, var(--cloud) 0%, var(--cream, #FDF8F0) 50%, var(--bone) 100%);
     }
 
-    /* Memphis shapes — lavender blob, peach circle, pink diamond */
+    /* COMPOSITION 3: wordmark as repeating pattern in background */
+    .hero__pattern {
+      position: absolute;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero__pattern--1 { top: 4%; left: 3%; font-size: 180px; opacity: 0.05; }
+    .hero__pattern--2 { top: 16%; right: 5%; font-size: 140px; opacity: 0.07; color: var(--lavender); }
+    .hero__pattern--3 { bottom: 20%; left: 6%; font-size: 220px; opacity: 0.04; }
+    .hero__pattern--4 { bottom: 5%; right: 8%; font-size: 160px; opacity: 0.06; color: var(--peach); }
+
+    /* Atmospheric blobs that act as section color backdrop */
     .hero::before {
       content: '';
       position: absolute;
-      top: -100px; right: -100px;
-      width: 600px; height: 600px;
+      top: -200px; right: -200px;
+      width: 800px; height: 800px;
       background: radial-gradient(circle, var(--lavender-soft) 0%, transparent 65%);
       pointer-events: none;
       z-index: 0;
@@ -556,49 +589,50 @@
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -150px; left: 10%;
-      width: 400px; height: 400px;
+      bottom: -250px; left: 5%;
+      width: 600px; height: 600px;
       background: radial-gradient(circle, var(--sky-soft) 0%, transparent 65%);
       pointer-events: none;
       z-index: 0;
     }
-    .hero-shape {
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-shape--diamond {
-      top: 8%; right: 5%;
-      width: 90px; height: 90px;
-      background: var(--pink);
-      transform: rotate(45deg);
-      border-radius: 18px;
-      opacity: 0.5;
-    }
-    .hero-shape--circle {
-      bottom: 8%; right: 25%;
-      width: 70px; height: 70px;
-      background: var(--peach);
-      border-radius: 50%;
-      opacity: 0.6;
-    }
-    .hero-shape--square {
-      top: 6%; right: 30%;
-      width: 40px; height: 40px;
-      background: var(--amber);
-      border-radius: 8px;
-      opacity: 0.8;
-    }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 80rem;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 64px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
+
+    /* GLASSMORPHIC glass card that holds the hero content */
+    .hero-glass {
+      position: relative;
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1.5px solid var(--ink);
+      border-radius: 28px;
+      padding: 56px 64px;
+      max-width: 880px;
+      width: 100%;
+      box-shadow:
+        0 20px 60px rgba(30, 27, 75, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    }
+    .hero-glass::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.5), transparent 50%);
+      pointer-events: none;
+    }
+    .hero-glass > * { position: relative; z-index: 2; }
 
     .hero-badge {
       display: inline-flex;
@@ -842,6 +876,13 @@
       flex-wrap: wrap;
     }
 
+    /* =========================================
+       GLASSMORPHIC BUTTONS — colored, glass-like
+       Color comes through the glass from the
+       section atmosphere behind the button.
+    ========================================= */
+
+    /* Primary CTA: vibrant cobalt glass with ink border + pink offset shadow */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -849,33 +890,47 @@
       font-size: 14px;
       font-weight: 600;
       padding: 16px 32px;
-      background: var(--cobalt);
+      /* GLASSMORPHIC colored: cobalt tint + saturate */
+      background: rgba(42, 77, 220, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       color: white;
-      border: 2px solid var(--ink);
+      border: 1.5px solid var(--ink);
       border-radius: 12px;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all var(--transition-base);
       font-family: var(--font-body);
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-decoration: none;
-      box-shadow: 5px 5px 0 var(--pink);
+      box-shadow: 5px 5px 0 var(--pink), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+      position: relative;
+      overflow: hidden;
     }
-
+    .btn-primary::after {
+      /* Inner light reflection — the glassy bit */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent 50%);
+      pointer-events: none;
+    }
     .btn-primary:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 var(--pink);
+      box-shadow: 7px 7px 0 var(--pink), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+      background: rgba(42, 77, 220, 0.85);
     }
 
     .btn-primary svg {
       width: 18px;
       height: 18px;
       transition: transform var(--transition-fast);
+      position: relative;
+      z-index: 2;
     }
-    .btn-primary:hover svg {
-      transform: translateX(4px);
-    }
+    .btn-primary > *:not(::after) { position: relative; z-index: 2; }
 
+    /* Secondary: glassmorphic outline — translucent, picks up section color through the glass */
     .btn-ghost {
       display: inline-flex;
       align-items: center;
@@ -883,19 +938,31 @@
       font-size: 14px;
       font-weight: 500;
       padding: 16px 24px;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       color: var(--ink);
       border: 1.5px solid var(--ink);
       border-radius: 100px;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all var(--transition-base);
       font-family: var(--font-body);
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
     }
-
+    .btn-ghost::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent 50%);
+      pointer-events: none;
+    }
+    .btn-ghost > * { position: relative; z-index: 2; }
     .btn-ghost:hover {
       background: var(--ink);
       color: var(--cloud);
+      transform: translate(-1px, -1px);
     }
 
     .hero-scroll {
@@ -931,7 +998,10 @@
        LOGOS / TRUST BAR
     ======================================== */
     .trust-bar {
-      background: linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
+      position: relative;
+      background:
+        radial-gradient(ellipse 600px 200px at 50% 50%, var(--lav-soft), transparent 70%),
+        linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
       border-top: 1.5px solid var(--lavender-soft);
       border-bottom: 1.5px solid var(--lavender-soft);
       padding: var(--space-md) 0;
@@ -982,8 +1052,13 @@
        SERVICES
     ======================================== */
     .services {
-      background: linear-gradient(135deg, var(--bone) 0%, var(--cloud) 100%);
       position: relative;
+      background:
+        radial-gradient(ellipse 700px 500px at 20% 30%, var(--sky-soft), transparent 60%),
+        radial-gradient(ellipse 600px 500px at 85% 70%, rgba(236, 72, 153, 0.18), transparent 60%),
+        radial-gradient(ellipse 500px 400px at 50% 90%, var(--lav-soft), transparent 60%),
+        linear-gradient(180deg, var(--bone) 0%, var(--cloud) 100%);
+      overflow: hidden;
     }
     .services::before {
       content: '';
@@ -1693,10 +1768,15 @@
        FOOTER
     ======================================== */
     footer {
-      background: var(--cloud);
+      position: relative;
+      background:
+        radial-gradient(ellipse 800px 500px at 20% 20%, var(--lav-soft), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 80% 80%, var(--peach-soft), transparent 60%),
+        linear-gradient(180deg, var(--ink) 0%, #14113A 100%);
+      color: var(--cloud);
       border-top: 1.5px solid var(--lavender-soft);
       padding: var(--space-xl) 0 var(--space-md);
-      position: relative;
+      overflow: hidden;
     }
     footer::before {
       content: '';
@@ -1734,7 +1814,7 @@
 
     .footer-brand p {
       font-size: 14px;
-      color: var(--ink-soft);
+      color: rgba(248, 250, 252, 0.7);
       max-width: 280px;
     }
 
@@ -1810,8 +1890,13 @@
        SELECTED WORK — glass cards with pop-color shadows
     ======================================== */
     .selected-work {
-      background: var(--bg-page);
       position: relative;
+      background:
+        radial-gradient(ellipse 800px 600px at 10% 20%, var(--lav-soft), transparent 60%),
+        radial-gradient(ellipse 600px 500px at 90% 50%, var(--peach-soft), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 50% 100%, var(--sky-soft), transparent 60%),
+        linear-gradient(180deg, var(--cream, #FDF8F0) 0%, var(--bone) 100%);
+      overflow: hidden;
     }
     .section-header { margin-bottom: 56px; }
     .section-label {
@@ -1855,89 +1940,164 @@
     .sw-grid--fictional { grid-template-columns: repeat(3, 1fr); }
 
     /* The sw-card: glass with pop-color offset shadow */
+    /* V7 sw-card: image dominant, glassmorphic colored backdrop inside frame,
+   text below the image. */
     .sw-card {
       display: block;
-      background: var(--glass-white);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s var(--ease-out-expo);
+    }
+    .sw-card:nth-child(1) {
+      --shadow-color: var(--amber);
+      --card-tint: var(--amber);
+      --card-tint-soft: rgba(245, 158, 11, 0.4);
+      --card-tint-glass: rgba(245, 158, 11, 0.18);
+    }
+    .sw-card:nth-child(2) {
+      --shadow-color: var(--pink);
+      --card-tint: var(--pink);
+      --card-tint-soft: rgba(236, 72, 153, 0.4);
+      --card-tint-glass: rgba(236, 72, 153, 0.18);
+    }
+    .sw-card:nth-child(3) {
+      --shadow-color: var(--sky);
+      --card-tint: var(--sky);
+      --card-tint-soft: rgba(56, 189, 248, 0.4);
+      --card-tint-glass: rgba(56, 189, 248, 0.18);
+    }
+    .sw-card:nth-child(4) {
+      --shadow-color: var(--lavender);
+      --card-tint: var(--lavender);
+      --card-tint-soft: rgba(167, 139, 250, 0.4);
+      --card-tint-glass: rgba(167, 139, 250, 0.2);
+    }
+    .sw-card:nth-child(5) {
+      --shadow-color: var(--peach);
+      --card-tint: var(--peach);
+      --card-tint-soft: rgba(251, 146, 60, 0.4);
+      --card-tint-glass: rgba(251, 146, 60, 0.18);
+    }
+    .sw-card:nth-child(6) {
+      --shadow-color: var(--cobalt);
+      --card-tint: var(--cobalt);
+      --card-tint-soft: rgba(42, 77, 220, 0.4);
+      --card-tint-glass: rgba(42, 77, 220, 0.2);
+    }
+    .sw-card:nth-child(7) {
+      --shadow-color: var(--amber);
+      --card-tint: var(--amber);
+      --card-tint-soft: rgba(245, 158, 11, 0.4);
+      --card-tint-glass: rgba(245, 158, 11, 0.18);
+    }
+
+    .sw-card__media {
+      position: relative;
+      aspect-ratio: 4/3;
       border: 1.5px solid var(--ink);
       border-radius: 20px;
       overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
-      position: relative;
+      box-shadow: 8px 8px 0 var(--shadow-color);
+      transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+      /* GLASSMORPHIC BACKDROP: colored gradient surface inside the frame */
+      background:
+        radial-gradient(ellipse 120% 100% at 20% 30%, var(--card-tint-glass), transparent 60%),
+        radial-gradient(ellipse 100% 100% at 90% 80%, var(--card-tint-soft), transparent 60%),
+        linear-gradient(135deg, var(--card-tint-glass) 0%, var(--card-tint-soft) 100%);
+      isolation: isolate;
     }
-    .sw-card::before {
-      content: '';
+    .sw-card:hover .sw-card__media {
+      transform: translate(-3px, -3px);
+      box-shadow: 11px 11px 0 var(--shadow-color);
+    }
+    .sw-card__media img,
+    .sw-card__media > div {
       position: absolute;
       inset: 0;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.5), transparent 50%);
-      pointer-events: none;
-      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Soft mask: image shows in the center, fades into the colored glass at the edges */
+      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
+      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
     }
-    .sw-card:nth-child(1) { box-shadow: 6px 6px 0 var(--amber); }
-    .sw-card:nth-child(2) { box-shadow: 6px 6px 0 var(--pink); }
-    .sw-card:nth-child(3) { box-shadow: 6px 6px 0 var(--sky); }
-    .sw-card:nth-child(4) { box-shadow: 6px 6px 0 var(--lavender); }
-    .sw-card:nth-child(5) { box-shadow: 6px 6px 0 var(--peach); }
-    .sw-card:nth-child(6) { box-shadow: 6px 6px 0 var(--cobalt); }
-    .sw-card:nth-child(7) { box-shadow: 6px 6px 0 var(--amber); }
-
-    .sw-card:hover {
-      transform: translate(-3px, -3px);
+    .sw-card__media img {
+      transition: transform 0.6s var(--ease-out-expo);
     }
-    .sw-card:nth-child(1):hover { box-shadow: 9px 9px 0 var(--amber); }
-    .sw-card:nth-child(2):hover { box-shadow: 9px 9px 0 var(--pink); }
-    .sw-card:nth-child(3):hover { box-shadow: 9px 9px 0 var(--sky); }
-    .sw-card:nth-child(4):hover { box-shadow: 9px 9px 0 var(--lavender); }
-    .sw-card:nth-child(5):hover { box-shadow: 9px 9px 0 var(--peach); }
-    .sw-card:nth-child(6):hover { box-shadow: 9px 9px 0 var(--cobalt); }
-    .sw-card:nth-child(7):hover { box-shadow: 9px 9px 0 var(--amber); }
-
-    .sw-card__media {
-      aspect-ratio: 4/3;
-      background: var(--bone);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono);
-      color: var(--ink-mute);
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0; overflow: hidden;
-      position: relative;
-      border-bottom: 1.5px solid var(--ink);
+    .sw-card:hover .sw-card__media img {
+      transform: scale(1.04);
     }
-    .sw-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .sw-card__body {
-      padding: 24px;
-      position: relative;
-      z-index: 2;
+      margin-top: 18px;
+      padding: 0 4px;
     }
     .sw-card__meta {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
     }
     .sw-card__geo {
       font-family: var(--font-mono);
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--ink-mute);
+      font-weight: 600;
     }
     .sw-card__title {
       font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 32px);
+      font-size: clamp(24px, 3vw, 30px);
       font-weight: 500;
       font-style: italic;
       color: var(--ink);
-      margin-bottom: 8px;
-      line-height: 1.1;
+      margin-bottom: 6px;
+      line-height: 1.05;
     }
     .sw-card__tagline {
       font-size: 14px;
       color: var(--ink-soft);
-      line-height: 1.55;
+      line-height: 1.5;
+      max-width: 95%;
     }
     .sw-card__tagline strong { color: var(--ink); font-weight: 600; }
+
+    /* Glassmorphic badge chips on the sw-card */
+    .sw-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 10px; border-radius: 100px;
+      font-weight: 600;
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+    }
+    .sw-badge--client {
+      background: rgba(42, 77, 220, 0.75);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .sw-badge--in-progress {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink-soft);
+      border: 1px solid var(--lavender-soft);
+      font-style: italic;
+    }
+    .sw-badge--concept {
+      background: rgba(245, 158, 11, 0.85);
+      color: var(--ink);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+    .sw-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.85;
+    }
 
     .sw-badge {
       display: inline-block;
@@ -1997,15 +2157,16 @@
     <a href="#contact">Contact</a>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO — COMPOSITION 3: wordmark as repeating pattern, glass content card -->
   <section class="hero">
-    <div class="hero-shape hero-shape--diamond"></div>
-    <div class="hero-shape hero-shape--circle"></div>
-    <div class="hero-shape hero-shape--square"></div>
+    <div class="hero__pattern hero__pattern--1">DreamGully</div>
+    <div class="hero__pattern hero__pattern--2">DreamGully</div>
+    <div class="hero__pattern hero__pattern--3">DreamGully</div>
+    <div class="hero__pattern hero__pattern--4">DreamGully</div>
 
     <div class="container">
       <div class="hero-content">
-        <div>
+        <div class="hero-glass">
           <div class="hero-badge">
             <div class="hero-badge-dot"></div>
             Now accepting new clients
@@ -2045,7 +2206,7 @@
             </div>
           </div>
 
-          <div class="hero-actions" style="margin-top: 32px;">
+          <div class="hero-actions" style="margin-top: 36px; justify-content: center;">
             <a href="#contact" class="btn-primary">
               Start a project
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2053,13 +2214,6 @@
             <a href="#work" class="btn-ghost">View our work</a>
           </div>
         </div>
-
-        <!-- Side glass card: The Series pitch -->
-        <aside class="side-card">
-          <div class="tag">The Series</div>
-          <div class="big">One brand, a <span class="accent">full season</span>.</div>
-          <p class="small">Custom multi-episode reel series, written and produced for clients. <a href="series.html">See the work →</a></p>
-        </aside>
       </div>
     </div>
   </section>

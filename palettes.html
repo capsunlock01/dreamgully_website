@@ -496,11 +496,39 @@ body {
    New design: glass frame + image inside
 ========================================= */
 .card-section {
+  position: relative;
   max-width: 1320px;
   margin: 80px auto;
-  padding: 0 32px;
+  padding: 80px 32px;
+  border-radius: 32px;
+  /* Atmospheric color section background — NOT plain white */
+  background:
+    radial-gradient(ellipse 600px 400px at 10% 20%, var(--lav-soft), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 90% 50%, var(--peach-soft), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 50% 100%, var(--sky-soft), transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
+  overflow: hidden;
+}
+.card-section::before {
+  /* Subtle wordmark pattern in the section background */
+  content: "DreamGully";
+  position: absolute;
+  top: 60px;
+  right: -40px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 280px;
+  line-height: 0.85;
+  color: var(--ink);
+  opacity: 0.025;
+  z-index: 0;
+  pointer-events: none;
+  letter-spacing: -0.04em;
 }
 .card-section h2 {
+  position: relative;
+  z-index: 2;
   font-family: var(--font-display);
   font-style: italic;
   font-size: 36px;
@@ -509,10 +537,19 @@ body {
   margin-bottom: 12px;
 }
 .card-section p.section-sub {
+  position: relative;
+  z-index: 2;
   text-align: center;
   color: var(--ink-soft);
   font-size: 16px;
   margin-bottom: 48px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card-section .card-grid {
+  position: relative;
+  z-index: 2;
 }
 
 .card-grid {
@@ -527,19 +564,56 @@ body {
   color: inherit;
   transition: transform 0.3s var(--ease);
 }
-.cs-card:nth-child(1) { --shadow-color: var(--amber); }
-.cs-card:nth-child(2) { --shadow-color: var(--pink); }
-.cs-card:nth-child(3) { --shadow-color: var(--sky); }
-.cs-card:nth-child(4) { --shadow-color: var(--lavender); }
-.cs-card:nth-child(5) { --shadow-color: var(--peach); }
-.cs-card:nth-child(6) { --shadow-color: var(--cobalt); }
 
-/* V6: Image is 100% visible, 100% color. Glass is a small overlay chip top-right.
-   Title + tagline live BELOW the image in a clean glass card. */
+/* V7: each card has a colored GLASSMORPHIC BACKDROP inside the frame.
+   The image sits on top as the focal point. The card is a real glass surface
+   with the pop color washing through it. */
+.cs-card:nth-child(1) {
+  --shadow-color: var(--amber);
+  --card-tint: var(--amber);
+  --card-tint-soft: rgba(245, 158, 11, 0.4);
+  --card-tint-glass: rgba(245, 158, 11, 0.18);
+}
+.cs-card:nth-child(2) {
+  --shadow-color: var(--pink);
+  --card-tint: var(--pink);
+  --card-tint-soft: rgba(236, 72, 153, 0.4);
+  --card-tint-glass: rgba(236, 72, 153, 0.18);
+}
+.cs-card:nth-child(3) {
+  --shadow-color: var(--sky);
+  --card-tint: var(--sky);
+  --card-tint-soft: rgba(56, 189, 248, 0.4);
+  --card-tint-glass: rgba(56, 189, 248, 0.18);
+}
+.cs-card:nth-child(4) {
+  --shadow-color: var(--lavender);
+  --card-tint: var(--lavender);
+  --card-tint-soft: rgba(167, 139, 250, 0.4);
+  --card-tint-glass: rgba(167, 139, 250, 0.2);
+}
+.cs-card:nth-child(5) {
+  --shadow-color: var(--peach);
+  --card-tint: var(--peach);
+  --card-tint-soft: rgba(251, 146, 60, 0.4);
+  --card-tint-glass: rgba(251, 146, 60, 0.18);
+}
+.cs-card:nth-child(6) {
+  --shadow-color: var(--cobalt);
+  --card-tint: var(--cobalt);
+  --card-tint-soft: rgba(42, 77, 220, 0.4);
+  --card-tint-glass: rgba(42, 77, 220, 0.2);
+}
+
 .cs-card__frame {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: var(--bone);
+  /* GLASSMORPHIC BACKDROP: the card itself has a colored gradient surface
+     that shows through the image. Image is the focal point on top. */
+  background:
+    radial-gradient(ellipse 120% 100% at 20% 30%, var(--card-tint-glass), transparent 60%),
+    radial-gradient(ellipse 100% 100% at 90% 80%, var(--card-tint-soft), transparent 60%),
+    linear-gradient(135deg, var(--card-tint-glass) 0%, var(--card-tint-soft) 100%);
   border: 1.5px solid var(--ink);
   border-radius: 20px;
   overflow: hidden;
@@ -555,7 +629,8 @@ body {
   transform: scale(1.04);
 }
 
-/* Image is full-bleed, 100% visible, no overlay */
+/* The image sits on top of the glassmorphic backdrop, with a soft fade
+   so the colored glass shows at the edges */
 .cs-card__image {
   position: absolute;
   inset: 0;
@@ -569,6 +644,9 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   overflow: hidden;
+  /* Soft mask: the image shows in the center, fades into the colored glass at the edges */
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
 }
 .cs-card__image img {
   width: 100%;
@@ -578,16 +656,14 @@ body {
   transition: transform 0.6s var(--ease);
 }
 
-/* Top: small glass chip on the right with the geo */
+/* Top: small glass chip with geo */
 .cs-card__top {
   position: absolute;
   top: 12px;
-  left: 12px;
   right: 12px;
   z-index: 3;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 8px;
   pointer-events: none;
 }
@@ -607,7 +683,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* Bottom-left: small glass chip with badge */
+/* Bottom-left: badge glass chip */
 .cs-card__bottom-chip {
   position: absolute;
   bottom: 12px;
@@ -647,7 +723,7 @@ body {
   opacity: 0.8;
 }
 
-/* Body: BELOW the image (not on it) — title + tagline in a separate glass card */
+/* Body: BELOW the image (not on it) */
 .cs-card__body {
   margin-top: 16px;
   padding: 0 4px;

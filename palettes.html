@@ -565,86 +565,46 @@ body {
   transition: transform 0.3s var(--ease);
 }
 
-/* V8: The OUTSIDE of the card (frame + padding area) is GLASSMORPHIC COLORED.
-   The INSIDE of the card (image area) is plain/clean — no glass effect —
-   ready for a real image to be dropped in later.
-   The colored glassmorphic effect lives in the padding/border zone of the card. */
-.cs-card:nth-child(1) {
-  --shadow-color: var(--amber);
-  --glass-color: var(--amber);
-  --glass-soft: rgba(245, 158, 11, 0.45);
-  --glass-mid:  rgba(245, 158, 11, 0.32);
-  --glass-pale: rgba(245, 158, 11, 0.22);
-}
-.cs-card:nth-child(2) {
-  --shadow-color: var(--pink);
-  --glass-color: var(--pink);
-  --glass-soft: rgba(236, 72, 153, 0.45);
-  --glass-mid:  rgba(236, 72, 153, 0.32);
-  --glass-pale: rgba(236, 72, 153, 0.22);
-}
-.cs-card:nth-child(3) {
-  --shadow-color: var(--sky);
-  --glass-color: var(--sky);
-  --glass-soft: rgba(56, 189, 248, 0.45);
-  --glass-mid:  rgba(56, 189, 248, 0.32);
-  --glass-pale: rgba(56, 189, 248, 0.22);
-}
-.cs-card:nth-child(4) {
-  --shadow-color: var(--lavender);
-  --glass-color: var(--lavender);
-  --glass-soft: rgba(167, 139, 250, 0.5);
-  --glass-mid:  rgba(167, 139, 250, 0.36);
-  --glass-pale: rgba(167, 139, 250, 0.25);
-}
-.cs-card:nth-child(5) {
-  --shadow-color: var(--peach);
-  --glass-color: var(--peach);
-  --glass-soft: rgba(251, 146, 60, 0.45);
-  --glass-mid:  rgba(251, 146, 60, 0.32);
-  --glass-pale: rgba(251, 146, 60, 0.22);
-}
-.cs-card:nth-child(6) {
-  --shadow-color: var(--cobalt);
-  --glass-color: var(--cobalt);
-  --glass-soft: rgba(42, 77, 220, 0.45);
-  --glass-mid:  rgba(42, 77, 220, 0.32);
-  --glass-pale: rgba(42, 77, 220, 0.25);
-}
+/* V9: Glassmorphic colored shadow behind the card.
+   The card body itself is just a clean white image canvas with a thin border.
+   The COLOR lives in a glassmorphic offset panel behind the card. */
+.cs-card:nth-child(1) { --shadow-color: var(--amber); --glass-soft: rgba(245, 158, 11, 0.45); --glass-mid: rgba(245, 158, 11, 0.32); }
+.cs-card:nth-child(2) { --shadow-color: var(--pink);  --glass-soft: rgba(236, 72, 153, 0.45); --glass-mid: rgba(236, 72, 153, 0.32); }
+.cs-card:nth-child(3) { --shadow-color: var(--sky);   --glass-soft: rgba(56, 189, 248, 0.45);  --glass-mid: rgba(56, 189, 248, 0.32); }
+.cs-card:nth-child(4) { --shadow-color: var(--lavender); --glass-soft: rgba(167, 139, 250, 0.5); --glass-mid: rgba(167, 139, 250, 0.36); }
+.cs-card:nth-child(5) { --shadow-color: var(--peach); --glass-soft: rgba(251, 146, 60, 0.45);  --glass-mid: rgba(251, 146, 60, 0.32); }
+.cs-card:nth-child(6) { --shadow-color: var(--cobalt); --glass-soft: rgba(42, 77, 220, 0.45);  --glass-mid: rgba(42, 77, 220, 0.32); }
 
-/* The card frame: GLASSMORPHIC COLORED on the outside.
-   - Has a thick glassmorphic "padded" border zone
-   - Has pop-color shadow offset
-   - The inner image area is clean (no glass, no tint) */
+/* THE CARD BODY: clean white image canvas with thin ink border. No glass on the body. */
 .cs-card__frame {
   position: relative;
   aspect-ratio: 4 / 3;
-  padding: 14px; /* this padding zone is the GLASS area */
-  background:
-    radial-gradient(ellipse 90% 100% at 30% 20%, var(--glass-pale), transparent 70%),
-    radial-gradient(ellipse 100% 100% at 80% 80%, var(--glass-soft), transparent 60%),
-    linear-gradient(135deg, var(--glass-mid) 0%, var(--glass-pale) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: white;
   border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  box-shadow: 8px 8px 0 var(--shadow-color);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease);
+  /* The GLASSMORPHIC "shadow" is a real glassmorphic panel offset behind the card */
+  box-shadow:
+    8px 8px 0 0 var(--glass-soft),
+    8px 8px 30px 0 rgba(30, 27, 75, 0.12);
 }
 .cs-card:hover .cs-card__frame {
   transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 var(--shadow-color);
+  box-shadow:
+    11px 11px 0 0 var(--glass-soft),
+    11px 11px 40px 0 rgba(30, 27, 75, 0.15);
+}
+.cs-card:hover .cs-card__image img {
+  transform: scale(1.04);
 }
 
-/* The inner image area: CLEAN canvas, no glass, no tint
-   Just a clean rounded rectangle ready for an image to be dropped in */
+/* Image canvas: clean, ready for image */
 .cs-card__image {
   position: relative;
   width: 100%;
   height: 100%;
-  background: white; /* plain clean canvas */
-  border-radius: 14px;
-  overflow: hidden;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -653,7 +613,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 0 0 1px rgba(30, 27, 75, 0.08);
+  overflow: hidden;
 }
 .cs-card__image img {
   width: 100%;
@@ -661,9 +621,6 @@ body {
   object-fit: cover;
   display: block;
   transition: transform 0.6s var(--ease);
-}
-.cs-card:hover .cs-card__image img {
-  transform: scale(1.03);
 }
 
 /* Top: geo chip — sits on the GLASS area (outside the image) */

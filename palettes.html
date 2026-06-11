@@ -3,680 +3,801 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DreamGully — Palette D (final direction)</title>
+<title>DreamGully — v3 hero compositions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* ===========================================
-     PALETTE D — FUSION
-     • Palette: C (lavender + sky + peach + ink + cloud)
-     • Glass treatment: A (cobalt + amber, with pink)
-     • Proportions: B (bigger, bolder, more confident)
-  =========================================== */
-
-  /* Fonts — swap --font-display when you pick from Adobe */
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Colors — C's palette */
   --lavender:     #A78BFA;
-  --lavender-dim: rgba(167, 139, 250, 0.4);
   --sky:          #38BDF8;
-  --sky-dim:      rgba(56, 189, 248, 0.4);
   --peach:        #FB923C;
-  --peach-dim:    rgba(251, 146, 60, 0.4);
+  --cobalt:       #2A4DDC;
+  --amber:        #F59E0B;
+  --pink:         #EC4899;
   --ink:          #1E1B4B;
   --ink-soft:     #4338CA;
   --ink-mute:     #6B7280;
   --cloud:        #F8FAFC;
   --bone:         #EDE9FE;
+  --cream:        #FDF8F0;
 
-  /* A's glass treatment (cobalt + amber + pink) */
-  --cobalt:       #2A4DDC;
-  --cobalt-dim:   rgba(42, 77, 220, 0.15);
-  --amber:        #F59E0B;
-  --amber-dim:    rgba(245, 158, 11, 0.3);
-  --pink:         #EC4899;
-  --pink-dim:     rgba(236, 72, 153, 0.3);
+  --lav-dim:    rgba(167, 139, 250, 0.4);
+  --lav-soft:   rgba(167, 139, 250, 0.15);
+  --sky-soft:   rgba(56, 189, 248, 0.15);
+  --sky-dim:    rgba(56, 189, 248, 0.35);
+  --peach-soft: rgba(251, 146, 60, 0.3);
+  --peach-dim:  rgba(251, 146, 60, 0.5);
+  --cobalt-soft:rgba(42, 77, 220, 0.15);
+  --pink-soft:  rgba(236, 72, 153, 0.25);
 
-  /* Gradients */
+  --glass-white:    rgba(255, 255, 255, 0.55);
+  --glass-cream:    rgba(253, 248, 240, 0.7);
+  --glass-lavender: rgba(167, 139, 250, 0.18);
+  --glass-cobalt:   rgba(42, 77, 220, 0.12);
+
   --grad-lav-sky: linear-gradient(135deg, var(--lavender) 0%, var(--sky) 100%);
-  --grad-cobalt:  linear-gradient(135deg, var(--cobalt) 0%, #1E3A8A 100%);
+  --grad-sunset:  linear-gradient(135deg, var(--peach) 0%, var(--pink) 50%, var(--lavender) 100%);
 
-  /* Glass surfaces */
-  --glass-white:  rgba(255, 255, 255, 0.55);
-  --glass-cobalt: rgba(42, 77, 220, 0.12);
-  --glass-lavender: rgba(167, 139, 250, 0.15);
-
-  /* Spacing — B's generous proportions */
-  --space-xs:  12px;
-  --space-sm:  20px;
-  --space-md:  32px;
-  --space-lg:  64px;
-  --space-xl:  100px;
-  --space-2xl: 140px;
-
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--font-body);
-  background: var(--bone);
+  background: var(--cloud);
   color: var(--ink);
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ========================================
-   PAGE CHROME
-======================================== */
 .page-header {
-  padding: 80px 32px 40px;
   text-align: center;
+  padding: 80px 32px 32px;
+  background: var(--bone);
 }
 .page-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 400;
   font-style: italic;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--ink);
 }
 .page-header p {
   color: var(--ink-soft);
-  font-size: 17px;
-  max-width: 600px;
-  margin: 0 auto;
+  font-size: 16px;
+  max-width: 640px;
+  margin: 0 auto 16px;
 }
 .page-header .meta {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   justify-content: center;
-  margin-top: 24px;
   flex-wrap: wrap;
 }
 .page-header .meta span {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: white;
-  color: var(--ink-soft);
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--lavender-dim);
+  background: var(--amber);
+  color: var(--ink);
+  padding: 4px 10px;
 }
 
-/* ========================================
-   HERO PREVIEW — B's bigger proportions
-======================================== */
-.preview {
+/* =========================================
+   THE 3 COMPOSITIONS
+   Each: atmospheric color + wordmark-as-bg
+   + glass surfaces + asymmetric layout
+========================================= */
+.composition {
+  position: relative;
+  min-height: 900px;
+  margin: 64px auto;
   max-width: 1320px;
-  margin: 48px auto 0;
   border-radius: 32px;
   overflow: hidden;
-  position: relative;
-  background: linear-gradient(135deg, var(--cloud) 0%, var(--bone) 100%);
-  border: 1px solid var(--lavender-dim);
-  box-shadow: 0 30px 80px rgba(167, 139, 250, 0.2);
-}
-.preview::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 70%; height: 70%;
-  background: radial-gradient(circle at top right, var(--lavender-dim), transparent 60%);
-  pointer-events: none;
-}
-.preview::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 50%; height: 50%;
-  background: radial-gradient(circle at bottom left, var(--sky-dim), transparent 60%);
-  pointer-events: none;
+  border: 1.5px solid var(--lav-soft);
 }
 
-/* The Memphis shape — pink diamond, bigger, behind card */
-.preview .shape-diamond {
+.composition__label {
   position: absolute;
-  top: 120px; right: 80px;
-  width: 220px; height: 220px;
-  background: var(--pink);
-  transform: rotate(45deg);
-  z-index: 1;
-  border-radius: 32px;
-  opacity: 0.85;
+  top: 24px; left: 24px;
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--cloud);
+  padding: 8px 14px;
+  border-radius: 100px;
 }
 
-.preview .shape-circle {
+.composition__nav {
   position: absolute;
-  bottom: 80px; left: 60px;
-  width: 140px; height: 140px;
-  background: var(--peach);
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0.7;
+  top: 24px; right: 24px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.composition__nav .logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.composition__nav .logo .accent {
+  background: var(--grad-lav-sky);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-.hero {
+.composition__content {
   position: relative;
   z-index: 2;
-  padding: 96px 80px;
+  padding: 120px 80px 80px;
+  min-height: 900px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 80px;
   align-items: center;
-  min-height: 620px;
 }
 
+/* WORDMARK AS BACKGROUND — the Memphis move.
+   Used in all 3 compositions, positioned differently */
+.wordmark-bg {
+  position: absolute;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 320px;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.wordmark-bg .a { color: var(--ink); }
+.wordmark-bg .b { color: var(--lavender); }
+
+.wordmark-bg--lg { font-size: 480px; }
+
+/* Eyebrow + spec shared */
 .eyebrow {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   background: var(--amber);
   color: var(--ink);
-  padding: 8px 16px;
-  font-weight: 600;
-  margin-bottom: 32px;
+  padding: 6px 14px;
+  margin-bottom: 24px;
+}
+.eyebrow-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.eyebrow-line::before {
+  content: "";
+  width: 36px; height: 1.5px;
+  background: var(--ink);
 }
 
-/* B's bigger wordmark — text version, easy to swap for logo */
-.wordmark {
+.display {
   font-family: var(--font-display);
-  font-size: clamp(64px, 10vw, 160px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  margin-bottom: 32px;
-}
-.wordmark .a {
-  color: var(--ink);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 24px;
 }
-.wordmark .b {
+.display .grad {
   background: var(--grad-lav-sky);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  font-style: italic;
   font-weight: 600;
 }
 
-.sub {
-  font-size: 21px;
+.claim {
+  font-size: 19px;
   line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 560px;
-  margin-bottom: 40px;
-  font-weight: 400;
+  max-width: 480px;
+  margin-bottom: 32px;
 }
+.claim strong { color: var(--ink); font-weight: 600; }
 
-.btn-row {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
 .btn-primary {
-  display: inline-block;
-  background: var(--cobalt);
-  color: white;
-  padding: 18px 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
+  padding: 16px 32px;
+  background: var(--cobalt);
+  color: white;
   border: 2px solid var(--ink);
   border-radius: 12px;
-  box-shadow: 6px 6px 0 var(--pink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 5px 5px 0 var(--pink);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .btn-primary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 var(--pink);
+  box-shadow: 7px 7px 0 var(--pink);
 }
 .btn-ghost {
   display: inline-block;
   color: var(--ink);
-  padding: 18px 28px;
+  padding: 16px 24px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  border-bottom: 2px solid var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 100px;
 }
+.btn-ghost:hover { background: var(--ink); color: var(--cloud); }
 
-/* The glass side card — A's glass + B's bold size */
-.side-card {
+/* Side glass card (Series pitch) */
+.series-card {
   position: relative;
-  background: var(--glass-cobalt);
+  background: var(--glass-cream);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1.5px solid var(--cobalt-dim);
-  padding: 40px;
-  border-radius: 28px;
-  box-shadow: 0 20px 60px rgba(42, 77, 220, 0.15);
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 8px 8px 0 var(--peach);
+  z-index: 3;
 }
-.side-card::after {
+.series-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent 50%);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5), transparent 60%);
   pointer-events: none;
 }
-.side-card .tag {
+.series-card .tag {
   font-family: var(--font-mono);
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cobalt);
-  margin-bottom: 16px;
-  font-weight: 600;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 14px;
+  position: relative; z-index: 2;
 }
-.side-card .big {
+.series-card .big {
   font-family: var(--font-display);
-  font-size: 56px;
-  line-height: 0.95;
-  font-weight: 500;
   font-style: italic;
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1;
+  font-weight: 500;
   color: var(--ink);
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 16px;
+  position: relative; z-index: 2;
 }
-.side-card .big .accent {
+.series-card .big .grad {
   background: var(--grad-lav-sky);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   font-weight: 600;
 }
-.side-card .small {
+.series-card .body {
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
 }
-.side-card .small a {
+.series-card .body a {
   color: var(--cobalt);
   border-bottom: 1.5px solid var(--cobalt);
   text-decoration: none;
   font-weight: 500;
 }
 
-/* ========================================
-   TRUST BAR — glass tiles with amber shadows
-======================================== */
-.trust {
+/* =========================================
+   COMPOSITION 1: WORDMARK CENTERED, BEHIND
+   Wordmark at huge scale in the center,
+   atmospheric color around it, glass cards
+   layered on top.
+========================================= */
+.c1 {
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 30%, var(--lav-soft), transparent 60%),
+    radial-gradient(ellipse 600px 600px at 85% 80%, var(--peach-soft), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 70% 20%, var(--sky-soft), transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
+}
+.c1 .wordmark-bg {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 420px;
+  z-index: 1;
+}
+.c1 .wordmark-bg span {
+  display: inline-block;
+  margin: 0 20px;
+}
+.c1__content {
   position: relative;
   z-index: 2;
-  padding: 0 80px 80px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
 }
-.tile {
-  background: var(--glass-white);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid var(--ink);
-  padding: 28px;
-  border-radius: 20px;
-  box-shadow: 6px 6px 0 var(--amber);
+.c1__content .display { margin-top: 16px; }
+.c1__content .claim { margin-left: auto; margin-right: auto; }
+
+/* Floating series card in C1 */
+.c1 .series-card {
+  position: absolute;
+  bottom: 80px;
+  right: 80px;
+  max-width: 320px;
+  z-index: 4;
+}
+
+/* =========================================
+   COMPOSITION 2: WORDMARK AS LEFT WALL
+   Vertical wordmark on the left, content
+   stacked right. Editorial layout.
+========================================= */
+.c2 {
+  background:
+    radial-gradient(ellipse 1000px 700px at 0% 0%, var(--lav-soft), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 100%, var(--peach-soft), transparent 60%),
+    radial-gradient(ellipse 400px 400px at 100% 30%, var(--pink-soft), transparent 60%),
+    linear-gradient(135deg, var(--cloud) 0%, var(--cream) 50%, var(--bone) 100%);
+}
+.c2 .wordmark-bg {
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center;
+  font-size: 200px;
+  color: var(--ink);
+  opacity: 0.06;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+.c2 .wordmark-bg--main {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 280px;
+  z-index: 1;
+  color: var(--ink);
+  opacity: 0.08;
+  line-height: 0.85;
+}
+.c2__grid {
   position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
 }
-.tile:nth-child(2) { box-shadow: 6px 6px 0 var(--pink); }
-.tile:nth-child(3) { box-shadow: 6px 6px 0 var(--sky); }
-.tile .num {
+.c2__left { padding-left: 80px; }
+.c2__right { position: relative; }
+.c2__right .display { color: var(--ink); }
+.c2__right .display .grad {
+  background: var(--grad-sunset);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Floating "Now Accepting" badge */
+.c2__badge {
+  position: absolute;
+  top: 0; right: 0;
+  background: var(--cobalt);
+  color: white;
+  padding: 12px 20px;
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--peach);
-  margin-bottom: 8px;
   font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  box-shadow: 4px 4px 0 var(--peach);
+  z-index: 5;
 }
-.tile .name {
+
+/* =========================================
+   COMPOSITION 3: WORDMARK REPEATED AS PATTERN
+   The wordmark is the pattern. Repeated 4-5
+   times at varying sizes, atmospheric color
+   flowing through. Most editorial / most iOS.
+========================================= */
+.c3 {
+  background:
+    radial-gradient(ellipse 1200px 800px at 30% 20%, var(--lav-soft), transparent 60%),
+    radial-gradient(ellipse 800px 600px at 80% 70%, var(--peach-soft), transparent 60%),
+    radial-gradient(ellipse 600px 600px at 20% 80%, var(--sky-soft), transparent 60%),
+    linear-gradient(135deg, var(--cream) 0%, var(--bone) 100%);
+  overflow: hidden;
+}
+.c3 .wordmark-bg {
+  font-size: 200px;
+  opacity: 0.04;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  z-index: 1;
+}
+.c3__patterns {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.c3__pattern {
+  position: absolute;
   font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.c3__pattern--1 { top: 6%; left: 4%; font-size: 180px; opacity: 0.05; }
+.c3__pattern--2 { top: 18%; right: 6%; font-size: 140px; opacity: 0.06; color: var(--lavender); }
+.c3__pattern--3 { bottom: 22%; left: 8%; font-size: 240px; opacity: 0.04; }
+.c3__pattern--4 { bottom: 8%; right: 12%; font-size: 160px; opacity: 0.06; color: var(--peach); }
+
+.c3__center {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+}
+.c3__center .display { font-size: clamp(64px, 11vw, 160px); }
+
+.c3__series {
+  position: absolute;
+  bottom: 80px;
+  left: 80px;
+  max-width: 360px;
+  z-index: 4;
+}
+
+/* =========================================
+   CASE STUDY CARD SAMPLE
+   New design: glass frame + image inside
+========================================= */
+.card-section {
+  max-width: 1320px;
+  margin: 80px auto;
+  padding: 0 32px;
+}
+.card-section h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.card-section p.section-sub {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 16px;
+  margin-bottom: 48px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.cs-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease);
+}
+.cs-card:nth-child(1) { --shadow-color: var(--amber); }
+.cs-card:nth-child(2) { --shadow-color: var(--pink); }
+.cs-card:nth-child(3) { --shadow-color: var(--sky); }
+.cs-card:nth-child(4) { --shadow-color: var(--lavender); }
+.cs-card:nth-child(5) { --shadow-color: var(--peach); }
+.cs-card:nth-child(6) { --shadow-color: var(--cobalt); }
+
+.cs-card__frame {
+  position: relative;
+  background: var(--glass-white);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 12px;
+  box-shadow: 8px 8px 0 var(--shadow-color);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.cs-card:hover .cs-card__frame {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 var(--shadow-color);
+}
+.cs-card__image {
+  aspect-ratio: 4/3;
+  background: var(--bone);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cs-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cs-card__body {
+  padding: 16px 8px 8px;
+}
+.cs-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cs-card__badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--cobalt);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.cs-card__badge--concept {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px dashed var(--ink-mute);
+}
+.cs-card__geo {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cs-card__title {
+  font-family: var(--font-display);
+  font-style: italic;
   font-size: 24px;
   font-weight: 500;
   color: var(--ink);
-  font-style: italic;
+  margin-bottom: 6px;
   line-height: 1.1;
-  margin-bottom: 4px;
 }
-.tile .meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-mute);
-  letter-spacing: 0.05em;
-}
-
-/* ========================================
-   COMPONENT SAMPLES
-======================================== */
-.components {
-  max-width: 1320px;
-  margin: 64px auto;
-  padding: 0 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-.component-card {
-  background: white;
-  border-radius: 24px;
-  padding: 40px;
-  border: 1px solid var(--lavender-dim);
-  position: relative;
-  overflow: hidden;
-}
-.component-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, var(--lavender-dim), transparent 70%);
-  pointer-events: none;
-}
-.component-card h3 {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cobalt);
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 2;
-}
-.component-card .body {
-  position: relative;
-  z-index: 2;
-}
-
-/* Nav sample */
-.nav-sample {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--glass-white);
-  backdrop-filter: blur(16px);
-  border: 1.5px solid var(--ink);
-  border-radius: 100px;
-  padding: 12px 16px 12px 24px;
-  box-shadow: 4px 4px 0 var(--amber);
-}
-.nav-sample .brand {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--ink);
-}
-.nav-sample .links {
-  display: flex;
-  gap: 8px;
-}
-.nav-sample .links a {
+.cs-card__tagline {
   font-size: 13px;
   color: var(--ink-soft);
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 100px;
-  font-weight: 500;
-}
-.nav-sample .links a.cta {
-  background: var(--cobalt);
-  color: white;
-}
-
-/* Button row sample */
-.btn-samples {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn-amber {
-  background: var(--amber);
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  padding: 14px 28px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0 var(--ink);
-}
-.btn-lavender {
-  background: var(--lavender);
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 100px;
-}
-.btn-sky {
-  background: transparent;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  padding: 14px 28px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 100px;
-}
-
-/* Swatches */
-.swatches {
-  max-width: 1320px;
-  margin: 0 auto 64px;
-  padding: 0 32px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-}
-.swatch-card {
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  border: 1px solid var(--lavender-dim);
-}
-.swatch-card .chip {
-  width: 100%;
-  aspect-ratio: 1.6;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  border: 1px solid rgba(0,0,0,0.08);
-}
-.swatch-card .name {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink);
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-.swatch-card .hex {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--ink-mute);
-}
-
-.cta-footer {
-  text-align: center;
-  padding: 60px 32px 80px;
-  color: var(--ink-soft);
-  font-size: 14px;
-}
-.cta-footer strong {
-  color: var(--ink);
+  line-height: 1.55;
 }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; padding: 64px 32px; gap: 40px; }
-  .trust { grid-template-columns: 1fr; padding: 0 32px 64px; }
-  .components { grid-template-columns: 1fr; }
-  .swatches { grid-template-columns: repeat(2, 1fr); }
-  .preview .shape-diamond, .preview .shape-circle { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
+  .c2__grid { grid-template-columns: 1fr; }
+  .composition__content { padding: 100px 32px 60px; }
 }
+
 </style>
 </head>
 <body>
 
 <header class="page-header">
-  <h1>Palette D — the fusion</h1>
-  <p>C's palette + A's glass + B's proportions. This is the direction. Wordmark is a text wordmark (swap to your Adobe font + logo later).</p>
+  <h1>v3 — atmospheric color, glass surfaces, wordmark as composition</h1>
+  <p>3 hero compositions. Each uses iOS-style color washes + glass + a real Memphis move (wordmark as background pattern, not random shapes). Plus a new case study card design.</p>
   <div class="meta">
-    <span>Palette: Lavender · Sky · Peach</span>
-    <span>Glass: Cobalt · Amber · Pink</span>
-    <span>Proportions: B (bold)</span>
+    <span>Pick 1, 2, or 3</span>
+    <span>Or say "mix 1 + 3"</span>
   </div>
 </header>
 
-<!-- ============ HERO PREVIEW ============ -->
-<div class="preview">
-  <div class="shape-diamond"></div>
-  <div class="shape-circle"></div>
+<!-- ============ COMPOSITION 1 ============ -->
+<div class="composition c1">
+  <span class="composition__label">Composition 1</span>
+  <nav class="composition__nav">
+    <a href="#" class="logo">Dream<span class="accent">Gully</span></a>
+  </nav>
 
-  <section class="hero">
-    <div>
-      <span class="eyebrow">Brand — Design — Content — Social — Web</span>
-      <!-- This is the wordmark. Swap the entire <h1> with <img src="logo.svg"> later. -->
-      <h1 class="wordmark">
-        <span class="a">Dream</span> <span class="b">Gully</span>
-      </h1>
-      <p class="sub">A creative studio for the AI age. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
-      <div class="btn-row">
-        <a href="#" class="btn-primary">See The Series →</a>
-        <a href="#" class="btn-ghost">View Selected Work</a>
+  <div class="wordmark-bg">
+    <span class="a">Dream</span>
+    <span class="b">Gully</span>
+  </div>
+
+  <div class="composition__content">
+    <div class="c1__content">
+      <span class="eyebrow">Now accepting new clients</span>
+      <div class="display">
+        <span class="grad">Dream</span> <span style="color: var(--ink);">Gully</span>
+      </div>
+      <p class="claim">A creative studio for the <strong>AI age</strong>. Brand identity, design systems, content, social, and web — built end-to-end on AI-native workflows, delivered at mid-market pricing.</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+        <a href="#" class="btn-primary">Start a project →</a>
+        <a href="#" class="btn-ghost">View our work</a>
       </div>
     </div>
-    <div class="side-card">
-      <div class="tag">The Series</div>
-      <div class="big">One brand, a <span class="accent">full season</span>.</div>
-      <p class="small">Custom multi-episode reel series, written and produced for clients. <a href="#">Learn more →</a></p>
-    </div>
-  </section>
+  </div>
 
-  <section class="trust">
-    <div class="tile">
-      <div class="num">01 · KALMENE</div>
-      <div class="name">Skincare</div>
-      <div class="meta">DUBAI · BRAND IDENTITY</div>
-    </div>
-    <div class="tile">
-      <div class="num">02 · PIPER &amp; CO</div>
-      <div class="name">Cafe</div>
-      <div class="meta">MELBOURNE · BRAND + COLLATERAL</div>
-    </div>
-    <div class="tile">
-      <div class="num">03 · TESSERA</div>
-      <div class="name">SaaS</div>
-      <div class="meta">DUBAI · BRAND + PRODUCT</div>
-    </div>
-  </section>
+  <div class="series-card">
+    <div class="tag">The Series</div>
+    <div class="big">One brand, a <span class="grad">full season</span>.</div>
+    <p class="body">Custom multi-episode reel series, written and produced for clients. <a href="#">See the work →</a></p>
+  </div>
 </div>
 
-<!-- ============ COMPONENT SAMPLES ============ -->
-<div class="components">
+<!-- ============ COMPOSITION 2 ============ -->
+<div class="composition c2">
+  <span class="composition__label">Composition 2</span>
+  <nav class="composition__nav">
+    <a href="#" class="logo">Dream<span class="accent">Gully</span></a>
+  </nav>
 
-  <div class="component-card">
-    <h3>// Navigation</h3>
-    <div class="body">
-      <div class="nav-sample">
-        <span class="brand">DreamGully</span>
-        <div class="links">
-          <a href="#">Work</a>
-          <a href="#">Series</a>
-          <a href="#">Process</a>
-          <a href="#" class="cta">Start a brief →</a>
+  <div class="wordmark-bg wordmark-bg--main">
+    <span style="display: block;">Dream</span>
+    <span style="display: block; color: var(--lavender);">Gully</span>
+  </div>
+
+  <div class="composition__content">
+    <div class="c2__grid">
+      <div class="c2__left">
+        <span class="eyebrow">Now accepting new clients</span>
+        <div class="display" style="font-size: clamp(48px, 7vw, 96px);">
+          Brand, design,<br>content, social, web.
+        </div>
+        <p class="claim">A creative studio for the <strong>AI age</strong>. We turn founders' rough ideas into brand systems that ship — not slide decks that don't.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#" class="btn-primary">Start a project →</a>
+          <a href="#" class="btn-ghost">View work</a>
         </div>
       </div>
+      <div class="c2__right">
+        <div class="c2__badge">●  32M+ organic reach</div>
+        <div class="display" style="margin-top: 24px;">
+          <span class="grad">One brand</span>,<br>
+          a full season.
+        </div>
+        <p class="claim" style="margin-top: 16px;">The Series — custom multi-episode reel series, written and produced for clients. Not a one-off. A run.</p>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="component-card">
-    <h3>// Buttons</h3>
-    <div class="body">
-      <div class="btn-samples">
-        <button class="btn-amber">Primary</button>
-        <button class="btn-lavender">Secondary</button>
-        <button class="btn-sky">Tertiary</button>
+<!-- ============ COMPOSITION 3 ============ -->
+<div class="composition c3">
+  <span class="composition__label">Composition 3</span>
+  <nav class="composition__nav">
+    <a href="#" class="logo">Dream<span class="accent">Gully</span></a>
+  </nav>
+
+  <div class="c3__patterns">
+    <div class="c3__pattern c3__pattern--1">DreamGully</div>
+    <div class="c3__pattern c3__pattern--2">DreamGully</div>
+    <div class="c3__pattern c3__pattern--3">DreamGully</div>
+    <div class="c3__pattern c3__pattern--4">DreamGully</div>
+  </div>
+
+  <div class="composition__content">
+    <div class="c3__center">
+      <span class="eyebrow-line">Brand — Design — Content — Social — Web</span>
+      <div class="display">
+        <span class="grad">Dream</span> <span style="color: var(--ink);">Gully</span>
+      </div>
+      <p class="claim" style="text-align: center;">A creative studio for the <strong>AI age</strong>. We turn founders' rough ideas into brand systems that ship.</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+        <a href="#" class="btn-primary">Start a project →</a>
+        <a href="#" class="btn-ghost">View our work</a>
       </div>
     </div>
   </div>
 
-</div>
-
-<!-- ============ SWATCHES ============ -->
-<div class="swatches">
-  <div class="swatch-card">
-    <div class="chip" style="background: #A78BFA"></div>
-    <div class="name">Lavender</div>
-    <div class="hex">#A78BFA</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #38BDF8"></div>
-    <div class="name">Sky</div>
-    <div class="hex">#38BDF8</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #FB923C"></div>
-    <div class="name">Peach</div>
-    <div class="hex">#FB923C</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #1E1B4B"></div>
-    <div class="name">Ink</div>
-    <div class="hex">#1E1B4B</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #F8FAFC; border: 1px solid #eee"></div>
-    <div class="name">Cloud</div>
-    <div class="hex">#F8FAFC</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #2A4DDC"></div>
-    <div class="name">Cobalt</div>
-    <div class="hex">#2A4DDC</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #F59E0B"></div>
-    <div class="name">Amber</div>
-    <div class="hex">#F59E0B</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #EC4899"></div>
-    <div class="name">Pink</div>
-    <div class="hex">#EC4899</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: #EDE9FE"></div>
-    <div class="name">Bone</div>
-    <div class="hex">#EDE9FE</div>
-  </div>
-  <div class="swatch-card">
-    <div class="chip" style="background: linear-gradient(135deg, #A78BFA 0%, #38BDF8 100%)"></div>
-    <div class="name">Lav→Sky</div>
-    <div class="hex">gradient</div>
+  <div class="series-card c3__series">
+    <div class="tag">The Series</div>
+    <div class="big">One brand, a <span class="grad">full season</span>.</div>
+    <p class="body">Custom multi-episode reel series, written and produced for clients. <a href="#">See the work →</a></p>
   </div>
 </div>
 
-<div class="cta-footer">
-  <strong>Approve to build the full site in this direction.</strong><br>
-  Reply <strong>"Build it"</strong> or give me tweaks (less pink, more peach, smaller card, different wordmark treatment, etc.)
+<!-- ============ CASE STUDY CARD SAMPLE ============ -->
+<section class="card-section">
+  <h2>New case study card design</h2>
+  <p class="section-sub">Glass frame + image inside. The image is the content, the glass is the surface. Pop-color shadow on the frame, not the image.</p>
+  
+  <div class="card-grid">
+    <a href="#" class="cs-card">
+      <div class="cs-card__frame">
+        <div class="cs-card__image">[KALMENE HERO IMAGE]</div>
+        <div class="cs-card__body">
+          <div class="cs-card__meta">
+            <span class="cs-card__badge">Client Work</span>
+            <span class="cs-card__geo">Dubai · Skincare</span>
+          </div>
+          <h3 class="cs-card__title">KALMENE</h3>
+          <p class="cs-card__tagline">The brand system for a Dubai skincare line that wanted quiet confidence.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="cs-card">
+      <div class="cs-card__frame">
+        <div class="cs-card__image">[PIPER & CO HERO]</div>
+        <div class="cs-card__body">
+          <div class="cs-card__meta">
+            <span class="cs-card__badge">Client Work</span>
+            <span class="cs-card__geo">Melbourne · Cafe</span>
+          </div>
+          <h3 class="cs-card__title">Piper &amp; Co</h3>
+          <p class="cs-card__tagline">A Memphis-coded Melbourne cafe. The design is the marketing.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="cs-card">
+      <div class="cs-card__frame">
+        <div class="cs-card__image">[TESSERA HERO]</div>
+        <div class="cs-card__body">
+          <div class="cs-card__meta">
+            <span class="cs-card__badge cs-card__badge--concept">Concept</span>
+            <span class="cs-card__geo">Dubai · SaaS</span>
+          </div>
+          <h3 class="cs-card__title">Tessera</h3>
+          <p class="cs-card__tagline">A SaaS brand that needed to feel like a creative studio, not a dashboard.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div style="text-align: center; padding: 40px 32px 80px; color: var(--ink-soft); font-size: 14px;">
+  <strong>Pick 1, 2, or 3</strong> for the hero. Card design is the new standard for case studies.<br>
+  Reply with the number, or "mix 1 + 3" / "less wordmark pattern" / "more peach" etc.
 </div>
 
 </body>

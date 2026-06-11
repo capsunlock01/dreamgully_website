@@ -474,21 +474,24 @@
       font-size: 14px;
       font-weight: 600;
       padding: 10px 20px;
-      background: var(--cobalt);
+      background: rgba(42, 77, 220, 0.55);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       color: white;
       border: 1.5px solid var(--ink);
       border-radius: 100px;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all var(--transition-base);
       font-family: var(--font-body);
       letter-spacing: 0.02em;
       text-decoration: none;
-      box-shadow: 3px 3px 0 var(--amber);
     }
 
     .nav-cta:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 var(--amber);
+      box-shadow:
+        6px 6px 0 0 rgba(245, 158, 11, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.3) inset, 4px 4px 0 var(--amber);
     }
 
     .nav-toggle {
@@ -882,7 +885,7 @@
        section atmosphere behind the button.
     ========================================= */
 
-    /* Primary CTA: vibrant cobalt glass with ink border + pink offset shadow */
+    /* Primary CTA: glassmorphic cobalt with ink border + glassmorphic pink offset */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -890,10 +893,10 @@
       font-size: 14px;
       font-weight: 600;
       padding: 16px 32px;
-      /* GLASSMORPHIC colored: cobalt tint + saturate */
-      background: rgba(42, 77, 220, 0.7);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      /* GLASSMORPHIC cobalt: translucent, heavy blur, atmospheric color bleeds through */
+      background: rgba(42, 77, 220, 0.55);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
       color: white;
       border: 1.5px solid var(--ink);
       border-radius: 12px;
@@ -903,7 +906,11 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-decoration: none;
-      box-shadow: 5px 5px 0 var(--pink), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+      /* GLASSMORPHIC pink offset shadow: translucent pink, atmospheric shows through */
+      box-shadow:
+        5px 5px 0 0 rgba(236, 72, 153, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+        5px 5px 30px 0 rgba(236, 72, 153, 0.2);
       position: relative;
       overflow: hidden;
     }
@@ -917,8 +924,11 @@
     }
     .btn-primary:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 var(--pink), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-      background: rgba(42, 77, 220, 0.85);
+      box-shadow:
+        7px 7px 0 0 rgba(236, 72, 153, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+        7px 7px 40px 0 rgba(236, 72, 153, 0.25);
+      background: rgba(42, 77, 220, 0.7);
     }
 
     .btn-primary svg {
@@ -1994,21 +2004,22 @@
     .sw-card__media {
       position: relative;
       aspect-ratio: 4/3;
+      background: white;
       border: 1.5px solid var(--ink);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 8px 8px 0 var(--shadow-color);
-      transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
-      /* GLASSMORPHIC BACKDROP: colored gradient surface inside the frame */
-      background:
-        radial-gradient(ellipse 120% 100% at 20% 30%, var(--card-tint-glass), transparent 60%),
-        radial-gradient(ellipse 100% 100% at 90% 80%, var(--card-tint-soft), transparent 60%),
-        linear-gradient(135deg, var(--card-tint-glass) 0%, var(--card-tint-soft) 100%);
-      isolation: isolate;
+      transition: transform 0.3s var(--ease-out-expo);
+      /* GLASSMORPHIC colored offset panel — the "shadow" is a real glass surface,
+         the section's atmospheric color bleeds through it. */
+      box-shadow:
+        8px 8px 0 0 var(--card-tint-soft),
+        8px 8px 30px 0 rgba(30, 27, 75, 0.12);
     }
     .sw-card:hover .sw-card__media {
       transform: translate(-3px, -3px);
-      box-shadow: 11px 11px 0 var(--shadow-color);
+      box-shadow:
+        11px 11px 0 0 var(--card-tint-soft),
+        11px 11px 40px 0 rgba(30, 27, 75, 0.15);
     }
     .sw-card__media img,
     .sw-card__media > div {
@@ -2020,9 +2031,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      /* Soft mask: image shows in the center, fades into the colored glass at the edges */
-      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
-      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 60%, transparent 100%);
     }
     .sw-card__media img {
       transition: transform 0.6s var(--ease-out-expo);

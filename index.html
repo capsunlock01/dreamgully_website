@@ -80,7 +80,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 0 0 0; /* room for nav at top */
+  /* 10% top/bottom margin, plus 72px for fixed nav */
+  padding: max(10vh, 80px) 0 max(10vh, 0px) 0;
 }
 
 /* Atmospheric color bg per section (the MARGINS outside the 4:3 working area) */
@@ -99,8 +100,11 @@ html {
 .viewport {
   position: relative;
   z-index: 1;
-  width: min(75vw, calc(100vh * 4 / 3 * 0.75)); /* 4:3 ratio, fits in 16:9 viewport */
-  aspect-ratio: 4 / 3;
+  /* Working area = 70% viewport width, 80% viewport height */
+  /* Margins: 15% L/R, 10% T/B (handled by .snap-section padding + this width/height) */
+  width: 70vw;
+  max-width: 70vw;
+  height: 80vh;
   max-height: 80vh;
   margin: auto;
   /* The glassmorphic card surface */
@@ -791,17 +795,17 @@ html {
    ============================================================ */
 @media (max-width: 768px) {
   .snap-section {
-    padding: 80px 0 40px;
+    padding: max(8vh, 70px) 0 max(8vh, 0px) 0;
     min-height: 100svh;
   }
 
-  /* 4:3 working area becomes full-width 9:18 (text on top, image on bottom) */
+  /* On mobile, working area is wider (less side margin) for usable space */
   .viewport {
-    width: calc(100% - 32px);
-    max-width: none;
-    aspect-ratio: 9 / 18; /* portrait on mobile */
-    max-height: none;
-    flex-direction: column;
+    width: 88vw;
+    max-width: 88vw;
+    height: 80vh;
+    max-height: 80vh;
+    flex-direction: column; /* text on top, image on bottom */
     border-radius: 20px;
     box-shadow:
       6px 6px 0 0 rgba(167, 139, 250, 0.45),
@@ -1016,7 +1020,7 @@ html {
      SECTION 04 — REAL WORK (horizontal carousel)
      ============================================================ -->
 <section class="snap-section" id="sec-realwork">
-  <div class="viewport" style="aspect-ratio: 16 / 10; max-width: 90vw;">
+  <div class="viewport">
     <div class="cs-carousel" style="flex: 1 1 100%;">
       <a class="cs-carousel__card" href="case-studies/dreamgully.html">
         <span class="cs-carousel__card-badge">Real · 01 / 04</span>
@@ -1054,7 +1058,7 @@ html {
      SECTION 05 — CONCEPTS (horizontal carousel)
      ============================================================ -->
 <section class="snap-section" id="sec-concepts">
-  <div class="viewport" style="aspect-ratio: 16 / 10; max-width: 90vw;">
+  <div class="viewport">
     <div class="cs-carousel" style="flex: 1 1 100%;">
       <a class="cs-carousel__card" href="case-studies/raw-load.html">
         <span class="cs-carousel__card-badge">Concept · 01 / 07</span>

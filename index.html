@@ -684,6 +684,122 @@ html {
 .cs-carousel__card:hover {
   transform: translate(-3px, -3px);
 }
+
+/* ARROW BUTTONS — glassmorphic, on the sides of the carousel */
+.cs-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow:
+    4px 4px 0 0 rgba(167, 139, 250, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+  transition: all 0.3s var(--ease);
+  font-family: var(--font-body);
+  user-select: none;
+}
+.cs-carousel__arrow:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(calc(-50% - 2px)) translateX(0);
+  box-shadow:
+    6px 6px 0 0 rgba(167, 139, 250, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+.cs-carousel__arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+.cs-carousel__arrow--left {
+  left: 20px;
+}
+.cs-carousel__arrow--right {
+  right: 20px;
+}
+.cs-carousel__arrow:disabled,
+.cs-carousel__arrow.is-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* INDICATOR DOTS — bottom of carousel */
+.cs-carousel__indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1.5px solid var(--ink);
+  border-radius: 100px;
+  box-shadow: 3px 3px 0 rgba(30, 27, 75, 0.1);
+}
+.cs-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(30, 27, 75, 0.2);
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  padding: 0;
+}
+.cs-carousel__dot:hover {
+  background: rgba(30, 27, 75, 0.4);
+}
+.cs-carousel__dot.is-active {
+  background: var(--ink);
+  transform: scale(1.3);
+}
+
+/* The carousel container needs to be position: relative for arrows to anchor */
+.cs-carousel-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* CAROUSEL NUMBER — top-right, e.g. "02 / 04" */
+.cs-carousel__counter {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1.5px solid var(--ink);
+  padding: 6px 12px;
+  border-radius: 100px;
+  box-shadow: 2px 2px 0 rgba(30, 27, 75, 0.1);
+}
 .cs-carousel__card-content {
   text-align: center;
   padding: 24px;
@@ -1021,14 +1137,17 @@ html {
      ============================================================ -->
 <section class="snap-section" id="sec-realwork">
   <div class="viewport">
-    <div class="cs-carousel" style="flex: 1 1 100%;">
-      <a class="cs-carousel__card" href="case-studies/dreamgully.html">
-        <span class="cs-carousel__card-badge">Real · 01 / 04</span>
-        <div class="cs-carousel__card-content">
-          [ DreamGully image ]
-          <span class="cs-carousel__card-title">DreamGully</span>
-        </div>
-      </a>
+    <div class="cs-carousel-wrap" data-carousel="realwork" data-autoplay="5000">
+      <span class="cs-carousel__counter" data-counter>01 / 04</span>
+      <button class="cs-carousel__arrow cs-carousel__arrow--left" data-arrow="prev" aria-label="Previous case study">←</button>
+      <div class="cs-carousel" style="flex: 1 1 100%;">
+        <a class="cs-carousel__card" href="case-studies/dreamgully.html">
+          <span class="cs-carousel__card-badge">Real · 01 / 04</span>
+          <div class="cs-carousel__card-content">
+            [ DreamGully image ]
+            <span class="cs-carousel__card-title">DreamGully</span>
+          </div>
+        </a>
       <a class="cs-carousel__card" href="case-studies/beyond-basics.html">
         <span class="cs-carousel__card-badge">Real · 02 / 04</span>
         <div class="cs-carousel__card-content">
@@ -1043,13 +1162,21 @@ html {
           <span class="cs-carousel__card-title">Vogue Atelier</span>
         </div>
       </a>
-      <a class="cs-carousel__card" href="case-studies/dubai-realestate.html">
-        <span class="cs-carousel__card-badge">Real · 04 / 04</span>
-        <div class="cs-carousel__card-content">
-          [ Dubai RE image ]
-          <span class="cs-carousel__card-title">Dubai Real Estate</span>
-        </div>
-      </a>
+        <a class="cs-carousel__card" href="case-studies/dubai-realestate.html">
+          <span class="cs-carousel__card-badge">Real · 04 / 04</span>
+          <div class="cs-carousel__card-content">
+            [ Dubai RE image ]
+            <span class="cs-carousel__card-title">Dubai Real Estate</span>
+          </div>
+        </a>
+      </div>
+      <button class="cs-carousel__arrow cs-carousel__arrow--right" data-arrow="next" aria-label="Next case study">→</button>
+      <div class="cs-carousel__indicators" data-indicators>
+        <button class="cs-carousel__dot is-active" data-go-to="0" aria-label="Go to card 1"></button>
+        <button class="cs-carousel__dot" data-go-to="1" aria-label="Go to card 2"></button>
+        <button class="cs-carousel__dot" data-go-to="2" aria-label="Go to card 3"></button>
+        <button class="cs-carousel__dot" data-go-to="3" aria-label="Go to card 4"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -1059,8 +1186,11 @@ html {
      ============================================================ -->
 <section class="snap-section" id="sec-concepts">
   <div class="viewport">
-    <div class="cs-carousel" style="flex: 1 1 100%;">
-      <a class="cs-carousel__card" href="case-studies/raw-load.html">
+    <div class="cs-carousel-wrap" data-carousel="concepts" data-autoplay="4500">
+      <span class="cs-carousel__counter" data-counter>01 / 07</span>
+      <button class="cs-carousel__arrow cs-carousel__arrow--left" data-arrow="prev" aria-label="Previous case study">←</button>
+      <div class="cs-carousel" style="flex: 1 1 100%;">
+        <a class="cs-carousel__card" href="case-studies/raw-load.html">
         <span class="cs-carousel__card-badge">Concept · 01 / 07</span>
         <div class="cs-carousel__card-content">
           [ Raw Load image ]
@@ -1102,13 +1232,24 @@ html {
           <span class="cs-carousel__card-title">The Larder</span>
         </div>
       </a>
-      <a class="cs-carousel__card" href="case-studies/hotel-halcyon.html">
-        <span class="cs-carousel__card-badge">Concept · 07 / 07</span>
-        <div class="cs-carousel__card-content">
-          [ Hotel Halcyon image ]
-          <span class="cs-carousel__card-title">Hotel Halcyon</span>
-        </div>
-      </a>
+        <a class="cs-carousel__card" href="case-studies/hotel-halcyon.html">
+          <span class="cs-carousel__card-badge">Concept · 07 / 07</span>
+          <div class="cs-carousel__card-content">
+            [ Hotel Halcyon image ]
+            <span class="cs-carousel__card-title">Hotel Halcyon</span>
+          </div>
+        </a>
+      </div>
+      <button class="cs-carousel__arrow cs-carousel__arrow--right" data-arrow="next" aria-label="Next case study">→</button>
+      <div class="cs-carousel__indicators" data-indicators>
+        <button class="cs-carousel__dot is-active" data-go-to="0" aria-label="Go to card 1"></button>
+        <button class="cs-carousel__dot" data-go-to="1" aria-label="Go to card 2"></button>
+        <button class="cs-carousel__dot" data-go-to="2" aria-label="Go to card 3"></button>
+        <button class="cs-carousel__dot" data-go-to="3" aria-label="Go to card 4"></button>
+        <button class="cs-carousel__dot" data-go-to="4" aria-label="Go to card 5"></button>
+        <button class="cs-carousel__dot" data-go-to="5" aria-label="Go to card 6"></button>
+        <button class="cs-carousel__dot" data-go-to="6" aria-label="Go to card 7"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -1149,11 +1290,12 @@ html {
      ============================================================ -->
 <script>
 (function() {
-  // Section nav indicator — update active state as user scrolls
+  // ============================================================
+  // SECTION NAV INDICATOR
+  // ============================================================
   const navItems = document.querySelectorAll('.section-nav__item');
   const sections = document.querySelectorAll('.snap-section');
 
-  // Smooth scroll on nav dot/label click
   navItems.forEach(item => {
     item.addEventListener('click', () => {
       const targetId = item.dataset.target;
@@ -1164,7 +1306,6 @@ html {
     });
   });
 
-  // IntersectionObserver — update active nav item
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
@@ -1177,6 +1318,126 @@ html {
   }, { threshold: [0.5] });
 
   sections.forEach(section => observer.observe(section));
+
+  // ============================================================
+  // CAROUSEL — auto-rotate + arrows + indicators + click
+  // ============================================================
+  document.querySelectorAll('[data-carousel]').forEach(wrap => {
+    const carousel = wrap.querySelector('.cs-carousel');
+    const cards = Array.from(wrap.querySelectorAll('.cs-carousel__card'));
+    const arrows = wrap.querySelectorAll('[data-arrow]');
+    const dots = wrap.querySelectorAll('[data-go-to]');
+    const counter = wrap.querySelector('[data-counter]');
+    const autoplayMs = parseInt(wrap.dataset.autoplay || '5000', 10);
+    const total = cards.length;
+    let current = 0;
+    let autoplayTimer = null;
+    let isPaused = false;
+
+    // Update counter text "01 / 04"
+    function updateCounter() {
+      if (counter) {
+        counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      }
+    }
+
+    // Update active dot
+    function updateDots() {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === current);
+      });
+    }
+
+    // Scroll to a specific card index
+    function goTo(index, smooth = true) {
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      current = index;
+      const target = cards[current];
+      if (target && carousel) {
+        carousel.scrollTo({
+          left: target.offsetLeft - carousel.offsetLeft - (carousel.clientWidth - target.clientWidth) / 2,
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+      updateCounter();
+      updateDots();
+    }
+
+    // Arrow clicks
+    arrows.forEach(arrow => {
+      arrow.addEventListener('click', () => {
+        const dir = arrow.dataset.arrow;
+        goTo(dir === 'next' ? current + 1 : current - 1);
+        resetAutoplay();
+      });
+    });
+
+    // Dot clicks
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goTo(parseInt(dot.dataset.goTo, 10));
+        resetAutoplay();
+      });
+    });
+
+    // Sync current index as user scrolls the carousel
+    let scrollTimeout;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Find which card is closest to center
+        const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+        let closest = 0;
+        let closestDist = Infinity;
+        cards.forEach((card, i) => {
+          const cardCenter = card.offsetLeft - carousel.offsetLeft + card.clientWidth / 2;
+          const dist = Math.abs(cardCenter - carouselCenter);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closest = i;
+          }
+        });
+        if (closest !== current) {
+          current = closest;
+          updateCounter();
+          updateDots();
+        }
+      }, 80);
+    });
+
+    // Auto-rotate
+    function startAutoplay() {
+      if (isPaused) return;
+      autoplayTimer = setInterval(() => {
+        goTo(current + 1);
+      }, autoplayMs);
+    }
+    function stopAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    // Pause on hover / focus
+    wrap.addEventListener('mouseenter', () => { isPaused = true; stopAutoplay(); });
+    wrap.addEventListener('mouseleave', () => { isPaused = false; startAutoplay(); });
+    wrap.addEventListener('focusin', () => { isPaused = true; stopAutoplay(); });
+    wrap.addEventListener('focusout', () => { isPaused = false; startAutoplay(); });
+
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutoplay();
+      else if (!isPaused) startAutoplay();
+    });
+
+    // Initialize
+    goTo(0, false);
+    startAutoplay();
+  });
 })();
 </script>
 

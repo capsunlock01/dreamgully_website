@@ -691,8 +691,8 @@ html {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px) saturate(180%);
@@ -966,6 +966,18 @@ html {
 
   /* Services grid — single column on mobile */
   .services-grid { grid-template-columns: 1fr; }
+
+  /* Carousel arrows smaller on mobile */
+  .cs-carousel__arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  .cs-carousel__arrow--left { left: 8px; }
+  .cs-carousel__arrow--right { right: 8px; }
+  .cs-carousel__counter { top: 12px; right: 12px; font-size: 9px; padding: 4px 8px; }
+  .cs-carousel__indicators { bottom: 12px; padding: 6px 10px; gap: 6px; }
+  .cs-carousel__dot { width: 7px; height: 7px; }
 }
 
 @media (max-width: 480px) {

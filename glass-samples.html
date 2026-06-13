@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Glassmorphism Cards v3 — Real visibility</title>
+<title>Glassmorphism Cards v4 — From Scratch</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,28 +53,29 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
   margin-top: 40px;
 }
-@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 
 .sample {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(12px);
   border: 1.5px solid var(--ink);
   border-radius: 20px;
-  padding: 20px;
-  display: flex; flex-direction: column; gap: 16px;
+  padding: 18px;
+  display: flex; flex-direction: column; gap: 14px;
 }
 
-.sample__head { display: flex; flex-direction: column; gap: 6px; }
+.sample__head { display: flex; flex-direction: column; gap: 4px; }
 .sample__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
-.sample__name { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
-.sample__source { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); }
+.sample__name { font-family: var(--font-display); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
+.sample__source { font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft); }
 .sample__source a { color: var(--cobalt); text-decoration: none; }
 .sample__source a:hover { text-decoration: underline; }
-.sample__desc { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+.sample__desc { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.4; }
 
 /* ==== THE STAGE — true visibility ==== */
 .stage {
@@ -84,26 +85,22 @@ body {
   overflow: hidden;
   border: 1.5px solid var(--ink);
   display: flex; align-items: center; justify-content: center;
-  padding: 30px;
-  /* Real bg with strong, sharp color blobs that ARE visible through glass */
+  padding: 24px;
   background: linear-gradient(135deg, #4c1d95 0%, #831843 50%, #1e1b4b 100%);
 }
 
 /* Brand color blobs — softer blur, more saturated, larger */
 .brand-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.brand-bg__blob {
-  position: absolute; border-radius: 50%;
-}
+.brand-bg__blob { position: absolute; border-radius: 50%; }
 .brand-bg__blob--1 { width: 260px; height: 260px; background: var(--lavender); top: -50px; right: -50px; opacity: 0.85; filter: blur(30px); }
 .brand-bg__blob--2 { width: 240px; height: 240px; background: var(--pink); bottom: -60px; left: -50px; opacity: 0.85; filter: blur(30px); }
 .brand-bg__blob--3 { width: 200px; height: 200px; background: var(--peach); top: 35%; left: 30%; opacity: 0.7; filter: blur(25px); }
 .brand-bg__blob--4 { width: 200px; height: 200px; background: var(--sky); bottom: 25%; right: 25%; opacity: 0.75; filter: blur(25px); }
 .brand-bg__blob--5 { width: 180px; height: 180px; background: var(--amber); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.6; filter: blur(25px); }
 
-/* SHARP objects — these are what you see through the glass */
+/* SHARP objects */
 .brand-objects { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .brand-objects__shape { position: absolute; }
-
 .brand-objects__ring {
   width: 80px; height: 80px; border: 4px solid var(--lavender);
   border-radius: 50%; top: 12%; right: 8%;
@@ -144,34 +141,98 @@ body {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Card area — LOWER opacity, LOWER blur so the objects behind show through clearly */
-.card-area {
+/* ====== FROM-SCRATCH CARD (Apple reference) ======
+   Three layers:
+   1. Dark glass base (very transparent, very little blur)
+   2. Inner highlight at top (the "light hitting glass" effect)
+   3. Thin bright border
+*/
+.card-7 {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 20px;
+  border-radius: 18px;
+
+  /* The glass itself — like looking through a window onto the bg */
+  background: rgba(20, 18, 50, 0.18);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+
+  /* Bright thin border — what makes it READ as glass */
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  /* The top inner highlight — light hitting the top edge of the glass */
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05);
+
+  color: white;
+  overflow: hidden;
+}
+
+/* Top sheen — explicit, not just box-shadow */
+.card-7::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Subtle outer glow for "premium" feel */
+.card-7::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(236, 72, 153, 0.2));
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.5;
+}
+
+.card-7__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+.card-7__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; color: white; }
+.card-7__body { font-size: 12px; margin: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.92); }
+.card-7__chip {
+  display: inline-block; padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px; font-size: 9px;
+  color: white; align-self: flex-start;
+  font-family: var(--font-mono); letter-spacing: 0.15em;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+/* ==== CARD 1 — bedimcode (legacy) ==== */
+.card-1 {
   position: relative; z-index: 2;
   width: 70%; max-width: 280px;
   display: flex; flex-direction: column; gap: 10px;
   padding: 20px;
   border-radius: 16px;
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-}
-
-.card__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
-.card__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; }
-.card__body { font-size: 12px; margin: 0; line-height: 1.5; }
-
-/* ==== CARD 1 — very light glass, very transparent ==== */
-.card-1 {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
   color: white;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
 }
-.card-1 .card__eyebrow { color: rgba(255, 255, 255, 0.8); }
-.card-1 .card__title { color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.card-1 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+.card-1__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); }
+.card-1__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.card-1__body { font-size: 12px; margin: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
-/* ==== CARD 2 — dark glass, very transparent, strong inner highlight ==== */
+/* ==== CARD 2 — liquidGL (legacy) ==== */
 .card-2 {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 20px;
+  border-radius: 16px;
   background: rgba(20, 20, 40, 0.12);
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   box-shadow:
@@ -179,85 +240,31 @@ body {
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   color: white;
   overflow: hidden;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
 }
 .card-2::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
   pointer-events: none;
 }
-.card-2 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
-.card-2 .card__title { color: white; }
-.card-2 .card__body { color: rgba(255, 255, 255, 0.95); }
+.card-2__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+.card-2__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; color: white; }
+.card-2__body { font-size: 12px; margin: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.95); }
 
-/* ==== CARD 3 — white glass, very transparent, with image header ==== */
-.card-3 {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 0;
-  overflow: hidden;
-}
-.card-3__img {
-  width: 100%; height: 60px; margin: 0;
-  background: linear-gradient(135deg, rgba(42, 77, 220, 0.6), rgba(167, 139, 250, 0.6));
-  backdrop-filter: blur(8px);
-}
-.card-3__body { padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-.card-3 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
-.card-3 .card__title { color: white; font-size: 18px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.card-3 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-.card-3__btn {
-  align-self: flex-start; padding: 5px 10px; font-size: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white; border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px;
-  font-family: var(--font-body); font-weight: 500; cursor: pointer; margin-top: 4px;
-}
-
-/* ==== CARD 4 — translucent white with chip ==== */
-.card-4 {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  color: white;
-}
-.card-4__chip {
-  display: inline-block; padding: 3px 8px;
-  background: rgba(245, 158, 11, 0.3);
-  border: 1px solid rgba(245, 158, 11, 0.6);
-  border-radius: 100px; font-size: 9px;
-  color: white; align-self: flex-start;
-  font-family: var(--font-mono); letter-spacing: 0.1em;
-  width: fit-content;
-}
-.card-4 .card__title { color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.card-4 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-
-/* ==== CARD 5 — dark glass, 3D tilted ==== */
-.card-5 {
-  background: rgba(20, 20, 40, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.3);
-  color: white;
-  transform: perspective(800px) rotateY(-8deg) rotateX(4deg);
-}
-.card-5__icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--pink), var(--amber));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: white;
-  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.5);
-}
-.card-5 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
-.card-5 .card__title { color: white; }
-.card-5 .card__body { color: rgba(255, 255, 255, 0.95); }
-
-/* ==== CARD 6 — dark glass, chrome sphere on top ==== */
+/* ==== CARD 6 — javohirdev Apple (legacy chrome sphere) ==== */
 .card-6 {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 20px;
+  border-radius: 16px;
   background: rgba(20, 20, 40, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   color: white;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
 }
 .card-6__chrome {
   width: 100%; height: 40px; border-radius: 8px;
@@ -270,9 +277,9 @@ body {
   position: absolute; top: 0; left: 0; right: 0; height: 50%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
 }
-.card-6 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
-.card-6 .card__title { color: white; }
-.card-6 .card__body { color: rgba(255, 255, 255, 0.95); }
+.card-6__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+.card-6__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; color: white; }
+.card-6__body { font-size: 12px; margin: 0; line-height: 1.5; color: rgba(255, 255, 255, 0.95); }
 .card-6__price { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin: 4px 0 0; color: white; }
 .card-6__price small { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-right: 4px; }
 
@@ -288,6 +295,7 @@ body {
   color: var(--ink-soft);
 }
 .note strong { color: var(--ink); }
+.note__specs { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); background: rgba(0,0,0,0.04); padding: 12px; border-radius: 8px; margin: 8px 0; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -295,20 +303,20 @@ body {
 <div class="page">
   <header class="page__header">
     <p class="page__eyebrow">Design exploration</p>
-    <h1 class="page__title">Glassmorphism cards — real bg visibility</h1>
-    <p class="page__sub">Card opacity dropped to 0.06-0.12 (was 0.45, then 0.20). Blur reduced to 14px (was 24-30px). Now the actual ring, square, triangle, and dot behind the card are clearly visible through the glass.</p>
+    <h1 class="page__title">Glassmorphism cards — from scratch</h1>
+    <p class="page__sub">Built a new "from-scratch" card (07) using the Apple reference pattern: 3 explicit layers — dark glass, top sheen, bright border. Shown alongside the 3 strongest GitHub-derived options for comparison.</p>
   </header>
 
   <div class="grid">
 
-    <!-- 1. bedimcode -->
+    <!-- 1. bedimcode (legacy) -->
     <div class="sample">
       <div class="sample__head">
-        <span class="sample__num">01 / 06</span>
+        <span class="sample__num">01 / 04</span>
         <h2 class="sample__name">bedimcode</h2>
-        <span class="sample__source">Source: <a href="https://github.com/bedimcode/glassmorphism-card-responsive">bedimcode/glassmorphism-card-responsive</a> · 41★</span>
+        <span class="sample__source">Source: bedimcode/glassmorphism-card-responsive · 41★</span>
       </div>
-      <p class="sample__desc">White glass at 0.06 opacity. The ring, triangle, and square are visible through the card. Lightest feel.</p>
+      <p class="sample__desc">Light glass at 0.06 opacity. The lavender ring and sky square visible.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -325,22 +333,22 @@ body {
           <div class="brand-objects__shape brand-objects__sq"></div>
           <div class="brand-objects__shape brand-objects__dot"></div>
         </div>
-        <div class="card-area card-1">
-          <span class="card__eyebrow">Real · 01 / 04</span>
-          <h3 class="card__title">DreamGully</h3>
-          <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        <div class="card-1">
+          <span class="card-1__eyebrow">Real · 01 / 04</span>
+          <h3 class="card-1__title">DreamGully</h3>
+          <p class="card-1__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
         </div>
       </div>
     </div>
 
-    <!-- 2. liquidGL -->
+    <!-- 2. liquidGL (legacy) -->
     <div class="sample">
       <div class="sample__head">
-        <span class="sample__num">02 / 06</span>
+        <span class="sample__num">02 / 04</span>
         <h2 class="sample__name">liquidGL</h2>
-        <span class="sample__source">Source: <a href="https://github.com/naughtyduk/liquidGL">naughtyduk/liquidGL</a> · 594★</span>
+        <span class="sample__source">Source: naughtyduk/liquidGL · 594★</span>
       </div>
-      <p class="sample__desc">Dark glass at 0.12 opacity. Strong top inner highlight. The Apple reference style — clear glass with bg visible.</p>
+      <p class="sample__desc">Dark glass at 0.12 with top inner highlight. Apple reference style.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -357,123 +365,22 @@ body {
           <div class="brand-objects__shape brand-objects__sq"></div>
           <div class="brand-objects__shape brand-objects__dot"></div>
         </div>
-        <div class="card-area card-2">
-          <span class="card__eyebrow">Real · 01 / 04</span>
-          <h3 class="card__title">DreamGully</h3>
-          <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        <div class="card-2">
+          <span class="card-2__eyebrow">Real · 01 / 04</span>
+          <h3 class="card-2__title">DreamGully</h3>
+          <p class="card-2__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
         </div>
       </div>
     </div>
 
-    <!-- 3. themesberg -->
+    <!-- 6. javohirdev Apple (legacy chrome) -->
     <div class="sample">
       <div class="sample__head">
-        <span class="sample__num">03 / 06</span>
-        <h2 class="sample__name">themesberg / glass-ui</h2>
-        <span class="sample__source">Source: <a href="https://github.com/themesberg/glass-ui">themesberg/glass-ui</a> · 403★</span>
-      </div>
-      <p class="sample__desc">White glass at 0.08 with translucent image header. The gradient header lets the bg show through clearly.</p>
-      <div class="stage">
-        <div class="brand-bg">
-          <div class="brand-bg__blob brand-bg__blob--1"></div>
-          <div class="brand-bg__blob brand-bg__blob--2"></div>
-          <div class="brand-bg__blob brand-bg__blob--3"></div>
-          <div class="brand-bg__blob brand-bg__blob--4"></div>
-          <div class="brand-bg__blob brand-bg__blob--5"></div>
-        </div>
-        <div class="brand-objects">
-          <span class="brand-objects__wordmark">DreamGully</span>
-          <div class="brand-objects__shape brand-objects__ring"></div>
-          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
-          <div class="brand-objects__shape brand-objects__tri"></div>
-          <div class="brand-objects__shape brand-objects__sq"></div>
-          <div class="brand-objects__shape brand-objects__dot"></div>
-        </div>
-        <div class="card-area card-3">
-          <div class="card-3__img"></div>
-          <div class="card-3__body">
-            <span class="card__eyebrow">Real · 01 / 04</span>
-            <h3 class="card__title">DreamGully</h3>
-            <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
-            <button class="card-3__btn">View case study →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. css.glass -->
-    <div class="sample">
-      <div class="sample__head">
-        <span class="sample__num">04 / 06</span>
-        <h2 class="sample__name">css.glass</h2>
-        <span class="sample__source">Source: <a href="https://github.com/miketromba/css.glass">miketromba/css.glass</a> · 436★</span>
-      </div>
-      <p class="sample__desc">Translucent white glass at 0.07 with amber chip. The chip is the only solid element on the card.</p>
-      <div class="stage">
-        <div class="brand-bg">
-          <div class="brand-bg__blob brand-bg__blob--1"></div>
-          <div class="brand-bg__blob brand-bg__blob--2"></div>
-          <div class="brand-bg__blob brand-bg__blob--3"></div>
-          <div class="brand-bg__blob brand-bg__blob--4"></div>
-          <div class="brand-bg__blob brand-bg__blob--5"></div>
-        </div>
-        <div class="brand-objects">
-          <span class="brand-objects__wordmark">DreamGully</span>
-          <div class="brand-objects__shape brand-objects__ring"></div>
-          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
-          <div class="brand-objects__shape brand-objects__tri"></div>
-          <div class="brand-objects__shape brand-objects__sq"></div>
-          <div class="brand-objects__shape brand-objects__dot"></div>
-        </div>
-        <div class="card-area card-4">
-          <span class="card-4__chip">REAL · 01 / 04</span>
-          <h3 class="card__title">DreamGully</h3>
-          <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. saadman 3D -->
-    <div class="sample">
-      <div class="sample__head">
-        <span class="sample__num">05 / 06</span>
-        <h2 class="sample__name">saadman 3D tilt</h2>
-        <span class="sample__source">Source: <a href="https://github.com/saadman-galib/Glassmorphism-Card-Hover-Effect">saadman-galib/Glassmorphism-Card-Hover-Effect</a> · 3★</span>
-      </div>
-      <p class="sample__desc">Dark glass at 0.12, 3D tilted. The pink→amber icon glows. The bg shapes show through the dark card.</p>
-      <div class="stage">
-        <div class="brand-bg">
-          <div class="brand-bg__blob brand-bg__blob--1"></div>
-          <div class="brand-bg__blob brand-bg__blob--2"></div>
-          <div class="brand-bg__blob brand-bg__blob--3"></div>
-          <div class="brand-bg__blob brand-bg__blob--4"></div>
-          <div class="brand-bg__blob brand-bg__blob--5"></div>
-        </div>
-        <div class="brand-objects">
-          <span class="brand-objects__wordmark">DreamGully</span>
-          <div class="brand-objects__shape brand-objects__ring"></div>
-          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
-          <div class="brand-objects__shape brand-objects__tri"></div>
-          <div class="brand-objects__shape brand-objects__sq"></div>
-          <div class="brand-objects__shape brand-objects__dot"></div>
-        </div>
-        <div class="card-area card-5">
-          <div class="card-5__icon">✦</div>
-          <span class="card__eyebrow">Real · 01 / 04</span>
-          <h3 class="card__title">DreamGully</h3>
-          <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. javohirdev Apple -->
-    <div class="sample">
-      <div class="sample__head">
-        <span class="sample__num">06 / 06</span>
+        <span class="sample__num">03 / 04</span>
         <h2 class="sample__name">javohirdev Apple</h2>
-        <span class="sample__source">Source: <a href="https://github.com/javohirdev/3D-hover-Glassmorphism-AppleCard">javohirdev/3D-hover-Glassmorphism-AppleCard</a> · 3★</span>
+        <span class="sample__source">Source: javohirdev/3D-hover-Glassmorphism-AppleCard · 3★</span>
       </div>
-      <p class="sample__desc">Dark glass with chrome sphere on top. Chrome sphere is the only opaque element. Premium pricing card style.</p>
+      <p class="sample__desc">Dark glass with chrome sphere on top. Premium pricing card style.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -490,25 +397,67 @@ body {
           <div class="brand-objects__shape brand-objects__sq"></div>
           <div class="brand-objects__shape brand-objects__dot"></div>
         </div>
-        <div class="card-area card-6">
+        <div class="card-6">
           <div class="card-6__chrome"></div>
-          <h3 class="card__title">DreamGully</h3>
-          <p class="card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+          <h3 class="card-6__title">DreamGully</h3>
+          <p class="card-6__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
           <div class="card-6__price"><small>from</small>$2,400</div>
         </div>
+      </div>
+    </div>
+
+    <!-- 7. FROM-SCRATCH (Apple reference rebuild) -->
+    <div class="sample" style="border-color: var(--cobalt); background: rgba(42, 77, 220, 0.05);">
+      <div class="sample__head">
+        <span class="sample__num" style="color: var(--cobalt);">04 / 04 — NEW</span>
+        <h2 class="sample__name">From scratch (Apple rebuild)</h2>
+        <span class="sample__source">Hand-built · matches the Apple liquid glass reference</span>
+      </div>
+      <p class="sample__desc"><strong>3 layers:</strong> dark glass base (0.18 opacity, 8px blur — very transparent), explicit top sheen (the "light hitting glass" line), thin bright border. Plus a subtle outer glow. All 5 bg shapes are visible through the card with edges intact.</p>
+      <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
+        <div class="card-7">
+          <span class="card-7__eyebrow">Real · 01 / 04</span>
+          <h3 class="card-7__title">DreamGully</h3>
+          <p class="card-7__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+          <span class="card-7__chip">VIEW CASE STUDY →</span>
+        </div>
+      </div>
+      <div class="note__specs">
+        background: rgba(20, 18, 50, 0.18)<br>
+        backdrop-filter: blur(8px) saturate(180%)<br>
+        border: 1px solid rgba(255, 255, 255, 0.45)<br>
+        top sheen: ::before with linear-gradient<br>
+        inner highlight: inset 0 1px 0 rgba(255, 255, 255, 0.6)<br>
+        outer glow: ::after with linear-gradient + blur(8px)
       </div>
     </div>
 
   </div>
 
   <div class="note">
-    <strong>3rd revision of the glass treatment.</strong><br>
-    • Card opacity: 0.06-0.12 (was 0.20 in v2, 0.45 in v1) — now the actual sharp objects (rings, triangle, square, dot) are clearly visible through the glass, not just blob colors.<br>
-    • Backdrop blur: 14px (was 24-30px) — less blur so shapes keep their edges through the glass.<br>
-    • Bg blob blur: 25-30px (was 50-60px) — softer bg gives the shapes more presence.<br>
-    • Objects now have glow shadows for more "neon" feel.<br>
-    <br>
-    <strong>Tell me which one to use (or "blend X+Y" / "modify X — [tweak]").</strong>
+    <strong>Card 04 (from scratch)</strong> uses the exact pattern from your Apple reference:
+    • A very transparent dark glass base so the bg is clearly visible
+    • A <strong>thin bright border</strong> (the strongest "this is glass" signal)
+    • An <strong>explicit top sheen</strong> (linear-gradient inside the card) for the "light hitting the top edge" look
+    • A subtle outer glow for premium feel
+    • 8px backdrop blur (Apple's actual Liquid Glass uses 4-12px)
+    <br><br>
+    The 5 bg shapes (rings, triangle, square, dot, wordmark) are visible through the card with their edges mostly intact — the visibility you asked for.
   </div>
 </div>
 

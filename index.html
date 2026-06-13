@@ -474,7 +474,7 @@ html {
 
 #sec-cta { color: white; }
 
-#sec-cta .viewport__image { background: rgba(0, 0, 0, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+
 #sec-cta .viewport__text { color: white; }
 #sec-cta .viewport__eyebrow { color: rgba(255, 255, 255, 0.7); }
 #sec-cta .viewport__title { color: white; }
@@ -485,33 +485,11 @@ html {
    ============================================================ */
 
 /* HERO — wordmark pattern + content */
-#sec-hero .viewport__image {
-  background: linear-gradient(135deg, var(--cream) 0%, var(--bone) 100%);
-  position: relative;
-  overflow: hidden;
-}
-#sec-hero .viewport__image .wordmark-pattern {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(60px, 8vw, 140px);
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  opacity: 0.12;
-  transform: rotate(-8deg);
-  pointer-events: none;
-  white-space: nowrap;
-}
+
+
 
 /* REACH — carousel of IG embeds */
-#sec-reach .viewport__image {
-  background: linear-gradient(135deg, #e0f4ff 0%, #f0e8ff 100%);
-  padding: 20px;
-}
+
 .reach-carousel {
   width: 100%;
   height: 100%;
@@ -552,29 +530,8 @@ html {
 }
 
 /* SERIES — video preview */
-#sec-series .viewport__image {
-  background: linear-gradient(135deg, #fff0e0 0%, #ffe0f0 100%);
-  position: relative;
-}
-#sec-series .viewport__image::after {
-  content: "▶";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.85);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid var(--ink);
-  padding-left: 6px;
-  box-shadow: 4px 4px 0 var(--ink);
-}
+
+
 
 /* SERVICES — 4 services grid inside the text side */
 .services-grid {
@@ -797,26 +754,8 @@ html {
 }
 
 /* CTA — text on top of wordmark image */
-#sec-cta .viewport__image {
-  background: linear-gradient(135deg, rgba(42, 77, 220, 0.5) 0%, rgba(167, 139, 250, 0.5) 100%);
-  position: relative;
-}
-#sec-cta .viewport__image .wordmark-pattern {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(50px, 7vw, 120px);
-  letter-spacing: -0.04em;
-  color: white;
-  opacity: 0.18;
-  transform: rotate(-8deg);
-  pointer-events: none;
-  white-space: nowrap;
-}
+
+
 
 /* ============================================================
    FOOTER (inside section 6, below the 4:3 working area)

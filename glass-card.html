@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>iOS 26 Liquid Glass — Real Apple Spec</title>
+<title>iOS 26 Liquid Glass — Control Center Style</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,171 +17,237 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* The Memphis pattern bg (3 panels like your reference) */
-.bg { position: fixed; inset: 0; z-index: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; }
-.bg__panel { position: relative; overflow: hidden; }
-.bg__panel--blue { background: #1d4ed8; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22'/><circle cx='40' cy='40' r='12' fill='%23fbbf24'/><circle cx='40' cy='40' r='4'/><circle cx='130' cy='50' r='18' fill='%23ec4899'/><circle cx='180' cy='30' r='14' fill='%23fff' stroke='%23000'/><circle cx='190' cy='150' r='20'/><circle cx='190' cy='150' r='10' fill='%23fbbf24'/><circle cx='190' cy='150' r='4'/><path d='M70 140 L100 110 L130 140 Z' fill='%23ec4899'/><path d='M150 130 L180 110 L180 150 Z' fill='%23fff'/><path d='M30 100 h12 M36 94 v12' stroke-width='4'/><path d='M150 80 h12 M156 74 v12' stroke-width='4'/><g><circle cx='10' cy='180' r='2' fill='%23000'/><circle cx='22' cy='190' r='2' fill='%23000'/><circle cx='34' cy='180' r='2' fill='%23000'/><circle cx='46' cy='190' r='2' fill='%23000'/><circle cx='58' cy='180' r='2' fill='%23000'/><circle cx='70' cy='190' r='2' fill='%23000'/></g><circle cx='110' cy='180' r='10' fill='%23000'/><circle cx='110' cy='180' r='4' fill='%23fbbf24'/></g></svg>"), linear-gradient(135deg, #1d4ed8, #2563eb); background-size: 220px 220px, cover; background-repeat: repeat, no-repeat; }
-.bg__panel--yellow { background: #fbbf24; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22' fill='%23ec4899'/><circle cx='40' cy='40' r='10'/><circle cx='130' cy='60' r='24' fill='%231d4ed8'/><circle cx='180' cy='150' r='16' fill='%23ec4899'/><circle cx='180' cy='150' r='6'/><path d='M30 120 q5 -10 10 0 q5 10 10 0 q5 -10 10 0 q5 10 10 0' /><path d='M120 30 q5 -10 10 0 q5 10 10 0' /><path d='M30 190 q5 -10 10 0 q5 10 10 0' /><circle cx='40' cy='180' r='16' fill='%23fff' stroke='%23000'/><circle cx='180' cy='50' r='12' fill='%23fff' stroke='%23000'/><path d='M100 170 L115 155 L100 140 L85 155 Z' fill='%231d4ed8'/><g><circle cx='75' cy='100' r='1.5' fill='%23000'/><circle cx='85' cy='110' r='1.5' fill='%23000'/><circle cx='95' cy='100' r='1.5' fill='%23000'/><circle cx='75' cy='120' r='1.5' fill='%23000'/></g></g></svg>"), linear-gradient(135deg, #fbbf24, #f59e0b); background-size: 220px 220px, cover; background-repeat: repeat, no-repeat; }
-.bg__panel--pink { background: #ec4899; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22' fill='%23fbbf24'/><circle cx='40' cy='40' r='10'/><path d='M110 50 L130 30 L150 50 L130 70 Z' fill='%23fbbf24'/><path d='M170 100 L195 90 L195 115 Z' fill='%231d4ed8'/><g><line x1='80' y1='130' x2='120' y2='130'/><line x1='80' y1='140' x2='120' y2='140'/><line x1='80' y1='150' x2='120' y2='150'/></g><g><circle cx='150' cy='150' r='2' fill='%23000'/><circle cx='162' cy='160' r='2' fill='%23000'/><circle cx='174' cy='150' r='2' fill='%23000'/><circle cx='186' cy='160' r='2' fill='%23000'/><circle cx='162' cy='172' r='2' fill='%23000'/><circle cx='174' cy='184' r='2' fill='%23000'/><circle cx='150' cy='184' r='2' fill='%23000'/></g><path d='M30 150 q5 -10 10 0 q5 10 10 0 q5 -10 10 0' /><circle cx='190' cy='40' r='14' fill='%23fff'/><path d='M40 100 h12 M46 94 v12' stroke-width='4'/></g></svg>"), linear-gradient(135deg, #ec4899, #db2777); background-size: 220px 220px, cover; background-repeat: repeat, no-repeat; }
+/* The blue bg like the iOS 26 control center */
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 1000px 600px at 30% 20%, rgba(96, 165, 250, 0.6), transparent 60%),
+    radial-gradient(ellipse 800px 500px at 70% 80%, rgba(147, 197, 253, 0.5), transparent 60%),
+    linear-gradient(135deg, #0a4cb8 0%, #1e6fd9 50%, #2563eb 100%);
+  overflow: hidden;
+}
 
-/* The stage */
-.stage { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 60px 20px; }
+/* Sharp diagonal light streak (the lens flare-like line in the reference) */
+.bg__streak {
+  position: absolute;
+  top: 20%; left: -10%;
+  width: 140%; height: 80px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  transform: rotate(-25deg);
+  filter: blur(20px);
+}
+
+/* The card stage */
+.stage {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 20px;
+  flex-direction: column;
+  gap: 60px;
+}
 
 /* ==== THE iOS 26 LIQUID GLASS CARD ==== */
-/* The actual technique: SVG displacement filter for refraction + chromatic aberration */
+/* Two variants to show: pill (like "Focus" button) and circle (like icons) */
 .glass-card {
   position: relative;
-  width: 400px; max-width: 100%;
-  border-radius: 32px;
-  padding: 36px 30px;
-  display: flex; flex-direction: column; gap: 14px;
+  border-radius: 28px;
+  padding: 20px 28px;
+  display: flex; align-items: center; gap: 14px;
   color: white;
   isolation: isolate;
 }
 
-/* The GLASS layer (the actual iOS 26 effect with SVG displacement + chromatic aberration) */
+/* The GLASS layer — tinted blue, no border, heavy blur */
 .glass-card__glass {
   position: absolute; inset: 0;
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter:
-    blur(20px)
+    blur(40px)
     url("#ios26-displacement")
-    brightness(1.1)
-    saturate(1.5);
+    saturate(180%);
   -webkit-backdrop-filter:
-    blur(20px)
+    blur(40px)
     url("#ios26-displacement")
-    brightness(1.1)
-    saturate(1.5);
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
+    saturate(180%);
+  /* No border — the reference has no visible white outline */
   box-shadow:
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1.5px 0 0 rgba(255, 255, 255, 0.1),
-    0 20px 60px rgba(0, 0, 0, 0.18);
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.25),
+    0 10px 40px rgba(0, 0, 0, 0.15);
   pointer-events: none;
   z-index: -1;
 }
 
-/* The TOP SHEEN — gives the "frosted glass with light at the top" look */
+/* The TOP SHEEN — just a subtle highlight */
 .glass-card__sheen {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 100px;
-  border-radius: 32px 32px 0 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+  height: 50%;
+  border-radius: 28px 28px 50% 50% / 28px 28px 30% 30%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 100%);
   pointer-events: none;
   z-index: -1;
 }
 
-/* The OUTER GLOW — the soft halo */
-.glass-card__glow {
-  position: absolute;
-  inset: -3px;
-  border-radius: 35px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(167, 139, 250, 0.25), rgba(236, 72, 153, 0.2));
-  filter: blur(14px);
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.glass-card__eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-  position: relative; z-index: 1;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-.glass-card__title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 32px; font-weight: 500;
-  letter-spacing: -0.02em; margin: 0; color: white;
-  position: relative; z-index: 1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-.glass-card__body {
-  font-size: 14px; margin: 0; line-height: 1.55;
-  color: rgba(255, 255, 255, 0.95);
-  position: relative; z-index: 1;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-.glass-card__chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 14px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 100px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: 0.2em;
+.glass-card__icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
   color: white;
-  width: fit-content;
-  backdrop-filter: blur(8px);
   position: relative; z-index: 1;
-  margin-top: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
-.glass-card__chip:hover { background: rgba(255, 255, 255, 0.3); }
+.glass-card__icon svg { width: 100%; height: 100%; }
 
-/* Caption */
+.glass-card__label {
+  font-size: 17px; font-weight: 500;
+  color: white;
+  position: relative; z-index: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* The CIRCLE glass — for the icon-only buttons like Camera */
+.glass-circle {
+  position: relative;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  isolation: isolate;
+}
+.glass-circle__glass {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter:
+    blur(40px)
+    url("#ios26-displacement")
+    saturate(180%);
+  -webkit-backdrop-filter:
+    blur(40px)
+    url("#ios26-displacement")
+    saturate(180%);
+  box-shadow:
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.25),
+    0 10px 40px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: -1;
+}
+.glass-circle__sheen {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+.glass-circle__icon {
+  width: 32px; height: 32px;
+  position: relative; z-index: 1;
+  color: white;
+}
+.glass-circle__icon svg { width: 100%; height: 100%; }
+
+/* Card with content (rectangular variant) */
+.glass-card--content {
+  width: 400px; max-width: 100%;
+  border-radius: 32px;
+  padding: 32px 28px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.glass-card--content .glass-card__glass,
+.glass-card--content .glass-card__sheen {
+  border-radius: 32px;
+}
+
+/* Layout */
+.row { display: flex; gap: 24px; align-items: center; }
+
 .caption {
-  position: fixed; bottom: 24px; left: 0; right: 0;
   text-align: center;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-  z-index: 2;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  margin-top: 20px;
 }
 </style>
 </head>
 <body>
 
-<!-- The iOS 26 displacement SVG filter (the magic that creates real refraction) -->
+<!-- The iOS 26 displacement SVG filter -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <filter id="ios26-displacement" color-interpolation-filters="sRGB">
-      <!-- The displacement map (creates the refraction effect) -->
       <feImage x="0" y="0" width="400" height="400"
-        href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='Y' x1='0' x2='0' y1='8%25' y2='92%25'%3E%3Cstop offset='0%25' stop-color='%230F0'/%3E%3Cstop offset='100%25' stop-color='%23000'/%3E%3C/linearGradient%3E%3ClinearGradient id='X' x1='8%25' x2='92%25' y1='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%23F00'/%3E%3Cstop offset='100%25' stop-color='%23000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='%23808080'/%3E%3Cg filter='blur(2px)'%3E%3Crect width='400' height='400' fill='%23000080'/%3E%3Crect width='400' height='400' fill='url(%23Y)' style='mix-blend-mode:screen'/%3E%3Crect width='400' height='400' fill='url(%23X)' style='mix-blend-mode:screen'/%3E%3Crect x='14' y='14' width='372' height='372' rx='32' ry='32' fill='%23808080' filter='blur(14px)'/%3E%3C/g%3E%3C/svg%3E"
+        href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='Y' x1='0' x2='0' y1='10%25' y2='90%25'%3E%3Cstop offset='0%25' stop-color='%230F0'/%3E%3Cstop offset='100%25' stop-color='%23000'/%3E%3C/linearGradient%3E%3ClinearGradient id='X' x1='10%25' x2='90%25' y1='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%23F00'/%3E%3Cstop offset='100%25' stop-color='%23000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='%23808080'/%3E%3Cg filter='blur(2px)'%3E%3Crect width='400' height='400' fill='%23000080'/%3E%3Crect width='400' height='400' fill='url(%23Y)' style='mix-blend-mode:screen'/%3E%3Crect width='400' height='400' fill='url(%23X)' style='mix-blend-mode:screen'/%3E%3Crect x='20' y='20' width='360' height='360' rx='28' ry='28' fill='%23808080' filter='blur(20px)'/%3E%3C/g%3E%3C/svg%3E"
         result="displacementMap" />
-      <!-- Red channel displaced (more = more chromatic aberration) -->
-      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="104" xChannelSelector="R" yChannelSelector="G" result="dispR" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="80" xChannelSelector="R" yChannelSelector="G" result="dispR" />
       <feColorMatrix in="dispR" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="R" />
-      <!-- Green channel displaced -->
-      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="102" xChannelSelector="R" yChannelSelector="G" result="dispG" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="76" xChannelSelector="R" yChannelSelector="G" result="dispG" />
       <feColorMatrix in="dispG" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="G" />
-      <!-- Blue channel displaced (least) -->
-      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="100" xChannelSelector="R" yChannelSelector="G" result="dispB" />
+      <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="72" xChannelSelector="R" yChannelSelector="G" result="dispB" />
       <feColorMatrix in="dispB" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="B" />
-      <!-- Blend the 3 channels back together -->
       <feBlend in="R" in2="G" mode="screen" result="RG" />
       <feBlend in="RG" in2="B" mode="screen" />
     </filter>
   </defs>
 </svg>
 
-<!-- Memphis bg -->
+<!-- Blue bg like iOS 26 control center -->
 <div class="bg">
-  <div class="bg__panel bg__panel--blue"></div>
-  <div class="bg__panel bg__panel--yellow"></div>
-  <div class="bg__panel bg__panel--pink"></div>
+  <div class="bg__streak"></div>
 </div>
 
-<!-- Card -->
 <div class="stage">
-  <div class="glass-card">
+
+  <!-- The "Focus" style pill (top) -->
+  <div class="row">
+    <!-- Circle icon button (Camera) -->
+    <div class="glass-circle">
+      <div class="glass-circle__glass"></div>
+      <div class="glass-circle__sheen"></div>
+      <div class="glass-circle__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+    </div>
+
+    <!-- The "Focus" pill button -->
+    <div class="glass-card">
+      <div class="glass-card__glass"></div>
+      <div class="glass-card__sheen"></div>
+      <div class="glass-card__icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </div>
+      <span class="glass-card__label">Focus</span>
+    </div>
+
+    <!-- Another circle (Stack) -->
+    <div class="glass-circle">
+      <div class="glass-circle__glass"></div>
+      <div class="glass-circle__sheen"></div>
+      <div class="glass-circle__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rectangular content card (bottom) -->
+  <div class="glass-card glass-card--content">
     <div class="glass-card__glass"></div>
     <div class="glass-card__sheen"></div>
-    <div class="glass-card__glow"></div>
-    <span class="glass-card__eyebrow">Real · 01 / 04</span>
-    <h2 class="glass-card__title">DreamGully</h2>
-    <p class="glass-card__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
-    <span class="glass-card__chip">VIEW CASE STUDY →</span>
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">Real · 01 / 04</span>
+    <h2 style="font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 500; margin: 0; letter-spacing: -0.02em; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">DreamGully</h2>
+    <p style="font-size: 13px; margin: 0; line-height: 1.55; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">The studio itself — the first case study. Brand, web, content, the lot.</p>
+    <span style="display: inline-flex; padding: 7px 14px; background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: white; backdrop-filter: blur(8px); width: fit-content; margin-top: 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">VIEW CASE STUDY →</span>
   </div>
-</div>
 
-<p class="caption">iOS 26 Liquid Glass · SVG displacement + chromatic aberration</p>
+  <p class="caption">iOS 26 Liquid Glass · Control Center style · SVG displacement + chromatic aberration</p>
+</div>
 
 </body>
 </html>

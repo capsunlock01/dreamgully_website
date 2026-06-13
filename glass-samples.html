@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Glassmorphism Card Library — DreamGully</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ink: #1e1b4b;
+  --ink-soft: #4a4775;
+  --ink-mute: #8884a8;
+  --bone: #f5f1e8;
+  --cream: #faf6ec;
+  --cobalt: #2a4ddc;
+  --pink: #ec4899;
+  --amber: #f59e0b;
+  --sky: #38bdf8;
+  --lavender: #a78bfa;
+  --peach: #fb923c;
+  --emerald: #10b981;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 1400px; margin: 0 auto; padding: 80px 32px 120px; }
+
+.page__header { text-align: center; margin-bottom: 80px; }
+.page__eyebrow {
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-soft); margin: 0 0 16px;
+}
+.page__title {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(36px, 5vw, 64px); line-height: 1.05;
+  letter-spacing: -0.02em; margin: 0 0 16px;
+}
+.page__sub { font-size: 16px; color: var(--ink-soft); max-width: 60ch; margin: 0 auto; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 60px;
+}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+.sample {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--ink);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sample__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sample__num {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.sample__name {
+  font-family: var(--font-display); font-size: 22px;
+  font-weight: 500; letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.sample__source {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--ink-soft);
+}
+.sample__source a { color: var(--cobalt); text-decoration: none; }
+.sample__source a:hover { text-decoration: underline; }
+.sample__desc { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+/* ===== Stage: colorful bg with pattern + shapes ===== */
+.stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* Pattern overlay: grid + dots */
+.pattern {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(30, 27, 75, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 27, 75, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Color blobs (atmospheric color washes) */
+.blobs { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.blob { position: absolute; border-radius: 50%; filter: blur(40px); }
+
+/* Shape decorations */
+.shape { position: absolute; z-index: 0; opacity: 0.7; }
+.shape--ring { border: 4px solid; border-radius: 50%; }
+.shape--tri {
+  width: 0; height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 50px solid;
+  opacity: 0.5;
+}
+.shape--sq { border-radius: 6px; transform: rotate(15deg); }
+.shape--plus {
+  position: absolute; width: 18px; height: 18px;
+  background: currentColor;
+}
+.shape--plus::before, .shape--plus::after {
+  content: ''; position: absolute; background: var(--cream);
+}
+.shape--plus::before { width: 4px; height: 18px; left: 7px; top: 0; }
+.shape--plus::after { width: 18px; height: 4px; top: 7px; left: 0; }
+
+/* ===== STAGE 1: bedimcode/glassmorphism-card-responsive ===== */
+.stage-1 {
+  background: linear-gradient(135deg, #fce7f3 0%, #ddd6fe 50%, #bae6fd 100%);
+}
+.stage-1 .blob:nth-child(1) { width: 180px; height: 180px; background: var(--pink); top: 10%; left: 10%; opacity: 0.7; }
+.stage-1 .blob:nth-child(2) { width: 160px; height: 160px; background: var(--lavender); bottom: 15%; right: 15%; opacity: 0.7; }
+.stage-1 .blob:nth-child(3) { width: 130px; height: 130px; background: var(--sky); top: 50%; right: 30%; opacity: 0.6; }
+
+/* bedimcode style card */
+.card-bedimcode {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 8px 32px rgba(30, 27, 75, 0.1);
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 0.3s var(--ease);
+}
+.card-bedimcode:hover { transform: translateY(-4px); }
+.card-bedimcode__pic {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--lavender), var(--pink));
+  border: 2px solid white;
+}
+.card-bedimcode__name { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin: 0; }
+.card-bedimcode__role { font-size: 12px; color: var(--ink-soft); margin: 0; }
+.card-bedimcode__socials { display: flex; gap: 10px; margin-top: 8px; }
+.card-bedimcode__btn {
+  flex: 1; padding: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-size: 11px; color: var(--ink); text-align: center;
+  cursor: pointer; font-family: var(--font-body);
+}
+
+/* ===== STAGE 2: liquidGL (iOS 26 liquid glass) ===== */
+.stage-2 {
+  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%);
+}
+.stage-2 .blob:nth-child(1) { width: 200px; height: 200px; background: var(--pink); top: 15%; left: 5%; opacity: 0.6; }
+.stage-2 .blob:nth-child(2) { width: 180px; height: 180px; background: var(--amber); bottom: 20%; right: 10%; opacity: 0.5; }
+.stage-2 .blob:nth-child(3) { width: 150px; height: 150px; background: var(--sky); top: 50%; right: 25%; opacity: 0.5; }
+
+.card-liquidgl {
+  position: relative; z-index: 2;
+  width: 75%; max-width: 320px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(236, 72, 153, 0.2);
+  color: white;
+  display: flex; flex-direction: column; gap: 10px;
+  overflow: hidden;
+}
+/* Liquid gl inner highlight */
+.card-liquidgl::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+  pointer-events: none;
+}
+.card-liquidgl__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
+.card-liquidgl__title { font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 0; letter-spacing: -0.01em; }
+.card-liquidgl__body { font-size: 12px; color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.5; }
+.card-liquidgl__chip {
+  display: inline-block; padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px; font-size: 10px;
+  align-self: flex-start; margin-top: 4px;
+}
+
+/* ===== STAGE 3: themesberg/glass-ui ===== */
+.stage-3 {
+  background: linear-gradient(135deg, #ecfeff 0%, #ede9fe 50%, #fce7f3 100%);
+}
+.stage-3 .blob:nth-child(1) { width: 200px; height: 200px; background: var(--sky); top: 10%; right: 10%; opacity: 0.7; }
+.stage-3 .blob:nth-child(2) { width: 170px; height: 170px; background: var(--lavender); bottom: 15%; left: 15%; opacity: 0.7; }
+.stage-3 .blob:nth-child(3) { width: 140px; height: 140px; background: var(--pink); top: 50%; left: 50%; transform: translateX(-50%); opacity: 0.6; }
+
+.card-themesberg {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 30px rgba(30, 27, 75, 0.12);
+  color: var(--ink);
+  overflow: hidden;
+}
+.card-themesberg__img {
+  width: 100%; height: 80px;
+  background: linear-gradient(135deg, var(--cobalt), var(--lavender));
+}
+.card-themesberg__body { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.card-themesberg__title { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin: 0; }
+.card-themesberg__text { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+.card-themesberg__btn {
+  align-self: flex-start;
+  padding: 6px 12px; font-size: 11px;
+  background: var(--cobalt); color: white;
+  border: none; border-radius: 6px;
+  font-family: var(--font-body); font-weight: 500;
+  cursor: pointer;
+}
+
+/* ===== STAGE 4: css.glass generated ===== */
+.stage-4 {
+  background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 50%, #fed7aa 100%);
+}
+.stage-4 .blob:nth-child(1) { width: 200px; height: 200px; background: var(--peach); top: 10%; left: 5%; opacity: 0.7; }
+.stage-4 .blob:nth-child(2) { width: 170px; height: 170px; background: var(--amber); bottom: 10%; right: 20%; opacity: 0.7; }
+.stage-4 .blob:nth-child(3) { width: 140px; height: 140px; background: var(--pink); top: 50%; left: 50%; opacity: 0.6; }
+
+.card-cssglass {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.card-cssglass__chip {
+  display: inline-block; padding: 4px 10px;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 100px; font-size: 10px;
+  color: #92400e; align-self: flex-start;
+  font-family: var(--font-mono); letter-spacing: 0.1em;
+}
+.card-cssglass__title { font-family: var(--font-display); font-size: 22px; font-weight: 500; margin: 0; }
+.card-cssglass__body { font-size: 12px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+/* ===== STAGE 5: saadman (3D tilt) ===== */
+.stage-5 {
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+}
+.stage-5 .blob:nth-child(1) { width: 200px; height: 200px; background: var(--lavender); top: 10%; right: 15%; opacity: 0.6; }
+.stage-5 .blob:nth-child(2) { width: 170px; height: 170px; background: var(--cobalt); bottom: 15%; left: 10%; opacity: 0.6; }
+.stage-5 .blob:nth-child(3) { width: 140px; height: 140px; background: var(--pink); top: 50%; left: 50%; transform: translateX(-50%); opacity: 0.5; }
+
+.card-tilt {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex; flex-direction: column; gap: 10px;
+  transform: perspective(800px) rotateY(-8deg) rotateX(4deg);
+  transition: transform 0.5s var(--ease);
+}
+.card-tilt:hover { transform: perspective(800px) rotateY(0deg) rotateX(0deg); }
+.card-tilt__icon {
+  width: 50px; height: 50px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--pink), var(--amber));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+}
+.card-tilt__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; }
+.card-tilt__body { font-size: 12px; color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.5; }
+
+/* ===== STAGE 6: javohirdev (Apple-style) ===== */
+.stage-6 {
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+}
+.stage-6 .blob:nth-child(1) { width: 200px; height: 200px; background: linear-gradient(135deg, #d0d8e0, #f0f0f0); top: 15%; left: 10%; opacity: 0.4; }
+.stage-6 .blob:nth-child(2) { width: 180px; height: 180px; background: linear-gradient(135deg, #c0c8d0, #e8e8e8); bottom: 20%; right: 15%; opacity: 0.5; }
+.stage-6 .blob:nth-child(3) { width: 140px; height: 140px; background: linear-gradient(135deg, #b8c0c8, #d8d8d8); top: 50%; right: 5%; opacity: 0.4; }
+
+.card-apple {
+  position: relative; z-index: 2;
+  width: 70%; max-width: 320px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 20px 50px rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex; flex-direction: column; gap: 12px;
+  transform: perspective(800px) rotateY(5deg) rotateX(-2deg);
+  transition: transform 0.5s var(--ease);
+}
+.card-apple:hover { transform: perspective(800px) rotateY(0deg) rotateX(0deg); }
+.card-apple__chrome {
+  width: 100%; height: 60px; border-radius: 12px;
+  background: linear-gradient(135deg, #d0d8e0 0%, #f0f0f0 50%, #c0c8d0 100%);
+  position: relative; overflow: hidden;
+}
+.card-apple__chrome::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+}
+.card-apple__title { font-family: var(--font-display); font-size: 22px; font-weight: 500; margin: 0; letter-spacing: -0.01em; }
+.card-apple__body { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin: 0; line-height: 1.5; }
+.card-apple__price { font-family: var(--font-display); font-size: 32px; font-weight: 600; margin: 4px 0; }
+.card-apple__price small { font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+
+.note {
+  margin-top: 60px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--ink);
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.note strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="page__header">
+    <p class="page__eyebrow">Design exploration</p>
+    <h1 class="page__title">Glassmorphism card library</h1>
+    <p class="page__sub">6 different card implementations, each on a colorful patterned background. Pick the one that feels right for DreamGully.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- 1. bedimcode -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">01 / 06</span>
+        <h2 class="sample__name">bedimcode</h2>
+        <span class="sample__source">Source: <a href="https://github.com/bedimcode/glassmorphism-card-responsive">bedimcode/glassmorphism-card-responsive</a> · 41★</span>
+      </div>
+      <p class="sample__desc">Light translucent card with avatar + name + role. Clean profile-card pattern. Most "iOS 26 colorful" feel.</p>
+      <div class="stage stage-1">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-bedimcode">
+          <div class="card-bedimcode__pic"></div>
+          <div>
+            <h3 class="card-bedimcode__name">DreamGully</h3>
+            <p class="card-bedimcode__role">Creative studio for the AI age</p>
+          </div>
+          <div class="card-bedimcode__socials">
+            <button class="card-bedimcode__btn">Brand</button>
+            <button class="card-bedimcode__btn">Web</button>
+            <button class="card-bedimcode__btn">Content</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. liquidGL -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">02 / 06</span>
+        <h2 class="sample__name">liquidGL</h2>
+        <span class="sample__source">Source: <a href="https://github.com/naughtyduk/liquidGL">naughtyduk/liquidGL</a> · 594★</span>
+      </div>
+      <p class="sample__desc">iOS 26 liquid glass on dark bg with colorful blobs. The "real glass" reference look. Heavy blur + colored glow.</p>
+      <div class="stage stage-2">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-liquidgl">
+          <span class="card-liquidgl__eyebrow">Real · 01 / 04</span>
+          <h3 class="card-liquidgl__title">DreamGully</h3>
+          <p class="card-liquidgl__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+          <span class="card-liquidgl__chip">View case study →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. themesberg/glass-ui -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">03 / 06</span>
+        <h2 class="sample__name">themesberg / glass-ui</h2>
+        <span class="sample__source">Source: <a href="https://github.com/themesberg/glass-ui">themesberg/glass-ui</a> · 403★</span>
+      </div>
+      <p class="sample__desc">Production CSS library. Card has gradient image header + body. Closer to a typical case study card.</p>
+      <div class="stage stage-3">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-themesberg">
+          <div class="card-themesberg__img"></div>
+          <div class="card-themesberg__body">
+            <h3 class="card-themesberg__title">DreamGully</h3>
+            <p class="card-themesberg__text">The studio itself — the first case study. Brand, web, content, the lot.</p>
+            <button class="card-themesberg__btn">View case study →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. css.glass -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">04 / 06</span>
+        <h2 class="sample__name">css.glass</h2>
+        <span class="sample__source">Source: <a href="https://github.com/miketromba/css.glass">miketromba/css.glass</a> · 436★</span>
+      </div>
+      <p class="sample__desc">The CSS generator. Simple glass with chip + title + body. Lightest blur, most readable text.</p>
+      <div class="stage stage-4">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-cssglass">
+          <span class="card-cssglass__chip">REAL · 01 / 04</span>
+          <h3 class="card-cssglass__title">DreamGully</h3>
+          <p class="card-cssglass__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. saadman (3D tilt) -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">05 / 06</span>
+        <h2 class="sample__name">saadman 3D tilt</h2>
+        <span class="sample__source">Source: <a href="https://github.com/saadman-galib/Glassmorphism-Card-Hover-Effect">saadman-galib/Glassmorphism-Card-Hover-Effect</a> · 3★</span>
+      </div>
+      <p class="sample__desc">3D perspective tilt on hover. Dark glass with icon + title + body. Most interactive of the 6.</p>
+      <div class="stage stage-5">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-tilt">
+          <div class="card-tilt__icon">✦</div>
+          <h3 class="card-tilt__title">DreamGully</h3>
+          <p class="card-tilt__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. javohirdev (Apple) -->
+    <div class="sample">
+      <div class="sample__head">
+        <span class="sample__num">06 / 06</span>
+        <h2 class="sample__name">javohirdev Apple</h2>
+        <span class="sample__source">Source: <a href="https://github.com/javohirdev/3D-hover-Glassmorphism-AppleCard">javohirdev/3D-hover-Glassmorphism-AppleCard</a> · 3★</span>
+      </div>
+      <p class="sample__desc">3D tilt Apple-style with chrome sphere on top. Dark glass on dark bg with chrome blobs. Reference-look style.</p>
+      <div class="stage stage-6">
+        <div class="pattern"></div>
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-apple">
+          <div class="card-apple__chrome"></div>
+          <h3 class="card-apple__title">DreamGully</h3>
+          <p class="card-apple__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+          <div class="card-apple__price"><small>from</small> $2,400</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>Pick the card you want for the live site (or "blend 2+3" etc.).</strong><br>
+    Tell me which sections get it (case study cards only? all 7 sections? hero too?).
+  </div>
+</div>
+
+</body>
+</html>

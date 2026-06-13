@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Glassmorphism Cards — Same BG — DreamGully</title>
+<title>Glassmorphism Cards — DreamGully Brand BG</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,7 +81,7 @@ body {
 .sample__source a:hover { text-decoration: underline; }
 .sample__desc { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
 
-/* ==== THE STAGE — same for all 6 ==== */
+/* ==== THE DREAMGULLY STAGE — same for all 6 ==== */
 .stage {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -92,11 +92,63 @@ body {
   align-items: center;
   justify-content: center;
   padding: 30px;
-  /* THE ONE BG: cream gradient with subtle warm-cool atmospheric blobs */
-  background:
-    radial-gradient(ellipse 600px 400px at 25% 30%, rgba(167, 139, 250, 0.35), transparent 60%),
-    radial-gradient(ellipse 500px 350px at 80% 70%, rgba(251, 146, 60, 0.3), transparent 60%),
-    linear-gradient(135deg, #f5f1e8 0%, #ede4d3 50%, #ddd6c2 100%);
+  background: linear-gradient(135deg, #fce7f3 0%, #ddd6fe 30%, #bae6fd 70%, #fed7aa 100%);
+}
+
+/* Brand color blobs — identical in every stage */
+.brand-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.brand-bg__blob {
+  position: absolute; border-radius: 50%; filter: blur(50px);
+}
+.brand-bg__blob--1 { width: 220px; height: 220px; background: var(--lavender); top: -20px; left: -30px; opacity: 0.8; }
+.brand-bg__blob--2 { width: 200px; height: 200px; background: var(--peach); bottom: -40px; right: -20px; opacity: 0.8; }
+.brand-bg__blob--3 { width: 180px; height: 180px; background: var(--sky); top: 40%; right: 15%; opacity: 0.7; }
+.brand-bg__blob--4 { width: 160px; height: 160px; background: var(--pink); top: 30%; left: 20%; opacity: 0.7; }
+.brand-bg__blob--5 { width: 140px; height: 140px; background: var(--amber); bottom: 20%; left: 40%; opacity: 0.6; }
+
+/* Brand objects — identical in every stage */
+.brand-objects { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.brand-objects__shape { position: absolute; }
+.brand-objects__ring {
+  width: 70px; height: 70px; border: 3px solid var(--lavender);
+  border-radius: 50%; top: 12%; right: 8%;
+  opacity: 0.5;
+}
+.brand-objects__ring--2 {
+  width: 50px; height: 50px; border: 2.5px solid var(--pink);
+  bottom: 15%; left: 10%; border-radius: 50%;
+  opacity: 0.5;
+}
+.brand-objects__tri {
+  width: 0; height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-bottom: 38px solid var(--amber);
+  top: 55%; right: 20%;
+  opacity: 0.45;
+  filter: blur(0.5px);
+}
+.brand-objects__sq {
+  width: 38px; height: 38px; border-radius: 6px;
+  background: var(--sky); opacity: 0.5;
+  top: 18%; left: 50%; transform: rotate(20deg);
+}
+.brand-objects__dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--pink);
+  bottom: 25%; right: 35%;
+  opacity: 0.6;
+  box-shadow: 0 0 20px var(--pink);
+}
+.brand-objects__wordmark {
+  position: absolute;
+  top: 8%; left: 6%;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  opacity: 0.18;
 }
 
 /* Card area for all 6 — same content, different glass treatment */
@@ -258,8 +310,8 @@ body {
 <div class="page">
   <header class="page__header">
     <p class="page__eyebrow">Design exploration</p>
-    <h1 class="page__title">Glassmorphism cards — same bg</h1>
-    <p class="page__sub">All 6 cards sit on the same cream/atmospheric bg. Only the glass treatment changes. Pick the one you want.</p>
+    <h1 class="page__title">Glassmorphism cards — DreamGully brand bg</h1>
+    <p class="page__sub">All 6 cards on the same DreamGully brand bg (lavender + peach + sky + pink + amber blobs, plus brand-colored shapes). Only the glass changes.</p>
   </header>
 
   <div class="grid">
@@ -273,6 +325,21 @@ body {
       </div>
       <p class="sample__desc">Light white glass, soft border, no inner highlight. Friendliest feel.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-1">
           <span class="card__eyebrow">Real · 01 / 04</span>
           <h3 class="card__title">DreamGully</h3>
@@ -290,6 +357,21 @@ body {
       </div>
       <p class="sample__desc">Dark glass with strong top inner highlight. "Real glass" look.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-2">
           <span class="card__eyebrow">Real · 01 / 04</span>
           <h3 class="card__title">DreamGully</h3>
@@ -307,6 +389,21 @@ body {
       </div>
       <p class="sample__desc">White glass with a gradient image header + body + cobalt button. Most case-study-like structure.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-3">
           <div class="card-3__img"></div>
           <div class="card-3__body">
@@ -328,6 +425,21 @@ body {
       </div>
       <p class="sample__desc">White glass with amber chip. Lightest blur, most readable text.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-4">
           <span class="card-4__chip">REAL · 01 / 04</span>
           <h3 class="card__title">DreamGully</h3>
@@ -345,6 +457,21 @@ body {
       </div>
       <p class="sample__desc">Dark glass with 3D perspective tilt + icon. Most interactive.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-5">
           <div class="card-5__icon">✦</div>
           <span class="card__eyebrow">Real · 01 / 04</span>
@@ -363,6 +490,21 @@ body {
       </div>
       <p class="sample__desc">Dark glass with chrome sphere on top. Direct reference look — premium pricing card style.</p>
       <div class="stage">
+        <div class="brand-bg">
+          <div class="brand-bg__blob brand-bg__blob--1"></div>
+          <div class="brand-bg__blob brand-bg__blob--2"></div>
+          <div class="brand-bg__blob brand-bg__blob--3"></div>
+          <div class="brand-bg__blob brand-bg__blob--4"></div>
+          <div class="brand-bg__blob brand-bg__blob--5"></div>
+        </div>
+        <div class="brand-objects">
+          <span class="brand-objects__wordmark">DreamGully</span>
+          <div class="brand-objects__shape brand-objects__ring"></div>
+          <div class="brand-objects__shape brand-objects__ring brand-objects__ring--2"></div>
+          <div class="brand-objects__shape brand-objects__tri"></div>
+          <div class="brand-objects__shape brand-objects__sq"></div>
+          <div class="brand-objects__shape brand-objects__dot"></div>
+        </div>
         <div class="card-area card-6">
           <div class="card-6__chrome"></div>
           <h3 class="card__title">DreamGully</h3>
@@ -375,7 +517,9 @@ body {
   </div>
 
   <div class="note">
-    <strong>All 6 cards on the same bg.</strong><br>
+    <strong>All 6 cards on the exact same DreamGully brand bg.</strong><br>
+    The bg has 5 brand color blobs (lavender, peach, sky, pink, amber) + 5 brand-colored shapes (lavender ring, pink ring, amber triangle, sky square, pink dot) + faint wordmark watermark.<br>
+    <br>
     Pick the one you want (or "blend 2+5" etc.) and tell me where to apply it.
   </div>
 </div>

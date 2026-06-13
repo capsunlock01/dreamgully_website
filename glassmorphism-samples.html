@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Glassmorphism Samples — DreamGully</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ink: #1e1b4b;
+  --ink-mid: #2d2a5c;
+  --ink-soft: #4a4775;
+  --ink-mute: #8884a8;
+  --bone: #f5f1e8;
+  --cream: #faf6ec;
+  --cobalt: #2a4ddc;
+  --pink: #ec4899;
+  --amber: #f59e0b;
+  --sky: #38bdf8;
+  --lavender: #a78bfa;
+  --peach: #fb923c;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
+}
+
+.page__header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.page__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+}
+
+.page__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+.page__sub {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 60px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.sample {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sample__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.sample__name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.sample__desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sample__stage {
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1.5px dashed rgba(30, 27, 75, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* The color blobs (the "stuff behind the glass") */
+.blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+}
+
+/* ==== SAMPLE 1 — Dark glass on light bg with bright blobs ==== */
+.stage-1 {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--bone) 100%);
+}
+.stage-1 .blob:nth-child(1) { width: 220px; height: 220px; background: var(--lavender); top: 10%; left: 15%; }
+.stage-1 .blob:nth-child(2) { width: 180px; height: 180px; background: var(--peach); bottom: 15%; right: 20%; }
+.stage-1 .blob:nth-child(3) { width: 150px; height: 150px; background: var(--sky); top: 50%; right: 5%; }
+
+.card-1 {
+  position: relative;
+  z-index: 1;
+  width: 75%;
+  height: 70%;
+  background: rgba(20, 20, 40, 0.35);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.1),
+    0 10px 40px rgba(30, 27, 75, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+}
+.card-1__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.card-1__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+}
+.card-1__body {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==== SAMPLE 2 — Light glass on light bg with bright blobs ==== */
+.stage-2 {
+  background: linear-gradient(135deg, #fff5e6 0%, #f0e6ff 100%);
+}
+.stage-2 .blob:nth-child(1) { width: 250px; height: 250px; background: var(--pink); top: 5%; right: 10%; }
+.stage-2 .blob:nth-child(2) { width: 200px; height: 200px; background: var(--sky); bottom: 10%; left: 15%; }
+.stage-2 .blob:nth-child(3) { width: 160px; height: 160px; background: var(--amber); top: 40%; left: 50%; transform: translateX(-50%); }
+
+.card-2 {
+  position: relative;
+  z-index: 1;
+  width: 75%;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.2),
+    0 10px 40px rgba(30, 27, 75, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: var(--ink);
+}
+.card-2__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.card-2__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--ink);
+}
+.card-2__body {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==== SAMPLE 3 — Dark glass on DARK bg with chrome-like blobs (the reference look) ==== */
+.stage-3 {
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1530 100%);
+}
+.stage-3 .blob:nth-child(1) { width: 200px; height: 200px; background: linear-gradient(135deg, #d0d8e0, #f0f0f0); top: 15%; left: 10%; opacity: 0.4; filter: blur(30px); }
+.stage-3 .blob:nth-child(2) { width: 180px; height: 180px; background: linear-gradient(135deg, #c0c8d0, #e8e8e8); bottom: 20%; right: 15%; opacity: 0.5; filter: blur(25px); }
+.stage-3 .blob:nth-child(3) { width: 140px; height: 140px; background: linear-gradient(135deg, #b8c0c8, #d8d8d8); top: 50%; right: 5%; opacity: 0.4; filter: blur(20px); }
+
+.card-3 {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  height: 75%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+    0 10px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+}
+.card-3__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.card-3__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+}
+.card-3__body {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==== SAMPLE 4 — Light glass on DARK bg (the reference style, light text) ==== */
+.stage-4 {
+  background: linear-gradient(135deg, #1e1b4b 0%, #2d1b5c 100%);
+}
+.stage-4 .blob:nth-child(1) { width: 240px; height: 240px; background: var(--pink); top: 10%; left: 10%; opacity: 0.5; filter: blur(50px); }
+.stage-4 .blob:nth-child(2) { width: 200px; height: 200px; background: var(--amber); bottom: 15%; right: 15%; opacity: 0.4; filter: blur(45px); }
+.stage-4 .blob:nth-child(3) { width: 180px; height: 180px; background: var(--sky); top: 50%; right: 5%; opacity: 0.4; filter: blur(40px); }
+
+.card-4 {
+  position: relative;
+  z-index: 1;
+  width: 75%;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.1),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+}
+.card-4__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.card-4__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+}
+.card-4__body {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.note {
+  margin-top: 80px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--ink);
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.note strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="page__header">
+    <p class="page__eyebrow">Design exploration</p>
+    <h1 class="page__title">Glassmorphism card options</h1>
+    <p class="page__sub">Four approaches for the case study cards. Each card sits in a stage with color blobs behind the glass. Pick the one that feels right.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- SAMPLE 1 -->
+    <div class="sample">
+      <div class="sample__label">
+        <span class="sample__name">A — Dark glass on light bg</span>
+      </div>
+      <p class="sample__desc">The card is a dark glass window on a light cream/bone stage. Bright color blobs (lavender, peach, sky) sit behind the glass and get blurred through it. Card text is white. The dark card pops against the light bg.</p>
+      <div class="sample__stage stage-1">
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-1">
+          <div>
+            <div class="card-1__eyebrow">Real · 01 / 04</div>
+            <h3 class="card-1__title">DreamGully</h3>
+          </div>
+          <p class="card-1__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE 2 -->
+    <div class="sample">
+      <div class="sample__label">
+        <span class="sample__name">B — Light glass on light bg (iOS 26 colorful)</span>
+      </div>
+      <p class="sample__desc">The card is a light translucent glass on a light stage. Blobs behind get bright color through the glass. Card text is dark. This is the current "iOS 26" feel — clean and bright.</p>
+      <div class="sample__stage stage-2">
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-2">
+          <div>
+            <div class="card-2__eyebrow">Real · 01 / 04</div>
+            <h3 class="card-2__title">DreamGully</h3>
+          </div>
+          <p class="card-2__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE 3 -->
+    <div class="sample">
+      <div class="sample__label">
+        <span class="sample__name">C — Dark glass on dark bg (the reference look)</span>
+      </div>
+      <p class="sample__desc">Matches the reference you showed me. Dark stage with chrome-like light blobs. Card is a dark glass window. Everything is dark/light, very "real glass." Mood: editorial, premium, dark mode.</p>
+      <div class="sample__stage stage-3">
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-3">
+          <div>
+            <div class="card-3__eyebrow">Real · 01 / 04</div>
+            <h3 class="card-3__title">DreamGully</h3>
+          </div>
+          <p class="card-3__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE 4 -->
+    <div class="sample">
+      <div class="sample__label">
+        <span class="sample__name">D — Light glass on dark bg (the colorful version)</span>
+      </div>
+      <p class="sample__desc">The reference's dark base, but with colorful blobs (pink, amber, sky) instead of chrome. Card is a frosted white glass. Bright color bleeds through. This is the "iOS 26 + reference" hybrid — dark mode but colorful.</p>
+      <div class="sample__stage stage-4">
+        <div class="blobs">
+          <div class="blob"></div>
+          <div class="blob"></div>
+          <div class="blob"></div>
+        </div>
+        <div class="card-4">
+          <div>
+            <div class="card-4__eyebrow">Real · 01 / 04</div>
+            <h3 class="card-4__title">DreamGully</h3>
+          </div>
+          <p class="card-4__body">The studio itself — the first case study. Brand, web, content, the lot.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>What changes between options:</strong><br>
+    • <strong>A &amp; B</strong> — light site, light/dark glass variants. The blobs are pastel (lavender, peach, sky).<br>
+    • <strong>C</strong> — full dark mode, chrome-like blobs. Most "premium" feel but loses the colorful brand personality.<br>
+    • <strong>D</strong> — dark base, colorful blobs (pink, amber, sky). Best of both — the dark "real glass" look from the reference, but with the DreamGully brand colors.<br>
+    <br>
+    <strong>Tell me which one to use for the live site (or "blend" to use different ones for different sections).</strong>
+  </div>
+</div>
+
+</body>
+</html>

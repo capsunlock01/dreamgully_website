@@ -86,10 +86,9 @@ html {
 
 /* Atmospheric color bg per section (the MARGINS outside the 4:3 working area) */
 .snap-section {
-  background-image: background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22'/><circle cx='40' cy='40' r='12' fill='%23fbbf24'/><circle cx='40' cy='40' r='4'/><circle cx='130' cy='50' r='18' fill='%23ec4899'/><circle cx='180' cy='30' r='14' fill='%23fff' stroke='%23000'/><circle cx='190' cy='150' r='20'/><circle cx='190' cy='150' r='10' fill='%23fbbf24'/><circle cx='190' cy='150' r='4'/><path d='M70 140 L100 110 L130 140 Z' fill='%23ec4899'/><path d='M150 130 L180 110 L180 150 Z' fill='%23fff'/><path d='M30 100 h12 M36 94 v12' stroke-width='4'/><path d='M150 80 h12 M156 74 v12' stroke-width='4'/><g><circle cx='10' cy='180' r='2' fill='%23000'/><circle cx='22' cy='190' r='2' fill='%23000'/><circle cx='34' cy='180' r='2' fill='%23000'/><circle cx='46' cy='190' r='2' fill='%23000'/><circle cx='58' cy='180' r='2' fill='%23000'/><circle cx='70' cy='190' r='2' fill='%23000'/></g><circle cx='110' cy='180' r='10' fill='%23000'/><circle cx='110' cy='180' r='4' fill='%23fbbf24'/></g></svg>");
-    background-color: #1d4ed8;
-    background-size: 220px 220px;
-    background-repeat: repeat;;
+  /* Memphis pattern bg — single blue panel like iOS 26 reference */
+  background-color: #1d4ed8;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22'/><circle cx='40' cy='40' r='12' fill='%23fbbf24'/><circle cx='40' cy='40' r='4'/><circle cx='130' cy='50' r='18' fill='%23ec4899'/><circle cx='180' cy='30' r='14' fill='%23fff' stroke='%23000'/><circle cx='190' cy='150' r='20'/><circle cx='190' cy='150' r='10' fill='%23fbbf24'/><circle cx='190' cy='150' r='4'/><path d='M70 140 L100 110 L130 140 Z' fill='%23ec4899'/><path d='M150 130 L180 110 L180 150 Z' fill='%23fff'/><path d='M30 100 h12 M36 94 v12' stroke-width='4'/><path d='M150 80 h12 M156 74 v12' stroke-width='4'/><g><circle cx='10' cy='180' r='2' fill='%23000'/><circle cx='22' cy='190' r='2' fill='%23000'/><circle cx='34' cy='180' r='2' fill='%23000'/><circle cx='46' cy='190' r='2' fill='%23000'/><circle cx='58' cy='180' r='2' fill='%23000'/><circle cx='70' cy='190' r='2' fill='%23000'/></g><circle cx='110' cy='180' r='10' fill='%23000'/><circle cx='110' cy='180' r='4' fill='%23fbbf24'/></g></svg>");
   background-size: 220px 220px;
   background-repeat: repeat;
 }
@@ -146,8 +145,8 @@ html {
 .viewport__image {
   flex: 1 1 50%;
   position: relative;
-  background: white;
-  border-right: 1.5px solid var(--ink);
+  background: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,9 +158,10 @@ html {
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
   padding: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .viewport__text {
@@ -178,7 +178,8 @@ html {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   margin: 0;
 }
 
@@ -188,14 +189,16 @@ html {
   font-size: clamp(28px, 3.4vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   margin: 0;
 }
 
 .viewport__body {
   font-size: clamp(14px, 1.1vw, 17px);
   line-height: 1.6;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   margin: 0;
   max-width: 42ch;
 }

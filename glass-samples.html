@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Glassmorphism Cards v2 — Visible BG</title>
+<title>Glassmorphism Cards v3 — Real visibility</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +25,6 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -39,7 +38,6 @@ body {
 }
 
 .page { max-width: 1400px; margin: 0 auto; padding: 80px 32px 120px; }
-
 .page__header { text-align: center; margin-bottom: 60px; }
 .page__eyebrow {
   font-family: var(--font-mono); font-size: 12px;
@@ -67,9 +65,7 @@ body {
   border: 1.5px solid var(--ink);
   border-radius: 20px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: flex; flex-direction: column; gap: 16px;
 }
 
 .sample__head { display: flex; flex-direction: column; gap: 6px; }
@@ -80,57 +76,62 @@ body {
 .sample__source a:hover { text-decoration: underline; }
 .sample__desc { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
 
-/* ==== THE DREAMGULLY STAGE ==== */
+/* ==== THE STAGE — true visibility ==== */
 .stage {
   position: relative;
   aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   border: 1.5px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   padding: 30px;
-  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%);
+  /* Real bg with strong, sharp color blobs that ARE visible through glass */
+  background: linear-gradient(135deg, #4c1d95 0%, #831843 50%, #1e1b4b 100%);
 }
 
-/* Brand color blobs — LARGE, BRIGHT, partially behind card */
+/* Brand color blobs — softer blur, more saturated, larger */
 .brand-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .brand-bg__blob {
-  position: absolute; border-radius: 50%; filter: blur(60px);
+  position: absolute; border-radius: 50%;
 }
-.brand-bg__blob--1 { width: 300px; height: 300px; background: var(--lavender); top: -40px; right: -40px; opacity: 0.9; }
-.brand-bg__blob--2 { width: 280px; height: 280px; background: var(--pink); bottom: -60px; left: -50px; opacity: 0.85; }
-.brand-bg__blob--3 { width: 240px; height: 240px; background: var(--peach); top: 30%; left: 30%; opacity: 0.7; }
-.brand-bg__blob--4 { width: 220px; height: 220px; background: var(--sky); bottom: 20%; right: 25%; opacity: 0.7; }
-.brand-bg__blob--5 { width: 200px; height: 200px; background: var(--amber); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.5; }
+.brand-bg__blob--1 { width: 260px; height: 260px; background: var(--lavender); top: -50px; right: -50px; opacity: 0.85; filter: blur(30px); }
+.brand-bg__blob--2 { width: 240px; height: 240px; background: var(--pink); bottom: -60px; left: -50px; opacity: 0.85; filter: blur(30px); }
+.brand-bg__blob--3 { width: 200px; height: 200px; background: var(--peach); top: 35%; left: 30%; opacity: 0.7; filter: blur(25px); }
+.brand-bg__blob--4 { width: 200px; height: 200px; background: var(--sky); bottom: 25%; right: 25%; opacity: 0.75; filter: blur(25px); }
+.brand-bg__blob--5 { width: 180px; height: 180px; background: var(--amber); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.6; filter: blur(25px); }
 
-/* Brand objects — visible through the glass */
+/* SHARP objects — these are what you see through the glass */
 .brand-objects { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.brand-objects__shape { position: absolute; }
+
 .brand-objects__ring {
-  width: 80px; height: 80px; border: 3px solid rgba(255, 255, 255, 0.4);
+  width: 80px; height: 80px; border: 4px solid var(--lavender);
   border-radius: 50%; top: 12%; right: 8%;
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.5);
 }
 .brand-objects__ring--2 {
-  width: 60px; height: 60px; border: 2.5px solid rgba(255, 255, 255, 0.35);
+  width: 60px; height: 60px; border: 3.5px solid var(--pink);
   bottom: 18%; left: 12%; border-radius: 50%;
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);
 }
 .brand-objects__tri {
   width: 0; height: 0;
-  border-left: 26px solid transparent;
-  border-right: 26px solid transparent;
-  border-bottom: 44px solid rgba(245, 158, 11, 0.5);
-  top: 55%; right: 18%;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-bottom: 48px solid var(--amber);
+  top: 50%; right: 20%;
+  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.6));
 }
 .brand-objects__sq {
-  width: 44px; height: 44px; border-radius: 8px;
-  background: rgba(56, 189, 248, 0.5);
-  top: 22%; left: 48%; transform: rotate(20deg);
+  width: 48px; height: 48px; border-radius: 8px;
+  background: var(--sky);
+  top: 20%; left: 45%; transform: rotate(20deg);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
 }
 .brand-objects__dot {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: rgba(236, 72, 153, 0.6);
-  bottom: 25%; right: 32%;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--pink);
+  bottom: 28%; right: 32%;
   box-shadow: 0 0 30px var(--pink);
 }
 .brand-objects__wordmark {
@@ -140,38 +141,38 @@ body {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* Card area */
+/* Card area — LOWER opacity, LOWER blur so the objects behind show through clearly */
 .card-area {
   position: relative; z-index: 2;
   width: 70%; max-width: 280px;
   display: flex; flex-direction: column; gap: 10px;
   padding: 20px;
   border-radius: 16px;
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
 }
 
 .card__eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
 .card__title { font-family: var(--font-display); font-size: 20px; font-weight: 500; margin: 0; letter-spacing: -0.01em; }
 .card__body { font-size: 12px; margin: 0; line-height: 1.5; }
 
-/* ==== CARD 1 — light glass, very transparent ==== */
+/* ==== CARD 1 — very light glass, very transparent ==== */
 .card-1 {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
   color: white;
 }
-.card-1 .card__eyebrow { color: rgba(255, 255, 255, 0.7); }
-.card-1 .card__title { color: white; }
-.card-1 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-1 .card__eyebrow { color: rgba(255, 255, 255, 0.8); }
+.card-1 .card__title { color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.card-1 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
-/* ==== CARD 2 — dark glass, almost transparent, strong inner highlight ==== */
+/* ==== CARD 2 — dark glass, very transparent, strong inner highlight ==== */
 .card-2 {
-  background: rgba(20, 20, 40, 0.18);
+  background: rgba(20, 20, 40, 0.12);
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -181,61 +182,60 @@ body {
 }
 .card-2::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
   pointer-events: none;
 }
-.card-2 .card__eyebrow { color: rgba(255, 255, 255, 0.7); }
+.card-2 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
 .card-2 .card__title { color: white; }
-.card-2 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-2 .card__body { color: rgba(255, 255, 255, 0.95); }
 
-/* ==== CARD 3 — white-ish glass, very transparent, with image header ==== */
+/* ==== CARD 3 — white glass, very transparent, with image header ==== */
 .card-3 {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   color: white;
   padding: 0;
   overflow: hidden;
 }
 .card-3__img {
   width: 100%; height: 60px; margin: 0;
-  background: linear-gradient(135deg, rgba(42, 77, 220, 0.7), rgba(167, 139, 250, 0.7));
+  background: linear-gradient(135deg, rgba(42, 77, 220, 0.6), rgba(167, 139, 250, 0.6));
+  backdrop-filter: blur(8px);
 }
 .card-3__body { padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-.card-3 .card__eyebrow { color: rgba(255, 255, 255, 0.7); }
-.card-3 .card__title { color: white; font-size: 18px; }
-.card-3 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-3 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
+.card-3 .card__title { color: white; font-size: 18px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.card-3 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 .card-3__btn {
   align-self: flex-start; padding: 5px 10px; font-size: 10px;
   background: rgba(255, 255, 255, 0.2);
-  color: white; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 6px;
+  color: white; border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px;
   font-family: var(--font-body); font-weight: 500; cursor: pointer; margin-top: 4px;
-  backdrop-filter: blur(10px);
 }
 
-/* ==== CARD 4 — translucent glass with chip ==== */
+/* ==== CARD 4 — translucent white with chip ==== */
 .card-4 {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
   color: white;
 }
 .card-4__chip {
   display: inline-block; padding: 3px 8px;
-  background: rgba(245, 158, 11, 0.25);
-  border: 1px solid rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(245, 158, 11, 0.6);
   border-radius: 100px; font-size: 9px;
-  color: rgba(255, 255, 255, 0.95); align-self: flex-start;
+  color: white; align-self: flex-start;
   font-family: var(--font-mono); letter-spacing: 0.1em;
   width: fit-content;
-  backdrop-filter: blur(8px);
 }
-.card-4 .card__title { color: white; }
-.card-4 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-4 .card__title { color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.card-4 .card__body { color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
-/* ==== CARD 5 — dark glass, 3D tilt ==== */
+/* ==== CARD 5 — dark glass, 3D tilted ==== */
 .card-5 {
-  background: rgba(20, 20, 40, 0.2);
+  background: rgba(20, 20, 40, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.3);
   color: white;
@@ -248,13 +248,13 @@ body {
   font-size: 18px; color: white;
   box-shadow: 0 4px 20px rgba(236, 72, 153, 0.5);
 }
-.card-5 .card__eyebrow { color: rgba(255, 255, 255, 0.7); }
+.card-5 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
 .card-5 .card__title { color: white; }
-.card-5 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-5 .card__body { color: rgba(255, 255, 255, 0.95); }
 
 /* ==== CARD 6 — dark glass, chrome sphere on top ==== */
 .card-6 {
-  background: rgba(20, 20, 40, 0.18);
+  background: rgba(20, 20, 40, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   color: white;
@@ -270,9 +270,9 @@ body {
   position: absolute; top: 0; left: 0; right: 0; height: 50%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
 }
-.card-6 .card__eyebrow { color: rgba(255, 255, 255, 0.7); }
+.card-6 .card__eyebrow { color: rgba(255, 255, 255, 0.85); }
 .card-6 .card__title { color: white; }
-.card-6 .card__body { color: rgba(255, 255, 255, 0.85); }
+.card-6 .card__body { color: rgba(255, 255, 255, 0.95); }
 .card-6__price { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin: 4px 0 0; color: white; }
 .card-6__price small { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-right: 4px; }
 
@@ -295,8 +295,8 @@ body {
 <div class="page">
   <header class="page__header">
     <p class="page__eyebrow">Design exploration</p>
-    <h1 class="page__title">Glassmorphism cards — visible bg</h1>
-    <p class="page__sub">All 6 cards on the same dark DreamGully brand bg with bright color blobs. Cards are now <strong>0.12-0.20 opacity</strong> (not 0.45) — the bg shows through clearly, like the Apple reference.</p>
+    <h1 class="page__title">Glassmorphism cards — real bg visibility</h1>
+    <p class="page__sub">Card opacity dropped to 0.06-0.12 (was 0.45, then 0.20). Blur reduced to 14px (was 24-30px). Now the actual ring, square, triangle, and dot behind the card are clearly visible through the glass.</p>
   </header>
 
   <div class="grid">
@@ -308,7 +308,7 @@ body {
         <h2 class="sample__name">bedimcode</h2>
         <span class="sample__source">Source: <a href="https://github.com/bedimcode/glassmorphism-card-responsive">bedimcode/glassmorphism-card-responsive</a> · 41★</span>
       </div>
-      <p class="sample__desc">White glass at 0.12 opacity. The pink + lavender + amber blobs show through heavily. You can see the lavender ring through the card.</p>
+      <p class="sample__desc">White glass at 0.06 opacity. The ring, triangle, and square are visible through the card. Lightest feel.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -340,7 +340,7 @@ body {
         <h2 class="sample__name">liquidGL</h2>
         <span class="sample__source">Source: <a href="https://github.com/naughtyduk/liquidGL">naughtyduk/liquidGL</a> · 594★</span>
       </div>
-      <p class="sample__desc">Dark glass at 0.18 opacity with strong top inner highlight. The bg color blobs shine through the dark card — Apple liquid glass look.</p>
+      <p class="sample__desc">Dark glass at 0.12 opacity. Strong top inner highlight. The Apple reference style — clear glass with bg visible.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -372,7 +372,7 @@ body {
         <h2 class="sample__name">themesberg / glass-ui</h2>
         <span class="sample__source">Source: <a href="https://github.com/themesberg/glass-ui">themesberg/glass-ui</a> · 403★</span>
       </div>
-      <p class="sample__desc">White glass at 0.18 with translucent image header. The gradient header lets the bg show through partially.</p>
+      <p class="sample__desc">White glass at 0.08 with translucent image header. The gradient header lets the bg show through clearly.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -408,7 +408,7 @@ body {
         <h2 class="sample__name">css.glass</h2>
         <span class="sample__source">Source: <a href="https://github.com/miketromba/css.glass">miketromba/css.glass</a> · 436★</span>
       </div>
-      <p class="sample__desc">Translucent white glass with amber chip. The chip pops against the bg's pink + peach.</p>
+      <p class="sample__desc">Translucent white glass at 0.07 with amber chip. The chip is the only solid element on the card.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -440,7 +440,7 @@ body {
         <h2 class="sample__name">saadman 3D tilt</h2>
         <span class="sample__source">Source: <a href="https://github.com/saadman-galib/Glassmorphism-Card-Hover-Effect">saadman-galib/Glassmorphism-Card-Hover-Effect</a> · 3★</span>
       </div>
-      <p class="sample__desc">Dark glass at 0.20, 3D tilted. The pink→amber icon glows. The bg blobs show through the dark card.</p>
+      <p class="sample__desc">Dark glass at 0.12, 3D tilted. The pink→amber icon glows. The bg shapes show through the dark card.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -473,7 +473,7 @@ body {
         <h2 class="sample__name">javohirdev Apple</h2>
         <span class="sample__source">Source: <a href="https://github.com/javohirdev/3D-hover-Glassmorphism-AppleCard">javohirdev/3D-hover-Glassmorphism-AppleCard</a> · 3★</span>
       </div>
-      <p class="sample__desc">Dark glass with chrome sphere on top. The chrome sphere is the only solid 3D element. Most premium look.</p>
+      <p class="sample__desc">Dark glass with chrome sphere on top. Chrome sphere is the only opaque element. Premium pricing card style.</p>
       <div class="stage">
         <div class="brand-bg">
           <div class="brand-bg__blob brand-bg__blob--1"></div>
@@ -502,9 +502,13 @@ body {
   </div>
 
   <div class="note">
-    <strong>Key change:</strong> card bg opacity went from 0.45 → 0.12-0.20. Now the bg blobs (pink, lavender, peach, sky, amber) are clearly visible through the glass. The card area looks like a real window onto the colorful bg.<br>
+    <strong>3rd revision of the glass treatment.</strong><br>
+    • Card opacity: 0.06-0.12 (was 0.20 in v2, 0.45 in v1) — now the actual sharp objects (rings, triangle, square, dot) are clearly visible through the glass, not just blob colors.<br>
+    • Backdrop blur: 14px (was 24-30px) — less blur so shapes keep their edges through the glass.<br>
+    • Bg blob blur: 25-30px (was 50-60px) — softer bg gives the shapes more presence.<br>
+    • Objects now have glow shadows for more "neon" feel.<br>
     <br>
-    <strong>What still varies between cards:</strong> the tone (white glass vs dark glass), inner highlight, border style, and content. Pick the one you want.
+    <strong>Tell me which one to use (or "blend X+Y" / "modify X — [tweak]").</strong>
   </div>
 </div>
 

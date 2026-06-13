@@ -85,12 +85,13 @@ html {
 }
 
 /* Atmospheric color bg per section (the MARGINS outside the 4:3 working area) */
-.snap-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+.snap-section {
+  background-image: background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23000' stroke-width='3'><circle cx='40' cy='40' r='22'/><circle cx='40' cy='40' r='12' fill='%23fbbf24'/><circle cx='40' cy='40' r='4'/><circle cx='130' cy='50' r='18' fill='%23ec4899'/><circle cx='180' cy='30' r='14' fill='%23fff' stroke='%23000'/><circle cx='190' cy='150' r='20'/><circle cx='190' cy='150' r='10' fill='%23fbbf24'/><circle cx='190' cy='150' r='4'/><path d='M70 140 L100 110 L130 140 Z' fill='%23ec4899'/><path d='M150 130 L180 110 L180 150 Z' fill='%23fff'/><path d='M30 100 h12 M36 94 v12' stroke-width='4'/><path d='M150 80 h12 M156 74 v12' stroke-width='4'/><g><circle cx='10' cy='180' r='2' fill='%23000'/><circle cx='22' cy='190' r='2' fill='%23000'/><circle cx='34' cy='180' r='2' fill='%23000'/><circle cx='46' cy='190' r='2' fill='%23000'/><circle cx='58' cy='180' r='2' fill='%23000'/><circle cx='70' cy='190' r='2' fill='%23000'/></g><circle cx='110' cy='180' r='10' fill='%23000'/><circle cx='110' cy='180' r='4' fill='%23fbbf24'/></g></svg>");
+    background-color: #1d4ed8;
+    background-size: 220px 220px;
+    background-repeat: repeat;;
+  background-size: 220px 220px;
+  background-repeat: repeat;
 }
 
 /* ============================================================
@@ -101,27 +102,44 @@ html {
   position: relative;
   z-index: 1;
   /* Working area = 70% viewport width, 80% viewport height */
-  /* Margins: 15% L/R, 10% T/B (handled by .snap-section padding + this width/height) */
   width: 70vw;
   max-width: 70vw;
   height: 80vh;
   max-height: 80vh;
   margin: auto;
-  /* The glassmorphic card surface */
-  background: rgba(255, 255, 255, 0.32);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1.5px solid var(--ink);
+  /* === iOS 26 LIQUID GLASS — Nick's Figma recipe === */
+  background: rgba(255, 255, 255, 0.02);          /* Nick: fill white 2% */
+  backdrop-filter: blur(10px) saturate(180%);      /* Nick: blur 10 */
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
   border-radius: 24px;
   box-shadow:
-    /* glassmorphic pop-color offset */
-    10px 10px 0 0 rgba(167, 139, 250, 0.45),
-    10px 10px 40px 0 rgba(30, 27, 75, 0.15),
-    /* inner glass highlight */
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 0 rgba(30, 27, 75, 0.06);
+    /* Nick's drop shadow stack: 0/1/0/0 black 5% + 0/1/2/0 black 20% */
+    0 1px 0 0 rgba(0, 0, 0, 0.05),
+    0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    /* Nick's inner shadow top: 0/1/0/0 white 100% (top edge highlight) */
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    /* Nick's inner shadow bottom: 0/-1/2/0 white 15% (bottom edge highlight) */
+    inset 0 -1px 2px 0 rgba(255, 255, 255, 0.15);
   overflow: hidden;
   display: flex;
+}
+
+/* Nick's stroke: 3-stop white gradient (5%, 100%, 5%), diagonal bottom-left → top-right */
+.viewport::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 50;
 }
 
 /* Inside the 4:3 working area: image on left, text on right (desktop) */
@@ -428,93 +446,31 @@ html {
    ============================================================ */
 
 /* Section 0 — Hero: cream/bone base with lavender + peach washes */
-#sec-hero::before {
-  background:
-    radial-gradient(ellipse 60% 50% at 15% 30%, rgba(167, 139, 250, 0.35), transparent 60%),
-    radial-gradient(ellipse 50% 60% at 85% 70%, rgba(251, 146, 60, 0.28), transparent 60%),
-    linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
-}
-#sec-hero .viewport { box-shadow:
-  10px 10px 0 0 rgba(167, 139, 250, 0.45),
-  10px 10px 40px 0 rgba(30, 27, 75, 0.15),
-  inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-  inset 0 -1px 0 0 rgba(30, 27, 75, 0.06);
-}
+
+
 
 /* Section 1 — The Reach: sky + lavender */
-#sec-reach::before {
-  background:
-    radial-gradient(ellipse 55% 60% at 20% 30%, rgba(56, 189, 248, 0.4), transparent 60%),
-    radial-gradient(ellipse 50% 55% at 80% 75%, rgba(167, 139, 250, 0.32), transparent 60%),
-    linear-gradient(180deg, var(--bone) 0%, var(--cream) 100%);
-}
-#sec-reach .viewport { box-shadow:
-  10px 10px 0 0 rgba(56, 189, 248, 0.45),
-  10px 10px 40px 0 rgba(30, 27, 75, 0.15),
-  inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-  inset 0 -1px 0 0 rgba(30, 27, 75, 0.06);
-}
+
+
 
 /* Section 2 — The Series: amber + pink */
-#sec-series::before {
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(245, 158, 11, 0.4), transparent 60%),
-    radial-gradient(ellipse 50% 60% at 15% 80%, rgba(236, 72, 153, 0.3), transparent 60%),
-    linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
-}
-#sec-series .viewport { box-shadow:
-  10px 10px 0 0 rgba(245, 158, 11, 0.5),
-  10px 10px 40px 0 rgba(30, 27, 75, 0.15),
-  inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-  inset 0 -1px 0 0 rgba(30, 27, 75, 0.06);
-}
+
+
 
 /* Section 3 — What We Do: lavender + sky */
-#sec-services::before {
-  background:
-    radial-gradient(ellipse 55% 60% at 25% 25%, rgba(167, 139, 250, 0.4), transparent 60%),
-    radial-gradient(ellipse 50% 55% at 80% 75%, rgba(56, 189, 248, 0.32), transparent 60%),
-    linear-gradient(180deg, var(--bone) 0%, var(--cream) 100%);
-}
-#sec-services .viewport { box-shadow:
-  10px 10px 0 0 rgba(167, 139, 250, 0.5),
-  10px 10px 40px 0 rgba(30, 27, 75, 0.15),
-  inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-  inset 0 -1px 0 0 rgba(30, 27, 75, 0.06);
-}
+
+
 
 /* Section 4 — Real Work: peach + pink (warmer, "real" work) */
-#sec-realwork::before {
-  background:
-    radial-gradient(ellipse 55% 60% at 20% 30%, rgba(251, 146, 60, 0.38), transparent 60%),
-    radial-gradient(ellipse 50% 55% at 80% 75%, rgba(236, 72, 153, 0.32), transparent 60%),
-    linear-gradient(180deg, var(--cream) 0%, var(--bone) 100%);
-}
+
 
 /* Section 5 — Concepts: sky + lavender (cooler, conceptual) */
-#sec-concepts::before {
-  background:
-    radial-gradient(ellipse 55% 60% at 25% 30%, rgba(56, 189, 248, 0.4), transparent 60%),
-    radial-gradient(ellipse 50% 55% at 80% 75%, rgba(167, 139, 250, 0.36), transparent 60%),
-    linear-gradient(180deg, var(--bone) 0%, var(--cream) 100%);
-}
+
 
 /* Section 6 — CTA + Footer: cobalt gradient (closing) */
-#sec-cta::before {
-  background:
-    radial-gradient(ellipse 50% 60% at 30% 30%, rgba(42, 77, 220, 0.5), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(167, 139, 250, 0.3), transparent 60%),
-    linear-gradient(180deg, #1a1f5c 0%, #2a1f5c 50%, #1e1b4b 100%);
-}
+
 #sec-cta { color: white; }
-#sec-cta .viewport {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow:
-    10px 10px 0 0 rgba(236, 72, 153, 0.6),
-    10px 10px 40px 0 rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
-}
+
 #sec-cta .viewport__image { background: rgba(0, 0, 0, 0.2); border-color: rgba(255, 255, 255, 0.3); }
 #sec-cta .viewport__text { color: white; }
 #sec-cta .viewport__eyebrow { color: rgba(255, 255, 255, 0.7); }

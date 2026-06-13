@@ -502,8 +502,10 @@ html {
   flex: 0 0 auto;
   width: 38%;
   aspect-ratio: 9 / 16;
-  background: white;
-  border: 1.5px solid var(--ink);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -512,9 +514,10 @@ html {
   font-size: 9px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .reach-card--main {
   transform: scale(1.05);
@@ -541,23 +544,27 @@ html {
   margin-top: 8px;
 }
 .service-chip {
-  font-size: 12px;
-  font-weight: 500;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid var(--ink);
-  border-radius: 100px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  letter-spacing: 0.02em;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .service-chip__dot {
   width: 6px;
   height: 6px;
+  background: white;
   border-radius: 50%;
-  background: var(--ink);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 /* CASE STUDY CAROUSELS — Real + Concepts */
@@ -582,19 +589,21 @@ html {
   aspect-ratio: 4 / 3;
   scroll-snap-align: center;
   margin: 0 4%;
-  background: white;
-  border: 1.5px solid var(--ink);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: inherit;
+  color: white;
   position: relative;
   overflow: hidden;
   box-shadow:
-    8px 8px 0 0 rgba(167, 139, 250, 0.45),
-    8px 8px 30px 0 rgba(30, 27, 75, 0.12);
+    0 4px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
   transition: transform 0.3s var(--ease);
 }
 .cs-carousel__card:hover {
@@ -718,39 +727,44 @@ html {
 }
 .cs-carousel__card-content {
   text-align: center;
-  padding: 24px;
-  color: var(--ink-mute);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 20px;
 }
 .cs-carousel__card-title {
-  display: block;
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
   font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-top: 8px;
-  text-transform: none;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  font-size: 24px;
+  color: white;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 2;
 }
 .cs-carousel__card-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
   font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid var(--ink);
-  padding: 4px 8px;
-  border-radius: 100px;
+  color: white;
   z-index: 2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* CTA — text on top of wordmark image */
@@ -887,6 +901,23 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* Wordmark ghost text — large, faded, sits inside the image area */
+.wordmark-pattern {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(48px, 8vw, 120px);
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.15);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  user-select: none;
 }
 </style>
 </head>
